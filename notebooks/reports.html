@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Metadata table" href="../meta_ipynb/reports.html" />
-    <link rel="prev" title="MosquitoAlert" href="../meta/mosquito_alert/intro.html" />
+    <link rel="prev" title="Mosquito Alert" href="../meta/mosquito_alert/intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -88,14 +88,14 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../README_ma.html">
-   Introduction
+   Table of contents
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="../meta/mosquito_alert/intro.html">
-   MosquitoAlert
+   Mosquito Alert
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active collapsible-parent">
@@ -142,6 +142,20 @@
     <ul class="collapse-ul">
      <li class="toctree-l3">
       <a class="reference internal" href="../meta_ipynb/model_tables.html">
+       Metadata table
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="analytic_tables.html">
+     Dataset: analytic_tables
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../meta_ipynb/analytic_tables.html">
        Metadata table
       </a>
      </li>
@@ -269,7 +283,9 @@
 <h2>1. Distribution from Zenodo cloud<a class="headerlink" href="#distribution-from-zenodo-cloud" title="Permalink to this headline">¶</a></h2>
 <p>Pay attention to get the url of the most recent version of the dataset. Below
 we give an url just as an example, but probably it is not pointing to the
-most recent dataset version.</p>
+most recent dataset version. However, if the dataset link is not pointing to
+the last dataset version, Zenodo issues a waring and a link to the most recent
+version.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
@@ -292,7 +308,7 @@ most recent dataset version.</p>
 </div>
 </div>
 </div>
-<p>We have the option to exctract all the file reports into a distribution folder.</p>
+<p>We have the option to extract all the file reports into a distribution folder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -300,7 +316,7 @@ most recent dataset version.</p>
 </div>
 </div>
 </div>
-<p>Or we could concatenate all reports into a single dataframe before and save
+<p>Or we could just concatenate all reports into a single dataframe and save
 it on a file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -318,9 +334,9 @@ it on a file.</p>
 </div>
 </div>
 </div>
-<p>Some attributed of reports are key-value json-like data, that needs additional
-tables to be fully comprehensive. For example, tiger_respones
-Since multilanguage translations are available, we make language as index</p>
+<p>Some report attributes are key-value json-like data, that need additional
+tables to be fully comprehensive. For example, for “tiger_respones”,
+since multi language translations are available, we make language as index</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reports_translation</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;translation_dict&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
@@ -360,7 +376,7 @@ Since multilanguage translations are available, we make language as index</p>
 </div>
 <div class="section" id="distribution-from-mosquitoalert-github-repository">
 <h2>2. Distribution from MosquitoAlert Github repository<a class="headerlink" href="#distribution-from-mosquitoalert-github-repository" title="Permalink to this headline">¶</a></h2>
-<p>In contrast with the Zenodo distribution, dataset stored on GitHub server is
+<p>In contrast with the Zenodo distribution, the dataset stored on GitHub server is
 always the latest available version since it is daily loaded into Zenodo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -456,7 +472,7 @@ always the latest available version since it is daily loaded into Zenodo.</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../meta/mosquito_alert/intro.html" title="previous page">MosquitoAlert</a>
+    <a class='left-prev' id="prev-link" href="../meta/mosquito_alert/intro.html" title="previous page">Mosquito Alert</a>
     <a class='right-next' id="next-link" href="../meta_ipynb/reports.html" title="next page">Metadata table</a>
 
         </div>

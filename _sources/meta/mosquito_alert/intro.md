@@ -1,5 +1,9 @@
-# MosquitoAlert
+# Mosquito Alert
 
-Mosquito Alert is a non-profit cooperative citizen science project, coordinated by [different public research centers](http://www.mosquitoalert.com/en/about-us/institutional-organization/). The goal is to study, monitor, and fight the spread of invasive mosquitoes capable of transmitting global diseases such as dengue, Zika, or West Nile fever. The tiger mosquito and the yellow fever mosquito are some of the invasive species that Mosquito Alert watches out for.
+​​​​Mosquito Alert is a non-profit cooperative citizen science project, coordinated by different public research centres. The goal is to study, monitor, and fight the spread of invasive mosquitoes capable of transmitting global diseases such as dengue, Zika, or West Nile fever. The target species of Mosquito Alert are: Aedes albopictus (tiger mosquito), Aedes aegypti (yellow-fever mosquito), Aedes japonicus, Aedes koreicus and Culex pipiens (common-house mosquito).
 
 Surveillance is carried out with the [Mosquito Alert app](http://www.mosquitoalert.com/en/project/envia-datos/), which allows anyone to notify, by means of a photo, the possible discovery of one of the mosquitoes studied, as well as that of their breeding places in public spaces. Along with the photo the location of the observation and other necessary information to help in the identification of the species are collected. A human team of expert entomologists is in charge of validating the photos received and notifying the participant of the result. Finally, the result is published on the [public map](http://webserver.mosquitoalert.com/static/tigapublic/spain.html#/en/), where you can consult and download the observations recorded since 2014, as well as explore the probability models developed from the citizen observations.
+
+The information obtained through the Mosquito Alert app complements the scientific work in the surveillance of invasive mosquitoes, and can be used by public health managers to monitor and control these mosquitoes in neighborhoods and cities.
+
+The project is coordinated by the Spanish National Research Council ([CSIC](https://www.csic.es/es); [CEAB-CSIC](https://www.ceab.csic.es/)), the Centre for Ecological Research and Forestry Applications ([CREAF](https://www.creaf.cat/es)) and the Pompeu Fabra University ([UPF](https://www.upf.edu/es/)). 
