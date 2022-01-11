@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataset: tigapics &#8212; BigBytes Meta2Data</title>
+    <title>Dataset: sampling_effort &#8212; BigBytes Meta2Data</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -54,8 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Metadata table" href="../meta_ipynb/tigapics.html" />
-    <link rel="prev" title="Metadata table" href="../meta_ipynb/reports.html" />
+    <link rel="next" title="Metadata table" href="../meta_ipynb/sampling_effort.html" />
+    <link rel="prev" title="Metadata table" href="../meta_ipynb/model_tables.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -115,8 +115,8 @@
     <i class="fas fa-chevron-down">
     </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="tigapics.html">
      Dataset:
      <em>
       tigapics
@@ -149,8 +149,8 @@
     <i class="fas fa-chevron-down">
     </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
-    <a class="reference internal" href="sampling_effort.html">
+   <li class="toctree-l2 current active collapsible-parent">
+    <a class="current reference internal" href="#">
      Dataset:
      <em>
       sampling_effort
@@ -224,7 +224,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/tigapics.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/notebooks/sampling_effort.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -256,8 +256,13 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distribution-by-image-download-from-mosquitoalert-webserver">
-   1. Distribution by image download from MosquitoAlert webserver
+  <a class="reference internal nav-link" href="#distribution-from-zenodo-cloud">
+   1. Distribution from Zenodo cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-from-mosquitoalert-github-repository">
+   2. Distribution from MosquitoAlert Github repository
   </a>
  </li>
 </ul>
@@ -272,11 +277,14 @@
         
               <div>
                 
-  <div class="section" id="dataset-tigapics">
-<h1>Dataset: <em>tigapics</em><a class="headerlink" href="#dataset-tigapics" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dataset-sampling-effort">
+<h1>Dataset: <em>sampling_effort</em><a class="headerlink" href="#dataset-sampling-effort" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">tarfile</span><span class="o">,</span> <span class="nn">io</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
 
 <span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
 
@@ -284,21 +292,22 @@
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/meta/mosquito_alert/tigapics.json&#39;</span>
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/meta/mosquito_alert/sampling_effort.json&#39;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="distribution-by-image-download-from-mosquitoalert-webserver">
-<h2>1. Distribution by image download from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-image-download-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h2>
-<p>This distribution allows to download individual pictures (adults and sites)
-that can be viewed at the Mosquito Alert map webserver given a picture IID.</p>
+<div class="section" id="distribution-from-zenodo-cloud">
+<h2>1. Distribution from Zenodo cloud<a class="headerlink" href="#distribution-from-zenodo-cloud" title="Permalink to this headline">¶</a></h2>
+<p>This dataset is updated nightly and the most recent version can be downloaded
+from Zenodo at <a class="reference external" href="https://doi.org/10.5281/zenodo.5802476">https://doi.org/10.5281/zenodo.5802476</a>. This URL will always
+resolve to the most recent version of the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
 <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -307,32 +316,68 @@ that can be viewed at the Mosquito Alert map webserver given a picture IID.</p>
 </div>
 </div>
 </div>
-<p>In order to get a picture from the <a class="reference external" href="http://webserver.mosquitoalert.com/static/tigapublic/spain.html#/en/">Mosquito Alert public map</a>
-we should know its file-name (ID hash and file extension). The simplest way
-to get one is to check visually the map, for example as given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up an picture ID file-name and get the relative URL address</span>
-<span class="n">ID_PICNAME</span> <span class="o">=</span> <span class="s1">&#39;a67c2ad2-09b6-4dbe-9cd0-2536a91e17f3.jpg&#39;</span>
-<span class="n">contentUrl_pic</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ID_PICNAME</span><span class="o">=</span><span class="n">ID_PICNAME</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download and open the zip container</span>
+
+<span class="c1"># Get the latest zenodo file version of the dataset</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl</span><span class="p">)</span>
+<span class="n">file_url</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;filename&#39;</span><span class="p">})[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+<span class="n">file_contentUrl</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">file_url</span><span class="p">)</span>
+
+<span class="c1"># Download the dataset</span>
+<span class="n">r_file</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">file_contentUrl</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">r_file</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note that this particular ID corresponds to the below displayed mosquito adult
-picture available on the <a class="reference external" href="http://webserver.mosquitoalert.com/static/tigapublic/spain.html#/en/">Mosquito Alert public map</a>.</p>
-<p align="center">
-  <img src="http://webserver.mosquitoalert.com/media/tigapics/a67c2ad2-09b6-4dbe-9cd0-2536a91e17f3.jpg" alt="Aedes albopictus" height="400"/>
-</p>
-<p>Another way to get a picture ID is to get the <em>ma_yearly_reports</em> dataset,
-where the measured variable <em>movelab_annotation</em> is a dictionary with key
-<em>photo_html</em> that gives photo <em>href</em> (ID) relative to a given report.</p>
+<p>We have the option to extract all the files into a distribution folder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the picture and save it</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl_pic</span> <span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ID_PICNAME</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the 0.05 degree cell resolution dataset into a dataframe </span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;cellres_05.csv.gz&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">s</span>
+<span class="n">df_05</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df_05</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="distribution-from-mosquitoalert-github-repository">
+<h2>2. Distribution from MosquitoAlert Github repository<a class="headerlink" href="#distribution-from-mosquitoalert-github-repository" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset</span>
+
+<span class="c1"># Get the latest GitHub file version of the dataset</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">contentUrl</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -367,8 +412,8 @@ where the measured variable <em>movelab_annotation</em> is a dictionary with key
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../meta_ipynb/reports.html" title="previous page">Metadata table</a>
-    <a class='right-next' id="next-link" href="../meta_ipynb/tigapics.html" title="next page">Metadata table</a>
+    <a class='left-prev' id="prev-link" href="../meta_ipynb/model_tables.html" title="previous page">Metadata table</a>
+    <a class='right-next' id="next-link" href="../meta_ipynb/sampling_effort.html" title="next page">Metadata table</a>
 
         </div>
         
