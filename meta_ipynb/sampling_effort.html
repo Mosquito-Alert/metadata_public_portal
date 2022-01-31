@@ -129,251 +129,6 @@
   ]
 }
   </script>
-  <style>
-   #hidden {
-        display: none;
-        }
-
-        #collapseButton:hover {
-        background-color: #92a2d1;
-        }
-  </style>
-  <script src="../_static/extra_interact.js" type="text/javascript">
-  </script>
-  <script type="application/ld+json">
-   {
-  "@context": {
-    "@vocab": "https://schema.org/",
-    "qudt": "http://qudt.org/schema/qudt/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
-  },
-  "@type": "Dataset",
-  "name": "sampling_effort",
-  "conditionsOfAccess": "Public",
-  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
-  "identifier": "",
-  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "citation": "",
-  "temporalCoverage": "2014/..",
-  "spatialCoverage": {
-    "@type": "Place",
-    "name": "Worldwide",
-    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
-  },
-  "distribution": [
-    {
-      "@type": "DataDownload",
-      "name": "zenodo",
-      "description": "Distribution from Zenodo cloud",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.5802476",
-      "contentSize": "11MB"
-    },
-    {
-      "@type": "DataDownload",
-      "name": "github",
-      "description": "Distribution from MosquitoAlert Github repository",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": [
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz",
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz"
-      ],
-      "contentSize": "11MB"
-    }
-  ],
-  "variableMeasured": [
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lon",
-      "description": "Longitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lat",
-      "description": "Latitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
-      "unitText": "",
-      "dataType": "xsd:string"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "date",
-      "description": "Date of the observation/estimate. YYYY-MM-Dd.",
-      "unitText": "",
-      "dataType": "xsd:date"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "n_participants",
-      "description": "Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.",
-      "unitText": "",
-      "dataType": "xsd:integer"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE_expected",
-      "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
-      "unitText": "",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE",
-      "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
-      "unitText": "",
-      "dataType": "xsd:numeric"
-    }
-  ],
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
-    }
-  ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
-    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
-  ]
-}
-  </script>
-  <script type="application/ld+json">
-   {
-  "@context": {
-    "@vocab": "https://schema.org/",
-    "qudt": "http://qudt.org/schema/qudt/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
-  },
-  "@type": "Dataset",
-  "name": "sampling_effort",
-  "conditionsOfAccess": "Public",
-  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
-  "identifier": "",
-  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "citation": "",
-  "temporalCoverage": "2014/..",
-  "spatialCoverage": {
-    "@type": "Place",
-    "name": "Worldwide",
-    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
-  },
-  "distribution": [
-    {
-      "@type": "DataDownload",
-      "name": "zenodo",
-      "description": "Distribution from Zenodo cloud",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.5802476",
-      "contentSize": "11MB"
-    },
-    {
-      "@type": "DataDownload",
-      "name": "github",
-      "description": "Distribution from MosquitoAlert Github repository",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": [
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz",
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz"
-      ],
-      "contentSize": "11MB"
-    }
-  ],
-  "variableMeasured": [
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lon",
-      "description": "Longitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lat",
-      "description": "Latitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
-      "unitText": "",
-      "dataType": "xsd:string"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "date",
-      "description": "Date of the observation/estimate. YYYY-MM-Dd.",
-      "unitText": "",
-      "dataType": "xsd:date"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "n_participants",
-      "description": "Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.",
-      "unitText": "",
-      "dataType": "xsd:integer"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE_expected",
-      "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
-      "unitText": "",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE",
-      "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
-      "unitText": "",
-      "dataType": "xsd:numeric"
-    }
-  ],
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
-    }
-  ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
-    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
-  ]
-}
-  </script>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
@@ -391,43 +146,48 @@
   <link href="../_static/copybutton.css" rel="stylesheet" type="text/css"/>
   <link href="../_static/mystnb.css" rel="stylesheet" type="text/css"/>
   <link href="../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
-  <link as="script" href="../_static/js/index.d3f166471bb80abb5163.js" rel="preload"/>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
-  </script>
-  <script src="../_static/jquery.js">
-  </script>
-  <script src="../_static/underscore.js">
-  </script>
-  <script src="../_static/doctools.js">
-  </script>
-  <script src="../_static/togglebutton.js">
-  </script>
-  <script src="../_static/clipboard.min.js">
-  </script>
-  <script src="../_static/copybutton.js">
-  </script>
-  <script>
-   var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';
-  </script>
-  <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js">
-  </script>
-  <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js">
-  </script>
-  <script>
-   const thebe_selector = ".thebe"
+  <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+   <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+    <link as="script" href="../_static/js/index.d3f166471bb80abb5163.js" rel="preload">
+     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+     </script>
+     <script src="../_static/jquery.js">
+     </script>
+     <script src="../_static/underscore.js">
+     </script>
+     <script src="../_static/doctools.js">
+     </script>
+     <script src="../_static/togglebutton.js">
+     </script>
+     <script src="../_static/clipboard.min.js">
+     </script>
+     <script src="../_static/copybutton.js">
+     </script>
+     <script>
+      var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';
+     </script>
+     <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js">
+     </script>
+     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js">
+     </script>
+     <script>
+      const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
-  </script>
-  <script async="async" src="../_static/sphinx-thebe.js">
-  </script>
-  <link href="../genindex.html" rel="index" title="Index"/>
-  <link href="../search.html" rel="search" title="Search"/>
-  <link href="../notebooks/analytic_tables.html" rel="next" title="Catalog: analytic_tables">
-   <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort"/>
-   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-   <meta content="en" name="docsearch:language"/>
+     </script>
+     <script async="async" src="../_static/sphinx-thebe.js">
+     </script>
+     <link href="../genindex.html" rel="index" title="Index"/>
+     <link href="../search.html" rel="search" title="Search">
+      <link href="../notebooks/analytic_tables.html" rel="next" title="Catalog: analytic_tables">
+       <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="en" name="docsearch:language"/>
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
   </link>
  </head>
  <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
