@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataset: tigapics &#8212; BigBytes Meta2Data</title>
+    <title>Catalog: tigapics &#8212; Mosquito Alert Data Portal</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -74,10 +74,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="../_static/icon.svg" class="logo" alt="logo">
+  <img src="../_static/icon_v1.svg" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">BigBytes Meta2Data</h1>
+  <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -117,7 +117,7 @@
    </li>
    <li class="toctree-l2 current active collapsible-parent">
     <a class="current reference internal" href="#">
-     Dataset:
+     Catalog:
      <em>
       tigapics
      </em>
@@ -168,7 +168,7 @@
    </li>
    <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="analytic_tables.html">
-     Dataset: analytic_tables
+     Catalog: analytic_tables
     </a>
     <ul class="collapse-ul">
      <li class="toctree-l3">
@@ -256,9 +256,54 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distribution-by-image-download-from-mosquitoalert-webserver">
-   1. Distribution by image download from MosquitoAlert webserver
+  <a class="reference internal nav-link" href="#dataset-tigapics-mosquitoalert">
+   Dataset:
+   <em>
+    tigapics_mosquitoalert
+   </em>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-by-image-download-from-mosquitoalert-webserver">
+     1. Distribution by image download from MosquitoAlert webserver
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-tigapics-labels-bioimagearchive">
+   Dataset:
+   <em>
+    tigapics_labels_bioimagearchive
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-by-image-download-from-biostudies-repository">
+     1. Distribution by image download from BioStudies repository
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-tigapics-bioimagearchive">
+   Dataset:
+   <em>
+    tigapics_bioimagearchive
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-by-single-image-download-from-the-bioimage-archive-repository">
+     1. Distribution by single image download from the BioImage Archive repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-by-image-chunks-download-from-biostudies-repository">
+     2. Distribution by image-chunks download from BioStudies repository
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -272,11 +317,12 @@
         
               <div>
                 
-  <div class="section" id="dataset-tigapics">
-<h1>Dataset: <em>tigapics</em><a class="headerlink" href="#dataset-tigapics" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="catalog-tigapics">
+<h1>Catalog: <em>tigapics</em><a class="headerlink" href="#catalog-tigapics" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">tarfile</span><span class="o">,</span> <span class="nn">io</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
 
@@ -284,24 +330,27 @@
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/meta/mosquito_alert/tigapics.json&#39;</span>
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/tigapics.json&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="dataset-tigapics-mosquitoalert">
+<h2>Dataset: <em>tigapics_mosquitoalert</em><a class="headerlink" href="#dataset-tigapics-mosquitoalert" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="distribution-by-image-download-from-mosquitoalert-webserver">
-<h2>1. Distribution by image download from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-image-download-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h2>
+<h3>1. Distribution by image download from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-image-download-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
 <p>This distribution allows to download individual pictures (adults and sites)
 that can be viewed at the Mosquito Alert map webserver given a picture IID.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -313,7 +362,7 @@ to get one is to check visually the map, for example as given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up an picture ID file-name and get the relative URL address</span>
-<span class="n">ID_PICNAME</span> <span class="o">=</span> <span class="s1">&#39;a67c2ad2-09b6-4dbe-9cd0-2536a91e17f3.jpg&#39;</span>
+<span class="n">ID_PICNAME</span> <span class="o">=</span> <span class="s2">&quot;a67c2ad2-09b6-4dbe-9cd0-2536a91e17f3.jpg&quot;</span>
 <span class="n">contentUrl_pic</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ID_PICNAME</span><span class="o">=</span><span class="n">ID_PICNAME</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -324,20 +373,144 @@ picture available on the <a class="reference external" href="http://webserver.mo
 <p align="center">
   <img src="http://webserver.mosquitoalert.com/media/tigapics/a67c2ad2-09b6-4dbe-9cd0-2536a91e17f3.jpg" alt="Aedes albopictus" height="400"/>
 </p>
-<p>Another way to get a picture ID is to get the <em>ma_yearly_reports</em> dataset,
+<p>Another way to get a picture ID is to get the <em>reports</em> dataset,
 where the measured variable <em>movelab_annotation</em> is a dictionary with key
 <em>photo_html</em> that gives photo <em>href</em> (ID) relative to a given report.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the picture and save it</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl_pic</span> <span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ID_PICNAME</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl_pic</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ID_PICNAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-tigapics-labels-bioimagearchive">
+<h2>Dataset: <em>tigapics_labels_bioimagearchive</em><a class="headerlink" href="#dataset-tigapics-labels-bioimagearchive" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="distribution-by-image-download-from-biostudies-repository">
+<h3>1. Distribution by image download from BioStudies repository<a class="headerlink" href="#distribution-by-image-download-from-biostudies-repository" title="Permalink to this headline">¶</a></h3>
+<p>This dataset distribution allows to download the labels that describe the
+<em>tigapics_bioimagearchive</em> dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the file list of labels and save it</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/labels.tsv&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># Get the labels into a dataframe</span>
+<span class="n">df_labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/labels.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df_labels</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-tigapics-bioimagearchive">
+<h2>Dataset: <em>tigapics_bioimagearchive</em><a class="headerlink" href="#dataset-tigapics-bioimagearchive" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="distribution-by-single-image-download-from-the-bioimage-archive-repository">
+<h3>1. Distribution by single image download from the BioImage Archive repository<a class="headerlink" href="#distribution-by-single-image-download-from-the-bioimage-archive-repository" title="Permalink to this headline">¶</a></h3>
+<p>This distribution allows to download individual pictures of mosquito adults
+useful for machine-learning classification tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to get a picture from the <a class="reference external" href="https://www.ebi.ac.uk/biostudies/studies/S-BIAD249/">Mosquito Alert BioImage Archive</a>
+we should know the relative species and file-name ID labels. This information
+is provided by the <em>tigapics_bioimagearchive_labels</em> dataset. For example, we
+just take the first entry of this label dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the picture ID and get the relative URL address</span>
+<span class="n">CLASS</span><span class="p">,</span> <span class="n">ID_PICNAME</span> <span class="o">=</span> <span class="n">df_labels</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Files&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="n">contentUrl_pic</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CLASS</span><span class="o">=</span><span class="n">CLASS</span><span class="p">,</span> <span class="n">ID_PICNAME</span><span class="o">=</span><span class="n">ID_PICNAME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the picture and save it</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl_pic</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ID_PICNAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="distribution-by-image-chunks-download-from-biostudies-repository">
+<h3>2. Distribution by image-chunks download from BioStudies repository<a class="headerlink" href="#distribution-by-image-chunks-download-from-biostudies-repository" title="Permalink to this headline">¶</a></h3>
+<p>This distribution allows to download pictures of mosquito adults in chunks by
+classes that may correspond to species.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to get a picture from the <a class="reference external" href="https://www.ebi.ac.uk/biostudies/studies/S-BIAD249/">Mosquito Alert BioImage Archive</a>
+we should know the relative class-chunks available. One may chose between
+<em>Aedes_albopictus</em>, <em>Aedes_aegypti</em>, <em>Aedes_japonicus</em>, <em>Aedes_koreicus</em>,
+<em>Japonicus_koreicus</em>, <em>Complex</em>, <em>Culex</em>, <em>Other_species</em> and <em>Not_sure</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the chunk-species</span>
+<span class="n">CLASS</span> <span class="o">=</span> <span class="s2">&quot;Aedes_japonicus&quot;</span>
+<span class="n">contentUrl_pic</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CLASS</span><span class="o">=</span><span class="n">CLASS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the picture and save it</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl_pic</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">CLASS</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>
@@ -378,7 +551,7 @@ where the measured variable <em>movelab_annotation</em> is a dictionary with key
     <div class="container">
       <p>
         
-          By Zivko Juznic-Zonta<br/>
+          By The Mosquito Alert community<br/>
         
             &copy; Copyright CC0 2021.<br/>
       </p>

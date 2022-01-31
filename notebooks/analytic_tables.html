@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataset: analytic_tables &#8212; BigBytes Meta2Data</title>
+    <title>Catalog: analytic_tables &#8212; Mosquito Alert Data Portal</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -74,10 +74,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="../_static/icon.svg" class="logo" alt="logo">
+  <img src="../_static/icon_v1.svg" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">BigBytes Meta2Data</h1>
+  <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -117,7 +117,7 @@
    </li>
    <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="tigapics.html">
-     Dataset:
+     Catalog:
      <em>
       tigapics
      </em>
@@ -168,7 +168,7 @@
    </li>
    <li class="toctree-l2 current active collapsible-parent">
     <a class="current reference internal" href="#">
-     Dataset: analytic_tables
+     Catalog: analytic_tables
     </a>
     <ul class="collapse-ul">
      <li class="toctree-l3">
@@ -256,9 +256,19 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver">
-   1. Distribution by SFTP protocol from MosquitoAlert webserver
+  <a class="reference internal nav-link" href="#dataset-tigaserver-app-tigauser">
+   Dataset:
+   <em>
+    tigaserver_app_tigauser
+   </em>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver">
+     1. Distribution by SFTP protocol from MosquitoAlert webserver
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -272,16 +282,13 @@
         
               <div>
                 
-  <div class="section" id="dataset-analytic-tables">
-<h1>Dataset: analytic_tables<a class="headerlink" href="#dataset-analytic-tables" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="distribution-by-sftp-protocol-from-mosquitoalert-webserver">
-<h2>1. Distribution by SFTP protocol from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="catalog-analytic-tables">
+<h1>Catalog: analytic_tables<a class="headerlink" href="#catalog-analytic-tables" title="Permalink to this headline">¶</a></h1>
 <p>Before we are able to download datasets that are part of the <em>analytic_tables</em>
-we need a user name and password to ssh-access a remote machine.</p>
+catalog we need a user name and password to ssh-access a remote machine.</p>
 <p>From our metadata catalog we are able to get all the necessary information
-to open a SFTP connection with the machine that holds our dataset. For example,
-if we would like to download the dataset <em>tigaserver_app_tigauser</em> we just
-needs its contentUrl information</p>
+to open a SFTP connection with the machine that holds our dataset. First we
+check what datasets are in the catalog.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
@@ -291,24 +298,29 @@ needs its contentUrl information</p>
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/meta/mosquito_alert/analytic_tables.json&#39;</span>
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/analytic_tables.json&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Provided with the url, we are able to get our dataset in a dataframe format
-from the Mosquito Alert webserver. Note that <em>ma_analytic_tables</em> has many
+<div class="section" id="dataset-tigaserver-app-tigauser">
+<h2>Dataset: <em>tigaserver_app_tigauser</em><a class="headerlink" href="#dataset-tigaserver-app-tigauser" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="distribution-by-sftp-protocol-from-mosquitoalert-webserver">
+<h3>1. Distribution by SFTP protocol from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
+<p>If we would like to download the dataset <em>tigaserver_app_tigauser</em> we just
+needs its contentUrl information. Note that <em>analytic_tables</em> has many
 parts (datasets) and one of those is <em>tigaserver_app_tigauser</em> which is the
 first in the list of the <em>hasPart</em> key attribute of the metadata file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset tigaserver_app_tigauser form the ma_analytic_tables catalog</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset tigaserver_app_tigauser form the _analytic_tables_ catalog</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -321,12 +333,12 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
 
 <span class="c1"># Get the dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="n">read_csv_sftp</span><span class="p">(</span>
-    <span class="n">hostname</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-    <span class="n">port</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-    <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">,</span>
-    <span class="n">remotepath</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">path</span>
-    <span class="p">)</span>
+    <span class="n">hostname</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+    <span class="n">remotepath</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -336,14 +348,15 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save reports on CSV or parquet</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/dataset&#39;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.parquet&#39;</span><span class="p">)</span> <span class="c1"># very low file-size (need to install pyArrow)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span> <span class="c1"># x10 size if compared with the dataframe</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>  <span class="c1"># x10 size if compared with the dataframe</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>
@@ -384,7 +397,7 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
     <div class="container">
       <p>
         
-          By Zivko Juznic-Zonta<br/>
+          By The Mosquito Alert community<br/>
         
             &copy; Copyright CC0 2021.<br/>
       </p>

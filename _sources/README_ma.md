@@ -43,11 +43,11 @@ In the following table are listed all the datasets currently available at the me
 
 | Dataset | Project | Description | License  | Example | Format |
 | ------- |:-------:| :-----------|:--------:|:-------:|:------:|
-| {doc}`reports <../meta_ipynb/reports>` | MosquitoAlert | Yearly reports of bites, breeding sites and adult mosquito encounters. | Public CC0-1.0  | <g>✔</g> | `.json` `.csv` `.parquet` |
-| {doc}`tigapics <../meta_ipynb/tigapics>` | MosquitoAlert | Pictures of adult mosquitos and breeding sites with classification labels for ML training. | Public CC0-1.0 | <g>✔</g> | `.jpeg` `.png` |
-| {doc}`model_tables <../meta_ipynb/model_tables>` | MosquitoAlert | Results from the Bayesian multilevel model that feed the Mosquito Alert raster maps. | Public CC0-1.0 | <g>✔</g> | `.csv` `.parquet` |
-| {doc}`sampling_effort <../meta_ipynb/sampling_effort>` | MosquitoAlert| Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. | Public CC0-1.0 | <g>✔</g> | `.csv` `.parquet` |
-| {doc}`analytic_tables <../meta_ipynb/analytic_tables>` | MosquitoAlert| Tables from Mosquito Alert database selected for analytic purposes. Available on demand for research purposes only since it could contain user sensible information. | Private | <g>✔</g> | `.csv` `.parquet` |
+| {doc}`reports <../meta_ipynb/reports>` | MosquitoAlert | Yearly reports of bites, breeding sites and adult mosquito encounters. | Public CC0-1.0  | <g>✔</g> | `.json` `.csv` |
+| {doc}`tigapics <../meta_ipynb/tigapics>` | MosquitoAlert | Pictures of adult mosquitos and breeding sites. Classification labels are provided for ML training for the pictures of mosquitos visualized on the MosquitoAlert map. | Public CC0-1.0 | <g>✔</g> | `.jpeg` `.png` |
+| {doc}`model_tables <../meta_ipynb/model_tables>` | MosquitoAlert | Results from the Bayesian multilevel model that feed the Mosquito Alert raster maps. | Public CC0-1.0 | <g>✔</g> | `.csv` |
+| {doc}`sampling_effort <../meta_ipynb/sampling_effort>` | MosquitoAlert| Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. | Public CC0-1.0 | <g>✔</g> | `.csv` |
+| {doc}`analytic_tables <../meta_ipynb/analytic_tables>` | MosquitoAlert| Tables from Mosquito Alert database selected for analytic purposes. Available on demand for research purposes only since it could contain user sensible information. | Private | <g>✔</g> | `.csv` |
 
 ## 2.3. Interoperability
 

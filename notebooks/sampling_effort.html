@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataset: sampling_effort &#8212; BigBytes Meta2Data</title>
+    <title>Dataset: sampling_effort &#8212; Mosquito Alert Data Portal</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -74,10 +74,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="../_static/icon.svg" class="logo" alt="logo">
+  <img src="../_static/icon_v1.svg" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">BigBytes Meta2Data</h1>
+  <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -117,7 +117,7 @@
    </li>
    <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="tigapics.html">
-     Dataset:
+     Catalog:
      <em>
       tigapics
      </em>
@@ -168,7 +168,7 @@
    </li>
    <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="analytic_tables.html">
-     Dataset: analytic_tables
+     Catalog: analytic_tables
     </a>
     <ul class="collapse-ul">
      <li class="toctree-l3">
@@ -281,7 +281,7 @@
 <h1>Dataset: <em>sampling_effort</em><a class="headerlink" href="#dataset-sampling-effort" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
@@ -292,7 +292,7 @@
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/meta/mosquito_alert/sampling_effort.json&#39;</span>
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/sampling_effort.json&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -307,10 +307,11 @@ resolve to the most recent version of the data.</p>
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -322,7 +323,7 @@ resolve to the most recent version of the data.</p>
 
 <span class="c1"># Get the latest zenodo file version of the dataset</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl</span><span class="p">)</span>
-<span class="n">file_url</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;filename&#39;</span><span class="p">})[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+<span class="n">file_url</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;filename&quot;</span><span class="p">})[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span>
 <span class="n">file_contentUrl</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">file_url</span><span class="p">)</span>
 
 <span class="c1"># Download the dataset</span>
@@ -342,11 +343,11 @@ resolve to the most recent version of the data.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the 0.05 degree cell resolution dataset into a dataframe </span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the 0.05 degree cell resolution dataset into a dataframe</span>
 <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;cellres_05.csv.gz&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;cellres_05.csv.gz&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">s</span>
-<span class="n">df_05</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df_05</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">df_05</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -359,10 +360,11 @@ resolve to the most recent version of the data.</p>
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s1">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -376,7 +378,7 @@ resolve to the most recent version of the data.</p>
 <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">contentUrl</span><span class="p">:</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -423,7 +425,7 @@ resolve to the most recent version of the data.</p>
     <div class="container">
       <p>
         
-          By Zivko Juznic-Zonta<br/>
+          By The Mosquito Alert community<br/>
         
             &copy; Copyright CC0 2021.<br/>
       </p>
