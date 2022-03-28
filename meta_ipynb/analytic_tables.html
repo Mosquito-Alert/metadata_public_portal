@@ -14,6 +14,7 @@
   </script>
   <script type="application/ld+json">
    {
+  "$schema": "../schema_dataset.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
@@ -24,10 +25,10 @@
   "conditionsOfAccess": "Private",
   "description": "Tables from Mosquito Alert database (TigaData) selected for analytic purposes. Export from database is performed daily. Access to data is possible within ftp authentication to the host webserver.mosquitoalert.com",
   "identifier": "",
-  "license": "",
+  "license": "All rights reserved",
   "citation": [
-    "Direct Evidence of Adult Aedes albopictus Dispersal by Car. Roger, Eritja et al. (DOI: 10.1038/s41598-017-12652-5)",
-    "Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. (DOI: 10.1038/s41467-017-00914-9)"
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
   ],
   "temporalCoverage": "2014-05-27/..",
   "spatialCoverage": {
@@ -35,32 +36,10 @@
     "name": "Worldwide",
     "sameAs": "https://www.wikidata.org/wiki/Q13780930"
   },
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
-    }
-  ],
-  "measurementTechnique": [
-    "Mobile application for citizen science",
-    "Data validation by entomologists"
-  ],
   "hasPart": [
     {
       "@type": "Dataset",
       "name": "tigaserver_app_tigauser",
-      "conditionsOfAccess": "Private",
       "description": "Stores all user's Mosquito Alert application scores and some general information about the users",
       "distribution": [
         {
@@ -133,7 +112,6 @@
     {
       "@type": "Dataset",
       "name": "tigaserver_app_report",
-      "conditionsOfAccess": "Private",
       "description": "Register of Mosquito Alert reports made by users at a given time and location with a given mobile device. Only the report ID is stored and not the whole report data content.",
       "distribution": [
         {
@@ -326,7 +304,6 @@
     {
       "@type": "Dataset",
       "name": "tigaserver_app_fix",
-      "conditionsOfAccess": "Private",
       "description": "Sampling effort measurement given by Mosquito Alert users location",
       "distribution": [
         {
@@ -399,7 +376,6 @@
     {
       "@type": "Dataset",
       "name": "tigaserver_app_photo",
-      "conditionsOfAccess": "Public",
       "description": "Identifier references to Mosquito Alert report pictures",
       "distribution": [
         {
@@ -447,6 +423,36 @@
           "qudt:dataType": "xsd:decimal"
         }
       ]
+    }
+  ],
+  "measurementTechnique": [
+    "Mobile application for citizen science",
+    "Data validation by entomologists"
+  ],
+  "creator": [
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
     }
   ]
 }
@@ -501,9 +507,11 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/analytic_tables.html" rel="prev" title="Catalog: analytic_tables">
-       <meta content="width=device-width, initial-scale=1" name="viewport"/>
-       <meta content="en" name="docsearch:language"/>
+      <link href="../notebooks/analytic_tables.html" rel="next" title="DataCatalog: analytic_tables">
+       <link href="../notebooks/user_locations.html" rel="prev" title="Dataset: user_locations">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="en" name="docsearch:language"/>
+       </link>
       </link>
      </link>
     </link>
@@ -516,7 +524,7 @@
     <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
      <div class="navbar-brand-box">
       <a class="navbar-brand text-wrap" href="../index.html">
-       <img alt="logo" class="logo" src="../_static/icon_v1.svg"/>
+       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
        <h1 class="site-logo" id="site-title">
         Mosquito Alert Data Portal
        </h1>
@@ -531,7 +539,7 @@
       <ul class="nav sidenav_l1">
        <li class="toctree-l1">
         <a class="reference internal" href="../README_ma.html">
-         Table of contents
+         Mosquito Alert Data Portal
         </a>
        </li>
       </ul>
@@ -542,16 +550,13 @@
         </a>
         <ul class="current collapse-ul">
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/reports.html">
-           Dataset:
-           <em>
-            reports
-           </em>
+          <a class="reference internal" href="reports.html">
+           reports
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="reports.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -559,16 +564,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/tigapics.html">
-           Catalog:
-           <em>
-            tigapics
-           </em>
+          <a class="reference internal" href="reports_raw.html">
+           reports_raw
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="tigapics.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports_raw.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -576,16 +578,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/model_tables.html">
-           Dataset:
-           <em>
-            model_tables
-           </em>
+          <a class="reference internal" href="tigapics.html">
+           tigapics
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="model_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/tigapics.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -593,16 +592,27 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/sampling_effort.html">
-           Dataset:
-           <em>
-            sampling_effort
-           </em>
+          <a class="reference internal" href="sampling_effort.html">
+           sampling_effort
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="sampling_effort.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/sampling_effort.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="user_locations.html">
+           user_locations
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/user_locations.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -610,13 +620,27 @@
           </i>
          </li>
          <li class="toctree-l2 current active collapsible-parent">
-          <a class="reference internal" href="../notebooks/analytic_tables.html">
-           Catalog: analytic_tables
+          <a class="current reference internal" href="#">
+           analytic_tables
           </a>
-          <ul class="current collapse-ul">
-           <li class="toctree-l3 current active">
-            <a class="current reference internal" href="#">
-             Metadata table
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/analytic_tables.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="model_tables.html">
+           model_tables
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/model_tables.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -3353,6 +3377,8 @@
            </div>
           </div>
          </div>
+         <div class="toctree-wrapper compound">
+         </div>
         </div>
         <script type="text/x-thebe-config">
          {
@@ -3377,8 +3403,14 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/analytic_tables.html" id="prev-link" title="previous page">
-         Catalog: analytic_tables
+        <a class="left-prev" href="../notebooks/user_locations.html" id="prev-link" title="previous page">
+         Dataset:
+         <em>
+          user_locations
+         </em>
+        </a>
+        <a class="right-next" href="../notebooks/analytic_tables.html" id="next-link" title="next page">
+         DataCatalog: analytic_tables
         </a>
        </div>
       </div>

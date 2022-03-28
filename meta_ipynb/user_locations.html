@@ -20,11 +20,11 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@type": "Dataset",
-  "name": "sampling_effort",
-  "conditionsOfAccess": "Public",
-  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
+  "name": "user_locations",
+  "conditionsOfAccess": "Private",
+  "description": "Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.",
   "identifier": "",
-  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "license": "",
   "citation": "",
   "temporalCoverage": "2014/..",
   "spatialCoverage": {
@@ -32,30 +32,39 @@
     "name": "Worldwide",
     "sameAs": "https://www.wikidata.org/wiki/Q13780930"
   },
-  "distribution": [
+  "distribution": {
+    "@type": "DataDownload",
+    "name": "ceab_cluster",
+    "description": "Distribution by SFTP protocol from CEAB cluster.",
+    "encodingFormat": "Rds",
+    "url": "",
+    "contentUrl": [
+      "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds",
+      "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds"
+    ]
+  },
+  "variableMeasured": [
     {
-      "@type": "DataDownload",
-      "name": "zenodo",
-      "description": "Distribution from Zenodo cloud",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.5802476",
-      "contentSize": "11MB"
+      "@type": "PropertyValue",
+      "name": "year",
+      "description": "Year in which the background location was recorded.",
+      "unitText": "years",
+      "dataType": "xsd:string"
     },
     {
-      "@type": "DataDownload",
-      "name": "github",
-      "description": "Distribution from MosquitoAlert Github repository",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": [
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz",
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz"
-      ],
-      "contentSize": "11MB"
-    }
-  ],
-  "variableMeasured": [
+      "@type": "PropertyValue",
+      "name": "biweek",
+      "description": "An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.",
+      "unitText": "biweek",
+      "dataType": "xsd:integer"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "TigacellID",
+      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
     {
       "@type": "PropertyValue",
       "name": "masked_lon",
@@ -72,38 +81,24 @@
     },
     {
       "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
-      "unitText": "",
-      "dataType": "xsd:string"
+      "name": "participation_days",
+      "description": "Number of days elapsed between this the time of the participant's first background location and the time of this one",
+      "unitText": "days",
+      "dataType": "xsd:long"
     },
     {
       "@type": "PropertyValue",
-      "name": "date",
-      "description": "Date of the observation/estimate. YYYY-MM-Dd.",
+      "name": "fix_date",
+      "description": "The date on which this location was recorded. YYYY-MM-DD",
       "unitText": "",
       "dataType": "xsd:date"
     },
     {
       "@type": "PropertyValue",
-      "name": "n_participants",
-      "description": "Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.",
+      "name": "user_coverage_uuid",
+      "description": "Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).",
       "unitText": "",
-      "dataType": "xsd:integer"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE_expected",
-      "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
-      "unitText": "",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "SE",
-      "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
-      "unitText": "",
-      "dataType": "xsd:numeric"
+      "dataType": "xsd:string"
     }
   ],
   "creator": [
@@ -123,10 +118,7 @@
       "name": "Escobar Rúbies, Agustí"
     }
   ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
-    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
-  ]
+  "measurementTechnique": "Mobile application for citizen science"
 }
   </script>
   <meta charset="utf-8"/>
@@ -179,8 +171,8 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/sampling_effort.html" rel="next" title="Dataset: sampling_effort">
-       <link href="../notebooks/tigapics.html" rel="prev" title="DataCatalog: tigapics">
+      <link href="../notebooks/user_locations.html" rel="next" title="Dataset: user_locations">
+       <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="en" name="docsearch:language"/>
        </link>
@@ -263,8 +255,8 @@
           <i class="fas fa-chevron-down">
           </i>
          </li>
-         <li class="toctree-l2 current active collapsible-parent">
-          <a class="current reference internal" href="#">
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="sampling_effort.html">
            sampling_effort
           </a>
           <ul class="collapse-ul">
@@ -277,8 +269,8 @@
           <i class="fas fa-chevron-down">
           </i>
          </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="user_locations.html">
+         <li class="toctree-l2 current active collapsible-parent">
+          <a class="current reference internal" href="#">
            user_locations
           </a>
           <ul class="collapse-ul">
@@ -355,7 +347,7 @@
          <div class="dropdown-buttons">
           <!-- ipynb file if we had a myst markdown file -->
           <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/sampling_effort.ipynb">
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/user_locations.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
@@ -381,7 +373,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/sampling_effort.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/user_locations.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -469,7 +461,7 @@
                name
               </th>
               <td style="text-align:left">
-               sampling_effort
+               user_locations
               </td>
              </tr>
              <tr>
@@ -477,7 +469,7 @@
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Public
+               Private
               </td>
              </tr>
              <tr>
@@ -485,7 +477,7 @@
                description
               </th>
               <td style="text-align:left">
-               Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.
+               Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.
               </td>
              </tr>
              <tr>
@@ -500,7 +492,6 @@
                license
               </th>
               <td style="text-align:left">
-               https://creativecommons.org/publicdomain/zero/1.0/
               </td>
              </tr>
              <tr>
@@ -563,135 +554,62 @@
                <td>
                </td>
                <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     DataDownload
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     zenodo
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Distribution from Zenodo cloud
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     encodingFormat
-                    </th>
-                    <td style="text-align:left">
-                     CSV.GZ
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     url
-                    </th>
-                    <td style="text-align:left">
-                     ./notebooks/sampling_effort.py
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentUrl
-                    </th>
-                    <td style="text-align:left">
-                     https://doi.org/10.5281/zenodo.5802476
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentSize
-                    </th>
-                    <td style="text-align:left">
-                     11MB
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     DataDownload
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     github
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Distribution from MosquitoAlert Github repository
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     encodingFormat
-                    </th>
-                    <td style="text-align:left">
-                     CSV.GZ
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     url
-                    </th>
-                    <td style="text-align:left">
-                     ./notebooks/sampling_effort.py
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentUrl
-                    </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
-                       https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz
-                      </li>
-                      <li>
-                       https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz
-                      </li>
-                     </ul>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentSize
-                    </th>
-                    <td style="text-align:left">
-                     11MB
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
+                <table border="1">
+                 <tr>
+                  <th>
+                   @type
+                  </th>
+                  <td style="text-align:left">
+                   DataDownload
+                  </td>
+                 </tr>
+                 <tr>
+                  <th>
+                   name
+                  </th>
+                  <td style="text-align:left">
+                   ceab_cluster
+                  </td>
+                 </tr>
+                 <tr>
+                  <th>
+                   description
+                  </th>
+                  <td style="text-align:left">
+                   Distribution by SFTP protocol from CEAB cluster.
+                  </td>
+                 </tr>
+                 <tr>
+                  <th>
+                   encodingFormat
+                  </th>
+                  <td style="text-align:left">
+                   Rds
+                  </td>
+                 </tr>
+                 <tr>
+                  <th>
+                   url
+                  </th>
+                  <td style="text-align:left">
+                  </td>
+                 </tr>
+                 <tr>
+                  <th>
+                   contentUrl
+                  </th>
+                  <td style="text-align:left">
+                   <ul>
+                    <li>
+                     sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds
+                    </li>
+                    <li>
+                     sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds
+                    </li>
+                   </ul>
+                  </td>
+                 </tr>
+                </table>
                </td>
               </tr>
              </tr>
@@ -708,6 +626,137 @@
                </td>
                <td style="text-align:left">
                 <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     year
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Year in which the background location was recorded.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     years
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     biweek
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     biweek
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:integer
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     TigacellID
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
                  <li>
                   <table border="1">
                    <tr>
@@ -811,7 +860,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     TigacellID
+                     participation_days
                     </td>
                    </tr>
                    <tr>
@@ -819,7 +868,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).
+                     Number of days elapsed between this the time of the participant's first background location and the time of this one
                     </td>
                    </tr>
                    <tr>
@@ -827,6 +876,7 @@
                      unitText
                     </th>
                     <td style="text-align:left">
+                     days
                     </td>
                    </tr>
                    <tr>
@@ -834,7 +884,7 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:string
+                     xsd:long
                     </td>
                    </tr>
                   </table>
@@ -854,7 +904,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     date
+                     fix_date
                     </td>
                    </tr>
                    <tr>
@@ -862,7 +912,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Date of the observation/estimate. YYYY-MM-Dd.
+                     The date on which this location was recorded. YYYY-MM-DD
                     </td>
                    </tr>
                    <tr>
@@ -897,7 +947,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     n_participants
+                     user_coverage_uuid
                     </td>
                    </tr>
                    <tr>
@@ -905,7 +955,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.
+                     Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).
                     </td>
                    </tr>
                    <tr>
@@ -920,93 +970,7 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:integer
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     SE_expected
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:numeric
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     SE
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:numeric
+                     xsd:string
                     </td>
                    </tr>
                   </table>
@@ -1128,14 +1092,7 @@
                <td>
                </td>
                <td style="text-align:left">
-                <ul>
-                 <li>
-                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
-                 </li>
-                 <li>
-                  Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
-                 </li>
-                </ul>
+                Mobile application for citizen science
                </td>
               </tr>
              </tr>
@@ -1169,16 +1126,16 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/tigapics.html" id="prev-link" title="previous page">
-         DataCatalog:
-         <em>
-          tigapics
-         </em>
-        </a>
-        <a class="right-next" href="../notebooks/sampling_effort.html" id="next-link" title="next page">
+        <a class="left-prev" href="../notebooks/sampling_effort.html" id="prev-link" title="previous page">
          Dataset:
          <em>
           sampling_effort
+         </em>
+        </a>
+        <a class="right-next" href="../notebooks/user_locations.html" id="next-link" title="next page">
+         Dataset:
+         <em>
+          user_locations
          </em>
         </a>
        </div>

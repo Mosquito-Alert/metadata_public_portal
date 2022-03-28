@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataCatalog: analytic_tables &#8212; Mosquito Alert Data Portal</title>
+    <title>Dataset: reports_raw &#8212; Mosquito Alert Data Portal</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -54,8 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Metadata table" href="../meta_ipynb/model_tables.html" />
-    <link rel="prev" title="Metadata table" href="../meta_ipynb/analytic_tables.html" />
+    <link rel="next" title="Metadata table" href="../meta_ipynb/tigapics.html" />
+    <link rel="prev" title="Metadata table" href="../meta_ipynb/reports_raw.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -112,13 +112,13 @@
     <i class="fas fa-chevron-down">
     </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 current active collapsible-parent">
     <a class="reference internal" href="../meta_ipynb/reports_raw.html">
      reports_raw
     </a>
-    <ul class="collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="reports_raw.html">
+    <ul class="current collapse-ul">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        code-example
       </a>
      </li>
@@ -168,13 +168,13 @@
     <i class="fas fa-chevron-down">
     </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="../meta_ipynb/analytic_tables.html">
      analytic_tables
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="analytic_tables.html">
        code-example
       </a>
      </li>
@@ -240,7 +240,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/analytic_tables.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/notebooks/reports_raw.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -265,31 +265,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataset-tigaserver-app-tigauser">
-   Dataset:
-   <em>
-    tigaserver_app_tigauser
-   </em>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver">
-     1. Distribution by SFTP protocol from MosquitoAlert webserver
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-        </nav>
-        
         </div>
     </div>
 </div>
@@ -298,80 +273,11 @@
         
               <div>
                 
-  <div class="section" id="datacatalog-analytic-tables">
-<h1>DataCatalog: analytic_tables<a class="headerlink" href="#datacatalog-analytic-tables" title="Permalink to this headline">¶</a></h1>
-<p>Before we are able to download datasets that are part of the <em>analytic_tables</em>
-catalog we need a user name and password to ssh-access a remote machine.</p>
-<p>From our metadata catalog we are able to get all the necessary information
-to open a SFTP connection with the machine that holds our dataset. First we
-check what datasets are in the catalog.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
-<span class="kn">import</span> <span class="nn">src.ftp</span> <span class="k">as</span> <span class="nn">ftp</span>
-
-<span class="c1"># Setup the root path of the application</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
-
-<span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/analytic_tables.json&quot;</span>
-<span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="dataset-tigaserver-app-tigauser">
-<h2>Dataset: <em>tigaserver_app_tigauser</em><a class="headerlink" href="#dataset-tigaserver-app-tigauser" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="distribution-by-sftp-protocol-from-mosquitoalert-webserver">
-<h3>1. Distribution by SFTP protocol from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
-<p>If we would like to download the dataset <em>tigaserver_app_tigauser</em> we just
-needs its contentUrl information. Note that <em>analytic_tables</em> has many
-parts (datasets) and one of those is <em>tigaserver_app_tigauser</em> which is the
-first in the list of the <em>hasPart</em> key attribute of the metadata file.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset tigaserver_app_tigauser form the _analytic_tables_ catalog</span>
-<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert user password to connect by ftp</span>
-<span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-
-<span class="c1"># Get the dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="n">read_csv_sftp</span><span class="p">(</span>
-    <span class="n">hostname</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-    <span class="n">port</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
-    <span class="n">username</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
-    <span class="n">remotepath</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save reports on CSV or parquet</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset&quot;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>  <span class="c1"># x10 size if compared with the dataframe</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+  <div class="section" id="dataset-reports-raw">
+<h1>Dataset: <em>reports_raw</em><a class="headerlink" href="#dataset-reports-raw" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Follow the code-example given for the dataset <a class="reference internal" href="reports.html"><span class="doc">reports</span></a>.</p>
 </div>
 </div>
 
@@ -400,8 +306,8 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../meta_ipynb/analytic_tables.html" title="previous page">Metadata table</a>
-    <a class='right-next' id="next-link" href="../meta_ipynb/model_tables.html" title="next page">Metadata table</a>
+    <a class='left-prev' id="prev-link" href="../meta_ipynb/reports_raw.html" title="previous page">Metadata table</a>
+    <a class='right-next' id="next-link" href="../meta_ipynb/tigapics.html" title="next page">Metadata table</a>
 
         </div>
         

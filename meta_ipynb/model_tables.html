@@ -29,39 +29,18 @@
     "Direct Evidence of Adult Aedes albopictus Dispersal by Car. Roger, Eritja et al. (DOI: 10.1038/s41598-017-12652-5)",
     "Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. (DOI: 10.1038/s41467-017-00914-9)"
   ],
-  "temporalCoverage": "2014/..",
-  "spatialCoverage": {
-    "@type": "Place",
-    "name": "Worldwide",
-    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
-  },
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
-    }
-  ],
-  "measurementTechnique": [
-    "Mobile application for citizen science",
-    "Data validation by entomologists"
-  ],
   "hasPart": [
     {
       "@type": "Dataset",
       "name": "encounter_prob_monthly_grid",
-      "conditionsOfAccess": "Public.",
+      "conditionsOfAccess": "Public",
       "description": "Estimated probability of encounter for a given type of mosquito on monthly basis. Estimates are based on the data sent by citizens to Mosquito Alert. Tables are stored in folders by time and mosquito species: MOSQUITO_TYPE is 'tig' for Aedes Albopictus and 'jap' for Aedes Japonicus. The first estimates for a month are based on observations received for that month in previous years, estimates that are updated weekly with data for the current year. Estimates are displayed in grids of approximately 2x2 kilometers (grid of 0.05 degrees latitude by 0.05 degrees longitude). This calculation takes into account the sampling effort, considering the number of participants with the active app in each grid in the defined time (see the “sampling effort” layer). The probability of mosquitoes is higher in a grid in which 10 observations have been received and there are 5 participants, than in another with 10 observations and 10 participants. Modeling observations and active participants determines the value of the probability shown on the map.",
+      "temporalCoverage": "2014/..",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
@@ -136,8 +115,14 @@
     {
       "@type": "Dataset",
       "name": "encounter_prob_monthly_municipality",
-      "conditionsOfAccess": "Public.",
-      "description": "Same as gridded probability of encounter but resampling is done over the municipality administrative units level",
+      "conditionsOfAccess": "Public",
+      "description": "Same as gridded probability of encounter but resampling is done over the municipality administrative units level. Spatial coverage is restricted to Spain only and temporal coverage goes from 2014 to 2020. Only tiger mosquito is available.",
+      "temporalCoverage": "2014/2020",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Spain",
+        "sameAs": "https://www.wikidata.org/wiki/Q29"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
@@ -200,8 +185,14 @@
     {
       "@type": "Dataset",
       "name": "biting_prob_monthly_grid",
-      "conditionsOfAccess": "Public.",
+      "conditionsOfAccess": "Public",
       "description": "Estimated probability of mosquito bites on monthly basis. Estimates are based on the data sent by citizens to Mosquito Alert. Tables are stored in folders by time. The first estimates for a month are based on observations received for that month in previous years, estimates that are updated weekly with data for the current year. Estimates are displayed in grids of approximately 2x2 kilometers (grid of 0.05 degrees latitude by 0.05 degrees longitude). This calculation takes into account the sampling effort, considering the number of participants with the active app in each grid in the defined time (see the “sampling effort” layer). The probability of mosquitoes is higher in a grid in which 10 observations have been received and there are 5 participants, than in another with 10 observations and 10 participants. Modeling observations and active participants determines the value of the probability shown on the map.",
+      "temporalCoverage": "2020/..",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
@@ -272,30 +263,28 @@
           "qudt:dataType": "xsd:decimal"
         }
       ]
+    }
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "@id": "CEAB",
+      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
     },
     {
-      "@type": "Dataset",
-      "name": "estimated_sampling_effort_monthly_grid",
-      "conditionsOfAccess": "Public.",
-      "description": "Estimated sampling effort given by Mosquito Alert users location on monthly basis on a grid of 0.05 degree.",
-      "distribution": {
-        "@type": "DataDownload",
-        "name": "webserver_mosquitoalert_com_sftp",
-        "description": "Distribution by SFTP download from MosquitoAlert webserver",
-        "encodingFormat": "CSV",
-        "url": "",
-        "contentUrl": "",
-        "contentSize": ""
-      },
-      "variableMeasured": [
-        {
-          "@type": "PropertyValue",
-          "name": "",
-          "description": "",
-          "qudt:dataType": "xsd:"
-        }
-      ]
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf"
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí"
     }
+  ],
+  "measurementTechnique": [
+    "Mobile application for citizen science",
+    "Data validation by entomologists"
   ]
 }
   </script>
@@ -349,8 +338,8 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/sampling_effort.html" rel="next" title="Dataset: sampling_effort">
-       <link href="../notebooks/model_tables.html" rel="prev" title="Dataset: model_tables">
+      <link href="../notebooks/model_tables.html" rel="next" title="DataCatalog: model_tables">
+       <link href="../notebooks/analytic_tables.html" rel="prev" title="DataCatalog: analytic_tables">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="en" name="docsearch:language"/>
        </link>
@@ -366,7 +355,7 @@
     <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
      <div class="navbar-brand-box">
       <a class="navbar-brand text-wrap" href="../index.html">
-       <img alt="logo" class="logo" src="../_static/icon_v1.svg"/>
+       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
        <h1 class="site-logo" id="site-title">
         Mosquito Alert Data Portal
        </h1>
@@ -381,7 +370,7 @@
       <ul class="nav sidenav_l1">
        <li class="toctree-l1">
         <a class="reference internal" href="../README_ma.html">
-         Table of contents
+         Mosquito Alert Data Portal
         </a>
        </li>
       </ul>
@@ -392,16 +381,13 @@
         </a>
         <ul class="current collapse-ul">
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/reports.html">
-           Dataset:
-           <em>
-            reports
-           </em>
+          <a class="reference internal" href="reports.html">
+           reports
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="reports.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -409,16 +395,69 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/tigapics.html">
-           Catalog:
-           <em>
-            tigapics
-           </em>
+          <a class="reference internal" href="reports_raw.html">
+           reports_raw
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="tigapics.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports_raw.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="tigapics.html">
+           tigapics
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/tigapics.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="sampling_effort.html">
+           sampling_effort
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/sampling_effort.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="user_locations.html">
+           user_locations
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/user_locations.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="analytic_tables.html">
+           analytic_tables
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/analytic_tables.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -426,47 +465,13 @@
           </i>
          </li>
          <li class="toctree-l2 current active collapsible-parent">
-          <a class="reference internal" href="../notebooks/model_tables.html">
-           Dataset:
-           <em>
-            model_tables
-           </em>
-          </a>
-          <ul class="current collapse-ul">
-           <li class="toctree-l3 current active">
-            <a class="current reference internal" href="#">
-             Metadata table
-            </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/sampling_effort.html">
-           Dataset:
-           <em>
-            sampling_effort
-           </em>
+          <a class="current reference internal" href="#">
+           model_tables
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="sampling_effort.html">
-             Metadata table
-            </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/analytic_tables.html">
-           Catalog: analytic_tables
-          </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="analytic_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/model_tables.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -2369,6 +2374,8 @@
            </div>
           </div>
          </div>
+         <div class="toctree-wrapper compound">
+         </div>
         </div>
         <script type="text/x-thebe-config">
          {
@@ -2393,16 +2400,13 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/model_tables.html" id="prev-link" title="previous page">
-         Dataset:
+        <a class="left-prev" href="../notebooks/analytic_tables.html" id="prev-link" title="previous page">
+         DataCatalog: analytic_tables
+        </a>
+        <a class="right-next" href="../notebooks/model_tables.html" id="next-link" title="next page">
+         DataCatalog:
          <em>
           model_tables
-         </em>
-        </a>
-        <a class="right-next" href="../notebooks/sampling_effort.html" id="next-link" title="next page">
-         Dataset:
-         <em>
-          sampling_effort
          </em>
         </a>
        </div>

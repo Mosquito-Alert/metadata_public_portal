@@ -14,20 +14,24 @@
   </script>
   <script type="application/ld+json">
    {
+  "$schema": "../schema.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@type": "Dataset",
+  "@type": "DataCatalog",
   "name": "reports",
   "conditionsOfAccess": "Public",
   "description": "Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.",
   "url": "https://github.com/MosquitoAlert/Data",
   "identifier": "https://doi.org/10.5281/zenodo.597466",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "citation": "Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. 2017 (DOI: 10.1038/s41467-017-00914-9)",
-  "temporalCoverage": "2014/..",
+  "citation": [
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
+  "temporalCoverage": "2014-05-27/..",
   "spatialCoverage": {
     "@type": "Place",
     "name": "Worldwide",
@@ -38,17 +42,19 @@
       "@type": "DataDownload",
       "name": "zenodo",
       "description": "Distribution from Zenodo cloud.",
-      "encodingFormat": "JSON.ZIP",
-      "url": "./notebooks/reports.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.597466",
+      "encodingFormat": "[JSON].ZIP",
+      "workExample": "./notebooks/reports.py",
+      "contentUrl": [
+        "https://doi.org/10.5281/zenodo.597466"
+      ],
       "contentSize": "5MB"
     },
     {
       "@type": "DataDownload",
-      "name": "github",
+      "name": "mosquitoalert_github",
       "description": "Distribution from MosquitoAlert Github repository",
       "encodingFormat": "JSON",
-      "url": "./notebooks/reports.py",
+      "workExample": "./notebooks/reports.py",
       "contentUrl": [
         "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2014.json",
         "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2015.json",
@@ -67,7 +73,7 @@
     {
       "@type": "PropertyValue",
       "name": "version_UUID",
-      "description": "UUID randomly generated on phone to identify eachunique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
+      "description": "UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
       "dataType": "xsd:string"
     },
     {
@@ -103,7 +109,7 @@
     {
       "@type": "PropertyValue",
       "name": "site_cat",
-      "description": "An integer indicating the type of breeding site (as recorded byparticipant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).",
+      "description": "An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).",
       "dataType": "xsd:int",
       "maxValue": 5,
       "minValue": 0
@@ -130,19 +136,18 @@
       "@type": "PropertyValue",
       "name": "movelab_annotation",
       "description": "This field contains information from the validation process.",
+      "dataType": "xsd:complexType",
       "value": [
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
           "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
-          "unitText": "",
           "dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "crowdcrafting_score_cat",
           "description": "Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.",
-          "unitText": "",
           "dataType": "xsd:string",
           "maxValue": 2,
           "minValue": -2
@@ -151,14 +156,12 @@
           "@type": "PropertyValue",
           "name": "crowdcrafting_n_response",
           "description": "Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.",
-          "unitText": "",
           "dataType": "xsd:int"
         },
         {
           "@type": "PropertyValue",
           "name": "site_certainty_category",
           "description": "If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))",
-          "unitText": "",
           "dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -167,7 +170,6 @@
           "@type": "PropertyValue",
           "name": "tiger_certainty_category",
           "description": "If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))",
-          "unitText": "",
           "dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -176,7 +178,6 @@
           "@type": "PropertyValue",
           "name": "aegypti_certainty_category",
           "description": "If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))",
-          "unitText": "",
           "dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -185,21 +186,18 @@
           "@type": "PropertyValue",
           "name": "photo_html",
           "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
-          "unitText": "",
           "dataType": "xsd:anyURI"
         },
         {
           "@type": "PropertyValue",
           "name": "score",
           "description": "",
-          "unitText": "",
           "dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "classification",
           "description": "",
-          "unitText": "",
           "dataType": "xsd:string"
         }
       ]
@@ -208,47 +206,42 @@
       "@type": "PropertyValue",
       "name": "movelab_annotation_euro",
       "description": "",
+      "dataType": "xsd:complexType",
       "value": [
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
           "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
-          "unitText": "",
           "dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "photo_html",
           "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
-          "unitText": "",
           "dataType": "xsd:anyURI"
         },
         {
           "@type": "PropertyValue",
           "name": "class_name",
           "description": "Name of the classification label. Available mosquito species labels are: Unclassified (id:1), Other species (id:2), Aedes albopictus (id:3), Aedes aegypti (id:5), Aedes japonicus (id:6), Aedes koreicus (id:7), Complex (id:8), Not sure (id:9), Culex sp. (id:10). Available breeding site labels are: site (id: Null)",
-          "unitText": "",
           "dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "class_label",
           "description": "",
-          "unitText": "",
           "dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "class_id",
           "description": "",
-          "unitText": "",
           "dataType": "xsd:int"
         },
         {
           "@type": "PropertyValue",
           "name": "class_value",
           "description": "",
-          "unitText": "",
           "dataType": "xsd:int"
         }
       ]
@@ -338,26 +331,45 @@
       "dataType": "xsd:decimal"
     }
   ],
+  "measurementTechnique": [
+    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
+    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
+  ],
   "creator": [
     {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
     },
     {
       "@type": "Person",
       "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
     },
     {
       "@type": "Person",
       "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
     }
-  ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
-    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
   ]
 }
   </script>
@@ -411,8 +423,8 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/tigapics.html" rel="next" title="Catalog: tigapics">
-       <link href="../notebooks/reports.html" rel="prev" title="Dataset: reports">
+      <link href="../notebooks/reports.html" rel="next" title="Dataset: reports">
+       <link href="../meta/mosquito_alert/intro.html" rel="prev" title="Mosquito Alert">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="en" name="docsearch:language"/>
        </link>
@@ -428,7 +440,7 @@
     <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
      <div class="navbar-brand-box">
       <a class="navbar-brand text-wrap" href="../index.html">
-       <img alt="logo" class="logo" src="../_static/icon_v1.svg"/>
+       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
        <h1 class="site-logo" id="site-title">
         Mosquito Alert Data Portal
        </h1>
@@ -443,7 +455,7 @@
       <ul class="nav sidenav_l1">
        <li class="toctree-l1">
         <a class="reference internal" href="../README_ma.html">
-         Table of contents
+         Mosquito Alert Data Portal
         </a>
        </li>
       </ul>
@@ -454,16 +466,13 @@
         </a>
         <ul class="current collapse-ul">
          <li class="toctree-l2 current active collapsible-parent">
-          <a class="reference internal" href="../notebooks/reports.html">
-           Dataset:
-           <em>
-            reports
-           </em>
+          <a class="current reference internal" href="#">
+           reports
           </a>
-          <ul class="current collapse-ul">
-           <li class="toctree-l3 current active">
-            <a class="current reference internal" href="#">
-             Metadata table
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/reports.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -471,16 +480,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/tigapics.html">
-           Catalog:
-           <em>
-            tigapics
-           </em>
+          <a class="reference internal" href="reports_raw.html">
+           reports_raw
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="tigapics.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports_raw.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -488,16 +494,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/model_tables.html">
-           Dataset:
-           <em>
-            model_tables
-           </em>
+          <a class="reference internal" href="tigapics.html">
+           tigapics
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="model_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/tigapics.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -505,16 +508,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/sampling_effort.html">
-           Dataset:
-           <em>
-            sampling_effort
-           </em>
+          <a class="reference internal" href="sampling_effort.html">
+           sampling_effort
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="sampling_effort.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/sampling_effort.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -522,13 +522,41 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/analytic_tables.html">
-           Catalog: analytic_tables
+          <a class="reference internal" href="user_locations.html">
+           user_locations
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="analytic_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/user_locations.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="analytic_tables.html">
+           analytic_tables
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/analytic_tables.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="model_tables.html">
+           model_tables
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/model_tables.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -693,7 +721,7 @@
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Public.
+               Public
               </td>
              </tr>
              <tr>
@@ -2735,6 +2763,8 @@
            </div>
           </div>
          </div>
+         <div class="toctree-wrapper compound">
+         </div>
         </div>
         <script type="text/x-thebe-config">
          {
@@ -2759,16 +2789,13 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/reports.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="../meta/mosquito_alert/intro.html" id="prev-link" title="previous page">
+         Mosquito Alert
+        </a>
+        <a class="right-next" href="../notebooks/reports.html" id="next-link" title="next page">
          Dataset:
          <em>
           reports
-         </em>
-        </a>
-        <a class="right-next" href="../notebooks/tigapics.html" id="next-link" title="next page">
-         Catalog:
-         <em>
-          tigapics
          </em>
         </a>
        </div>

@@ -73,7 +73,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/icon_DB_2.svg" class="logo" alt="logo">
+  <img src="_static/icon.svg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
@@ -126,48 +126,6 @@
     </i>
    </li>
    <li class="toctree-l2 collapsible-parent">
-    <a class="reference internal" href="meta_ipynb/tigapics.html">
-     tigapics
-    </a>
-    <ul class="collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="notebooks/tigapics.html">
-       code-example
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
-   </li>
-   <li class="toctree-l2 collapsible-parent">
-    <a class="reference internal" href="meta_ipynb/sampling_effort.html">
-     sampling_effort
-    </a>
-    <ul class="collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="notebooks/sampling_effort.html">
-       code-example
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
-   </li>
-   <li class="toctree-l2 collapsible-parent">
-    <a class="reference internal" href="meta_ipynb/user_locations.html">
-     user_locations
-    </a>
-    <ul class="collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="notebooks/user_locations.html">
-       code-example
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
-   </li>
-   <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="meta_ipynb/analytic_tables.html">
      analytic_tables
     </a>
@@ -182,12 +140,40 @@
     </i>
    </li>
    <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="meta_ipynb/tigapics.html">
+     tigapics
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/tigapics.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
     <a class="reference internal" href="meta_ipynb/model_tables.html">
      model_tables
     </a>
     <ul class="collapse-ul">
      <li class="toctree-l3">
       <a class="reference internal" href="notebooks/model_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="meta_ipynb/sampling_effort.html">
+     sampling_effort
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/sampling_effort.html">
        code-example
       </a>
      </li>
@@ -239,7 +225,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/README_ma.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/README.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -271,36 +257,51 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   1. Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#current-state-of-the-art">
-   2. Current state of the art
+   1. Current state of the art
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#findable-data">
-     2.1. Findable data
+     1.1. Findable data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#accessibility">
-     2.2. Accessibility
+     1.2. Accessibility
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interoperability">
-     2.3. Interoperability
+     1.3. Interoperability
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#reusability">
-     2.4. Reusability
+     1.4. Reusability
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pending-tasks">
+   2. Pending tasks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deviation-from-initial-planning">
+   3. Deviation from initial planning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation-details">
+   4. Implementation details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-flow-diagram">
+   5. Data Flow Diagram
+  </a>
  </li>
 </ul>
 
@@ -319,26 +320,23 @@ r { color: Red }
 </style>
 <div class="section" id="mosquito-alert-data-portal">
 <h1>Mosquito Alert Data Portal<a class="headerlink" href="#mosquito-alert-data-portal" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The scope of this documentation is to provide:</p>
 <ul class="simple">
 <li><p>Metadata description of datasets that are used in the <em>Big Mosquito Bytes</em> (BMB) project</p></li>
 <li><p>Data access examples by <em>Python</em> scripts</p></li>
 </ul>
 <p>This work aims to implement <strong>FAIR</strong> principles into Mosquito Alerts data management system in order to ease data extraction for partners via API and code-examples.</p>
-</div>
 <div class="section" id="current-state-of-the-art">
-<h2>2. Current state of the art<a class="headerlink" href="#current-state-of-the-art" title="Permalink to this headline">¶</a></h2>
+<h2>1. Current state of the art<a class="headerlink" href="#current-state-of-the-art" title="Permalink to this headline">¶</a></h2>
 <p>CEAB-CSIC has implemented a data management system based on FAIR principles in order to ease metadata visualization and  data access via API and code-examples. In the following the data management system is presented from a FAIR perspective.</p>
 <div class="section" id="findable-data">
-<h3>2.1. Findable data<a class="headerlink" href="#findable-data" title="Permalink to this headline">¶</a></h3>
+<h3>1.1. Findable data<a class="headerlink" href="#findable-data" title="Permalink to this headline">¶</a></h3>
 <p>Metadata templates are built on <a class="reference external" href="https://schema.org/docs/data-and-datasets.html">Google’s Schema.org metadata standard</a> following the guidelines from <a class="reference external" href="https://github.com/ESIPFed/science-on-schema.org">SOSO</a> published by the Earth Science Information Partners and the draft document <a class="reference external" href="https://ec-jrc.github.io/dcat-ap-to-schema-org/">“DCAT-AP to Schema.org Mapping”</a> published by the <em>European Commission’s Joint Research Centre</em>.</p>
-<p>The metadata information relative to a dataset is stored in <code class="docutils literal notranslate"><span class="pre">.json-ld</span></code> files (i.e. JSON for Linking Data) that are validated with Google’ <a class="reference external" href="https://search.google.com/structured-data/testing-tool/u/0/">Structured Data Testing Tool</a>.</p>
+<p>The metadata information relative to a dataset is stored in <code class="docutils literal notranslate"><span class="pre">.json-ld</span></code> files (i.e. JSON for Linking Data) that are validated with Google’ <a class="reference external" href="https://search.google.com/structured-data/testing-tool/u/0/">Structured Data Testing Tool</a></p>
 <p>Whenever possible, DOI identifiers are used for linking to datasets. Since the management system is uploaded to a GitHub repository, control version of metadata files is inherently performed by tracking changes in any set of <code class="docutils literal notranslate"><span class="pre">.json-ld</span></code> files.</p>
 </div>
 <div class="section" id="accessibility">
-<h3>2.2. Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">¶</a></h3>
+<h3>1.2. Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">¶</a></h3>
 <p>A static website portal was built to ease metadata visualization and dataset access. The static website is hosted free of charge and maintenance costs on GitHub Pages. A <a class="reference external" href="https://mosquito-alert.github.io/metadata_public_portal/README_ma.html">public portal</a> relative to Mosquito Alert open data is available for general public. For the moment, the full metadata portal is only available on a private repository since it contains not only public but even private datasets.</p>
 <p>Every metadata has an associated <em>Python</em> script (i.e. jupyter notebook tutorial) that explains how to access the relative dataset distribution. The web-portal is automatically re-generated anytime a new metadata is added.</p>
 <p>In the following table are listed all the datasets currently available at the metadata web-portal with the respective licenses and access restrictions. <em>Private</em> data is stored in a restricted access disk storage on the CEAB-CSIC computer cluster. Note that if a dataset is labeled as <em>Private</em> it does not necessarily imply that it cannot be distributed, since their access may be guaranteed after signing a ad-hoc contract of use.</p>
@@ -374,46 +372,144 @@ r { color: Red }
 <td class="text-align:center"><p><a class="reference internal" href="notebooks/tigapics.html"><span class="doc">✔</span></a></p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.jpeg</span></code> <code class="docutils literal notranslate"><span class="pre">.png</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="meta_ipynb/sampling_effort.html"><span class="doc">sampling_effort</span></a></p></td>
-<td class="text-align:center"><p>MosquitoAlert</p></td>
-<td class="text-align:left"><p>Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells.</p></td>
-<td class="text-align:center"><p>Public CC0-1.0</p></td>
-<td class="text-align:center"><p><a class="reference internal" href="notebooks/sampling_effort.html"><span class="doc">✔</span></a></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="meta_ipynb/user_locations.html"><span class="doc">user_locations</span></a></p></td>
-<td class="text-align:center"><p>MosquitoAlert</p></td>
-<td class="text-align:left"><p>Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing.</p></td>
-<td class="text-align:center"><p>Private</p></td>
-<td class="text-align:center"><p><r>✖</r></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.Rds</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="meta_ipynb/analytic_tables.html"><span class="doc">analytic_tables</span></a></p></td>
-<td class="text-align:center"><p>MosquitoAlert</p></td>
-<td class="text-align:left"><p>Tables from Mosquito Alert database selected for analytic purposes. Available on demand for research purposes only since it could contain user sensible information.</p></td>
-<td class="text-align:center"><p>Private</p></td>
-<td class="text-align:center"><p><a class="reference internal" href="notebooks/analytic_tables.html"><span class="doc">✔</span></a></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="meta_ipynb/model_tables.html"><span class="doc">model_tables</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="meta_ipynb/model_tables.html"><span class="doc">model_tables</span></a></p></td>
 <td class="text-align:center"><p>MosquitoAlert</p></td>
 <td class="text-align:left"><p>Results from the Bayesian multilevel model that feed the Mosquito Alert raster maps.</p></td>
 <td class="text-align:center"><p>Public CC0-1.0</p></td>
 <td class="text-align:center"><p><a class="reference internal" href="notebooks/model_tables.html"><span class="doc">✔</span></a></p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="meta_ipynb/sampling_effort.html"><span class="doc">sampling_effort</span></a></p></td>
+<td class="text-align:center"><p>MosquitoAlert</p></td>
+<td class="text-align:left"><p>Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells.</p></td>
+<td class="text-align:center"><p>Public CC0-1.0</p></td>
+<td class="text-align:center"><p><a class="reference internal" href="notebooks/sampling_effort.html"><span class="doc">✔</span></a></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-doc">user_locations</span></p></td>
+<td class="text-align:center"><p>MosquitoAlert</p></td>
+<td class="text-align:left"><p>Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing.</p></td>
+<td class="text-align:center"><p>Private</p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.Rds</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="meta_ipynb/analytic_tables.html"><span class="doc">analytic_tables</span></a></p></td>
+<td class="text-align:center"><p>MosquitoAlert</p></td>
+<td class="text-align:left"><p>Tables from Mosquito Alert database selected for analytic purposes. Available on demand for research purposes only since it could contain user sensible information.</p></td>
+<td class="text-align:center"><p>Private CC BY-NC-SA 4.0</p></td>
+<td class="text-align:center"><p><a class="reference internal" href="notebooks/analytic_tables.html"><span class="doc">✔</span></a></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-doc">tigadata</span></p></td>
+<td class="text-align:center"><p>MosquitoAlert</p></td>
+<td class="text-align:left"><p>TigaData database daily backup dump. Not intended for research purposes.</p></td>
+<td class="text-align:center"><p>Private</p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.sql</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-doc">irideon_senscape_traps</span></p></td>
+<td class="text-align:center"><p>MosquitoAlert</p></td>
+<td class="text-align:left"><p>Real time mosquito presence count with on-site Irideon senscape smart traps. Proprietary dataset, available on demand for research purposes only.</p></td>
+<td class="text-align:center"><p>Private</p></td>
+<td class="text-align:center"><p><span class="xref std std-doc">✔</span></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.json</span></code> <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-doc">dengue</span></p></td>
+<td class="text-align:center"><p>Public Health</p></td>
+<td class="text-align:left"><p>Yearly dengue cases in Spain monitored by RENAVE. Contains sensible personal information.</p></td>
+<td class="text-align:center"><p>Private</p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-doc">meteocat_xema</span></p></td>
+<td class="text-align:center"><p>Environment</p></td>
+<td class="text-align:left"><p>Weather station data of the XEMA network of Meteorological Service of Catalonia (Meteocat)</p></td>
+<td class="text-align:center"><p><a class="reference external" href="https://www.meteo.cat/wpweb/avis-legal/">Public</a></p></td>
+<td class="text-align:center"><p><span class="xref std std-doc">✔</span></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.json</span></code> <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-doc">era5</span></p></td>
+<td class="text-align:center"><p>Environment</p></td>
+<td class="text-align:left"><p>ERA5 hourly worldwide weather on single levels from 1979 to present with land mask on 0.25 degree raster-grid. Data is not accessible for the external public. but only for internal use.</p></td>
+<td class="text-align:center"><p><a class="reference external" href="https://apps.ecmwf.int/datasets/licences/copernicus/">Public</a></p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.netCDF</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-doc">ncep</span></p></td>
+<td class="text-align:center"><p>Environment</p></td>
+<td class="text-align:left"><p>NCEP-NOAA hourly worldwide weather 5-days forecast on 0.25 degree grid. Data is not accessible for the external public, but only for internal use.</p></td>
+<td class="text-align:center"><p>Public CC BY 4.0</p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.netCDF</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-doc">mwi</span></p></td>
+<td class="text-align:center"><p>Environment</p></td>
+<td class="text-align:left"><p>Mosquito Weather Index hourly worldwide computed on ERA5 and NCEP data on 0.25 degree raster-grid</p></td>
+<td class="text-align:center"><p>Public CC0-1.0</p></td>
+<td class="text-align:center"><p><r>✖</r></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">.netCDF</span></code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="interoperability">
-<h3>2.3. Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h3>
+<h3>1.3. Interoperability<a class="headerlink" href="#interoperability" title="Permalink to this headline">¶</a></h3>
 <p>Interoperability of the data is guaranteed through the use of controlled <a class="reference external" href="http://Schema.org">Schema.org</a> vocabularies. In concrete, the requested vocabulary terms used to describe a dataset are: <em>name</em>, <em>description</em>, <em>url</em>, <em>sameAs</em>, <em>identifier</em>, <em>license</em>, <em>citation</em>, <em>creator</em> (with values: <em>type</em>, <em>id</em>, <em>name</em>, <em>identifier</em>, <em>contactPoint</em>), variableMeasured (of type Property with values: name, description and unitText, dataType), <em>variableMeasured</em> (by type <em>Property</em> with values: <em>name</em>, <em>description</em> and <em>unitText</em>, <em>dataType</em>), <em>measurementTechnique</em>, <em>temporalCoverage</em>, <em>spatialCoverage</em> (with values: <em>type</em>, <em>name</em>, <em>sameAs</em>) and <em>distribution</em> (of type <em>DataDownload</em> with values: <em>name</em>, <em>description</em>, <em>encodingFormat</em>, <em>url</em>, <em>contentUrl</em>, <em>contentSize</em>).</p>
 </div>
 <div class="section" id="reusability">
-<h3>2.4. Reusability<a class="headerlink" href="#reusability" title="Permalink to this headline">¶</a></h3>
+<h3>1.4. Reusability<a class="headerlink" href="#reusability" title="Permalink to this headline">¶</a></h3>
 <p>The degree of reuse permitted when the data are made available to other researchers and the wider public is defined by the relative license or by an <em>ad-hoc</em> data use contract usually made for a specific data request.</p>
-<div class="toctree-wrapper compound">
 </div>
+</div>
+<div class="section" id="pending-tasks">
+<h2>2. Pending tasks<a class="headerlink" href="#pending-tasks" title="Permalink to this headline">¶</a></h2>
+<p>The current data management system is based on a static web-portal that serves as a live-document that is easy to update and manage. However, it is not an interactive API that allows clients to access data. Researchers are required to have basic programming skills to implement the necessary Python scripts for data access. The main pending tasks are:</p>
+<ul class="simple">
+<li><p>Review and complete missing metadata information and add code examples.</p></li>
+<li><p>Add valuable datasets from project partners to the data management system.</p></li>
+<li><p>Publish the current metadata web-portal on the <a class="reference external" href="http://www.mosquitoalert.com/">Mosquito Alert official website</a> under the Open Data section.</p></li>
+<li><p>Port workflow automation (i.e. task orchestration) relative to dataset management (e.g. daily data updates, archiving, etc.) and analysis (i.e. transformations, modeling, etc.) from Crontab to a more feature rich and modern framework like <a class="reference external" href="https://www.prefect.io/">Prefect</a> or <a class="reference external" href="https://www.nextflow.io/">NextFlow</a>.</p></li>
+</ul>
+<p>Apart from the pending tasks, there is a number of tasks that could be performed in order to improve the current data management system:</p>
+<ul class="simple">
+<li><p>Metadata template and metadata could be created with the <a class="reference external" href="https://metadatacenter.org/">CEDAR</a> platform in order to improve metadata publication and sharing.</p></li>
+<li><p>Add data previews like figures for geo-raster datasets and summary tables to dataset access code-examples to improve data description.</p></li>
+<li><p>Build an API that allows clients to access data without the need to set up a customized Python environment.</p></li>
+</ul>
+</div>
+<div class="section" id="deviation-from-initial-planning">
+<h2>3. Deviation from initial planning<a class="headerlink" href="#deviation-from-initial-planning" title="Permalink to this headline">¶</a></h2>
+<p>The first idea was to build an API to serve datasets stored in a relational database to external users. However, due to the diversity of data formats and system requirements (i.e. dedicated server machine) this option was replaced by a simpler solution of file storage on a secure disk partition of the CEAB cluster and other data repositories like Zenodo. On the other hand, already available APIs were used to request already public datasets, like the <a class="reference external" href="https://cds.climate.copernicus.eu/toolbox/doc/api.html">Climate Data Store API</a> to retrieve ERA5 weather reanalysis datasets of ECMWF. This deviation from the first plan has the following advantages:</p>
+<ul class="simple">
+<li><p>Removes the need to set up a dedicated server and thus reduces the costs of infrastructure and maintenance by making the data access less dependent on future project refinancing.</p></li>
+<li><p>Reuse of cheap, easy to handle and robust software infrastructures (e.g. CEAB cluster, Zenodo and GitHub).</p></li>
+<li><p>API development and database management are replaced by data workflow automation and files/blobs which are easy to distribute and scale up for ETL applications (extract, transform and load).</p></li>
+</ul>
+<p>However, there are still a series of disadvantages to consider:</p>
+<ul class="simple">
+<li><p>A user needs to have enough skills to set up a programming environment to access or download a given dataset. Note however, that it is expected that researchers interested in those datasets have the required skills and that the non professional public (i.e. citizens) are still able to view some of their data within the MA map application.</p></li>
+<li><p>Data visualization and interaction are not possible (e.g. data dashboard). However, it is possible to give a data preview since the static web-portal allows linking images and summary tables to data access code-examples.</p></li>
+</ul>
+</div>
+<div class="section" id="implementation-details">
+<h2>4. Implementation details<a class="headerlink" href="#implementation-details" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Anytime a source metadata <code class="docutils literal notranslate"><span class="pre">.json</span></code> file are modified or updated we need to run <code class="docutils literal notranslate"><span class="pre">build_info.py</span></code> to build the <code class="docutils literal notranslate"><span class="pre">html</span></code> dataset tables.</p>
+</div>
+<p>Data access <em>Python</em> scripts use metadata <code class="docutils literal notranslate"><span class="pre">.json</span></code> files to get all needed information. Scripts use a <em>percentage</em> formatting to denote executable code cells (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">%%</span></code>) and markdown content cells (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">%%</span> <span class="pre">[markdown]</span></code>). This allows to use editors like <em>Visual Studio Code</em>, <em>Spyder</em>, etc. and to perform versioning control easily.</p>
+<p><em>Jupyter Book</em> is used to build this documentation. Thus, data access scripts in <code class="docutils literal notranslate"><span class="pre">.py</span></code> should be converted to the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> format by <em>JupyText</em> application.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After any modification to <code class="docutils literal notranslate"><span class="pre">.py</span></code> source files, we should take care to update the <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> files by running <code class="docutils literal notranslate"><span class="pre">build_ipynb.sh</span></code> before building a new version of documentation.</p>
+</div>
+</div>
+<div class="section" id="data-flow-diagram">
+<h2>5. Data Flow Diagram<a class="headerlink" href="#data-flow-diagram" title="Permalink to this headline">¶</a></h2>
+<div style="width: 800px">
+<p><img alt="BigBytes_dfd" src="_images/BigBytes.svg" /></p>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 </div>

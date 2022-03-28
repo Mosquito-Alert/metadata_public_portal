@@ -14,18 +14,23 @@
   </script>
   <script type="application/ld+json">
    {
+  "$schema": "../schema.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@type": "Dataset",
-  "name": "sampling_effort",
-  "conditionsOfAccess": "Public",
-  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
+  "name": "reports_raw",
+  "conditionsOfAccess": "Private",
+  "description": "Validated and not validated reports from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters. Useful for studying usage, sampling effort etc. Reports that the participant has deleted are excluded.",
+  "url": "",
   "identifier": "",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "citation": "",
+  "citation": [
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
   "temporalCoverage": "2014/..",
   "spatialCoverage": {
     "@type": "Place",
@@ -35,75 +40,148 @@
   "distribution": [
     {
       "@type": "DataDownload",
-      "name": "zenodo",
-      "description": "Distribution from Zenodo cloud",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.5802476",
-      "contentSize": "11MB"
-    },
-    {
-      "@type": "DataDownload",
-      "name": "github",
-      "description": "Distribution from MosquitoAlert Github repository",
-      "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
+      "name": "ceab_cluster",
+      "description": "Distribution by SFTP protocol from CEAB cluster.",
+      "encodingFormat": "application/RDS",
+      "url": "",
       "contentUrl": [
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz",
-        "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz"
-      ],
-      "contentSize": "11MB"
+        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds"
+      ]
     }
   ],
   "variableMeasured": [
     {
       "@type": "PropertyValue",
-      "name": "masked_lon",
-      "description": "Longitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lat",
-      "description": "Latitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "dataType": "xsd:numeric"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
+      "name": "version_UUID",
+      "description": "Unique random UUID assigned to the report version by the device before it was uploaded to the Mosquito Alert server. Each record should have a unique version_UUID.",
       "unitText": "",
       "dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
-      "name": "date",
-      "description": "Date of the observation/estimate. YYYY-MM-Dd.",
+      "name": "version_number",
+      "description": "Version number of the report. These are assigned sequentially starting with 0.",
       "unitText": "",
-      "dataType": "xsd:date"
+      "dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
-      "name": "n_participants",
-      "description": "Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.",
+      "name": "user",
+      "description": "Unique random UUID of the participant who uploaded this report.",
       "unitText": "",
-      "dataType": "xsd:integer"
+      "dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
-      "name": "SE_expected",
-      "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
+      "name": "report_id",
+      "description": "Random 4-digit character string assigned to the report. This is not guaranteed to be unique on its own, but is used as an easy code for participants to use to identify the report (for example, if sending a physical specimen). See unique_report_id for the unique report identifier.",
       "unitText": "",
-      "dataType": "xsd:numeric"
+      "dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
-      "name": "SE",
-      "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
+      "name": "server_upload_time",
+      "description": "Date and time recorded by the Mosquito Alert server when this report version was uploaded.",
       "unitText": "",
-      "dataType": "xsd:numeric"
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "phone_upload_time",
+      "description": "Date and time recorded by the participant's device when this report version was uploaded.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_time",
+      "description": "Date and time recorded by the participant's device when the first version of this report was created. This is normally the date/time that one cares about for modeling as it is taken as the closest time to the actual observation. (In constrast, upload may have happened at a later time, based on availability of a data connection, and subsequent versions of the report may have been created at later times because the participant wanted to edit details of the initial observation.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "version_time",
+      "description": "Date and time recorded by the participant's device when this version of the report was created.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "type",
+      "description": "Type of report. Options are adult, site, bite, or mission.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "mission",
+      "description": "Identifier of the mission in case this is a mission report.",
+      "unitText": "",
+      "dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "location_choice",
+      "description": "Choice participant selected when identifying location of the report. Either current or selected, the latter signifying that the participant selected a location on the map different from their current location.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "current_location_lon",
+      "description": "Longitude of the participant's current location at the time of creating the first version of this report.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "current_location_lat",
+      "description": "Latitude of the participant's current location at the time of creating the first version of this report.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "selected_location_lon",
+      "description": "Longitude of the location participant selected on the map (if any) as the place of the observation.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "selected_location_lat",
+      "description": "Latitude of the location participant selected on the map (if any) as the place of the observation.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "package_name",
+      "description": "Name of the app package used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "package_version",
+      "description": "Version of the app package used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "os",
+      "description": "Operating system of the device used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "unique_report_id",
+      "description": "Unique ID created for each report (not report version) by concatinating user_id and report_id. Note each version of the report will have this same ID.",
+      "unitText": "",
+      "dataType": "xsd:string"
     }
   ],
   "creator": [
@@ -179,8 +257,8 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/sampling_effort.html" rel="next" title="Dataset: sampling_effort">
-       <link href="../notebooks/tigapics.html" rel="prev" title="DataCatalog: tigapics">
+      <link href="../notebooks/reports_raw.html" rel="next" title="Dataset: reports_raw">
+       <link href="../notebooks/reports.html" rel="prev" title="Dataset: reports">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="en" name="docsearch:language"/>
        </link>
@@ -235,8 +313,8 @@
           <i class="fas fa-chevron-down">
           </i>
          </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="reports_raw.html">
+         <li class="toctree-l2 current active collapsible-parent">
+          <a class="current reference internal" href="#">
            reports_raw
           </a>
           <ul class="collapse-ul">
@@ -263,8 +341,8 @@
           <i class="fas fa-chevron-down">
           </i>
          </li>
-         <li class="toctree-l2 current active collapsible-parent">
-          <a class="current reference internal" href="#">
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="sampling_effort.html">
            sampling_effort
           </a>
           <ul class="collapse-ul">
@@ -355,7 +433,7 @@
          <div class="dropdown-buttons">
           <!-- ipynb file if we had a myst markdown file -->
           <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/sampling_effort.ipynb">
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/reports_raw.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
@@ -381,7 +459,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/sampling_effort.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/reports_raw.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -469,7 +547,7 @@
                name
               </th>
               <td style="text-align:left">
-               sampling_effort
+               reports_raw
               </td>
              </tr>
              <tr>
@@ -485,7 +563,14 @@
                description
               </th>
               <td style="text-align:left">
-               Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.
+               Validated and not validated reports from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters. Useful for studying usage, sampling effort etc. Reports that the participant has deleted are excluded.
+              </td>
+             </tr>
+             <tr>
+              <th>
+               url
+              </th>
+              <td style="text-align:left">
               </td>
              </tr>
              <tr>
@@ -579,7 +664,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     zenodo
+                     ceab_cluster
                     </td>
                    </tr>
                    <tr>
@@ -587,7 +672,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Distribution from Zenodo cloud
+                     Distribution by SFTP protocol from CEAB cluster.
                     </td>
                    </tr>
                    <tr>
@@ -595,7 +680,7 @@
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     CSV.GZ
+                     Rds
                     </td>
                    </tr>
                    <tr>
@@ -603,7 +688,6 @@
                      url
                     </th>
                     <td style="text-align:left">
-                     ./notebooks/sampling_effort.py
                     </td>
                    </tr>
                    <tr>
@@ -611,82 +695,7 @@
                      contentUrl
                     </th>
                     <td style="text-align:left">
-                     https://doi.org/10.5281/zenodo.5802476
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentSize
-                    </th>
-                    <td style="text-align:left">
-                     11MB
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     DataDownload
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     github
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Distribution from MosquitoAlert Github repository
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     encodingFormat
-                    </th>
-                    <td style="text-align:left">
-                     CSV.GZ
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     url
-                    </th>
-                    <td style="text-align:left">
-                     ./notebooks/sampling_effort.py
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentUrl
-                    </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
-                       https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz
-                      </li>
-                      <li>
-                       https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz
-                      </li>
-                     </ul>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentSize
-                    </th>
-                    <td style="text-align:left">
-                     11MB
+                     sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds
                     </td>
                    </tr>
                   </table>
@@ -723,7 +732,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     masked_lon
+                     version_UUID
                     </td>
                    </tr>
                    <tr>
@@ -731,95 +740,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Longitude of the SW corner of the sampling cell.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     degrees
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:numeric
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     masked_lat
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Latitude of the SW corner of the sampling cell.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     degrees
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:numeric
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     TigacellID
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).
+                     Unique random UUID assigned to the report version by the device before it was uploaded to the Mosquito Alert server. Each record should have a unique version_UUID.
                     </td>
                    </tr>
                    <tr>
@@ -854,7 +775,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     date
+                     version_number
                     </td>
                    </tr>
                    <tr>
@@ -862,7 +783,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Date of the observation/estimate. YYYY-MM-Dd.
+                     Version number of the report. These are assigned sequentially starting with 0.
                     </td>
                    </tr>
                    <tr>
@@ -877,7 +798,7 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:date
+                     xsd:int
                     </td>
                    </tr>
                   </table>
@@ -897,7 +818,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     n_participants
+                     user
                     </td>
                    </tr>
                    <tr>
@@ -905,7 +826,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Number of background tracks recorded in this cell on the given date. Note that some participants may be recorded more than once during a given day, and that some participants may not be recorded at all even though they were present in the cell, so this value is not necessarily the number of unique participants in the cell.
+                     Unique random UUID of the participant who uploaded this report.
                     </td>
                    </tr>
                    <tr>
@@ -920,7 +841,7 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:integer
+                     xsd:string
                     </td>
                    </tr>
                   </table>
@@ -940,7 +861,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     SE_expected
+                     report_id
                     </td>
                    </tr>
                    <tr>
@@ -948,7 +869,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.
+                     Random 4-digit character string assigned to the report. This is not guaranteed to be unique on its own, but is used as an easy code for participants to use to identify the report (for example, if sending a physical specimen). See unique_report_id for the unique report identifier.
                     </td>
                    </tr>
                    <tr>
@@ -963,7 +884,7 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:numeric
+                     xsd:string
                     </td>
                    </tr>
                   </table>
@@ -983,7 +904,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     SE
+                     server_upload_time
                     </td>
                    </tr>
                    <tr>
@@ -991,7 +912,7 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..
+                     Date and time recorded by the Mosquito Alert server when this report version was uploaded.
                     </td>
                    </tr>
                    <tr>
@@ -1006,7 +927,613 @@
                      dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:numeric
+                     xsd:dateTime
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     phone_upload_time
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Date and time recorded by the participant's device when this report version was uploaded.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:dateTime
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     creation_time
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Date and time recorded by the participant's device when the first version of this report was created. This is normally the date/time that one cares about for modeling as it is taken as the closest time to the actual observation. (In constrast, upload may have happened at a later time, based on availability of a data connection, and subsequent versions of the report may have been created at later times because the participant wanted to edit details of the initial observation.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:dateTime
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     version_time
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Date and time recorded by the participant's device when this version of the report was created.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:dateTime
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     type
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Type of report. Options are adult, site, bite, or mission.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     mission
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Identifier of the mission in case this is a mission report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     location_choice
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Choice participant selected when identifying location of the report. Either current or selected, the latter signifying that the participant selected a location on the map different from their current location.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     current_location_lon
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Longitude of the participant's current location at the time of creating the first version of this report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Decimal degrees
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:double
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     current_location_lat
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Latitude of the participant's current location at the time of creating the first version of this report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Decimal degrees
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:double
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     selected_location_lon
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Longitude of the location participant selected on the map (if any) as the place of the observation.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Decimal degrees
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:double
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     selected_location_lat
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Latitude of the location participant selected on the map (if any) as the place of the observation.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Decimal degrees
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:double
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     package_name
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Name of the app package used to create the report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     package_version
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Version of the app package used to create the report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     os
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Operating system of the device used to create the report.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     unique_report_id
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Unique ID created for each report (not report version) by concatinating user_id and report_id. Note each version of the report will have this same ID.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
                     </td>
                    </tr>
                   </table>
@@ -1169,16 +1696,16 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/tigapics.html" id="prev-link" title="previous page">
-         DataCatalog:
-         <em>
-          tigapics
-         </em>
-        </a>
-        <a class="right-next" href="../notebooks/sampling_effort.html" id="next-link" title="next page">
+        <a class="left-prev" href="../notebooks/reports.html" id="prev-link" title="previous page">
          Dataset:
          <em>
-          sampling_effort
+          reports
+         </em>
+        </a>
+        <a class="right-next" href="../notebooks/reports_raw.html" id="next-link" title="next page">
+         Dataset:
+         <em>
+          reports_raw
          </em>
         </a>
        </div>

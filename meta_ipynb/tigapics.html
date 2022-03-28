@@ -14,21 +14,22 @@
   </script>
   <script type="application/ld+json">
    {
+  "$schema": "../schema.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@type": "Dataset",
+  "@type": "DataCatalog",
   "name": "tigapics",
-  "conditionsOfAccess": "Public.",
+  "conditionsOfAccess": "Public",
   "description": "Pictures of adult mosquitos and breeding sites. Classification labels are provided for ML training for the pictures of mosquitos visualized on the MosquitoAlert map.",
   "url": "http://webserver.mosquitoalert.com",
   "identifier": "",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
-    "Direct Evidence of Adult Aedes albopictus Dispersal by Car. Roger, Eritja et al. (DOI: 10.1038/s41598-017-12652-5)",
-    "Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. (DOI: 10.1038/s41467-017-00914-9)"
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
   ],
   "temporalCoverage": "2014/2021",
   "spatialCoverage": {
@@ -36,33 +37,10 @@
     "name": "Worldwide",
     "sameAs": "https://www.wikidata.org/wiki/Q13780930"
   },
-  "variableMeasured": "",
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JG",
-      "name": "Garriga Farriol, Joan"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
-    }
-  ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
-    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
-  ],
   "hasPart": [
     {
       "@type": "Dataset",
       "name": "tigapics_mosquitoalert",
-      "conditionsOfAccess": "Public",
       "description": "Incremental backup of all the pictures (adults and sites) that can be viewed at the Mosquito Alert map webserver given a picture IID. Pictures could be downloaded even directly from webserver.mosquitoalert.com from its static resources but it's more convenient to use sftp to the backup.",
       "distribution": [
         {
@@ -88,7 +66,6 @@
     {
       "@type": "Dataset",
       "name": "tigapics_labels_bioimagearchive",
-      "conditionsOfAccess": "Public",
       "description": "Adult mosquito labels that describe the tigapics_bioimagearchive dataset. Note that this list contains a 'path' attribute that provides {SPECIES}/{ID_PICNAME}.",
       "url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD249",
       "distribution": [
@@ -106,7 +83,6 @@
     {
       "@type": "Dataset",
       "name": "tigapics_bioimagearchive",
-      "conditionsOfAccess": "Public",
       "description": "Adult mosquito pictures useful for machine-learning classification from the BioImage Archive repository. It is possible to download single images or species-chunks ('Aedes_albopictus', 'Aedes_aegypti', 'Aedes_japonicus', 'Aedes_koreicus', 'Japonicus_koreicus', 'Complex', 'Culex', 'Other_species', 'Not_sure'). Beside images, a file list is provided to label each image for ML classification.",
       "url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD249",
       "distribution": [
@@ -130,6 +106,27 @@
         }
       ]
     }
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "@id": "CEAB",
+      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
+    },
+    {
+      "@type": "Person",
+      "@id": "JG",
+      "name": "Garriga Farriol, Joan"
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí"
+    }
+  ],
+  "measurementTechnique": [
+    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
+    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
   ]
 }
   </script>
@@ -183,8 +180,8 @@
      </script>
      <link href="../genindex.html" rel="index" title="Index"/>
      <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/model_tables.html" rel="next" title="Dataset: model_tables">
-       <link href="../notebooks/tigapics.html" rel="prev" title="Catalog: tigapics">
+      <link href="../notebooks/tigapics.html" rel="next" title="DataCatalog: tigapics">
+       <link href="../notebooks/reports_raw.html" rel="prev" title="Dataset: reports_raw">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="en" name="docsearch:language"/>
        </link>
@@ -200,7 +197,7 @@
     <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
      <div class="navbar-brand-box">
       <a class="navbar-brand text-wrap" href="../index.html">
-       <img alt="logo" class="logo" src="../_static/icon_v1.svg"/>
+       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
        <h1 class="site-logo" id="site-title">
         Mosquito Alert Data Portal
        </h1>
@@ -215,7 +212,7 @@
       <ul class="nav sidenav_l1">
        <li class="toctree-l1">
         <a class="reference internal" href="../README_ma.html">
-         Table of contents
+         Mosquito Alert Data Portal
         </a>
        </li>
       </ul>
@@ -226,16 +223,27 @@
         </a>
         <ul class="current collapse-ul">
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/reports.html">
-           Dataset:
-           <em>
-            reports
-           </em>
+          <a class="reference internal" href="reports.html">
+           reports
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="reports.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/reports.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="reports_raw.html">
+           reports_raw
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/reports_raw.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -243,16 +251,13 @@
           </i>
          </li>
          <li class="toctree-l2 current active collapsible-parent">
-          <a class="reference internal" href="../notebooks/tigapics.html">
-           Catalog:
-           <em>
-            tigapics
-           </em>
+          <a class="current reference internal" href="#">
+           tigapics
           </a>
-          <ul class="current collapse-ul">
-           <li class="toctree-l3 current active">
-            <a class="current reference internal" href="#">
-             Metadata table
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/tigapics.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -260,16 +265,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/model_tables.html">
-           Dataset:
-           <em>
-            model_tables
-           </em>
+          <a class="reference internal" href="sampling_effort.html">
+           sampling_effort
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="model_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/sampling_effort.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -277,16 +279,13 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/sampling_effort.html">
-           Dataset:
-           <em>
-            sampling_effort
-           </em>
+          <a class="reference internal" href="user_locations.html">
+           user_locations
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="sampling_effort.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/user_locations.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -294,13 +293,27 @@
           </i>
          </li>
          <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="../notebooks/analytic_tables.html">
-           Catalog: analytic_tables
+          <a class="reference internal" href="analytic_tables.html">
+           analytic_tables
           </a>
           <ul class="collapse-ul">
            <li class="toctree-l3">
-            <a class="reference internal" href="analytic_tables.html">
-             Metadata table
+            <a class="reference internal" href="../notebooks/analytic_tables.html">
+             code-example
+            </a>
+           </li>
+          </ul>
+          <i class="fas fa-chevron-down">
+          </i>
+         </li>
+         <li class="toctree-l2 collapsible-parent">
+          <a class="reference internal" href="model_tables.html">
+           model_tables
+          </a>
+          <ul class="collapse-ul">
+           <li class="toctree-l3">
+            <a class="reference internal" href="../notebooks/model_tables.html">
+             code-example
             </a>
            </li>
           </ul>
@@ -1182,6 +1195,8 @@
            </div>
           </div>
          </div>
+         <div class="toctree-wrapper compound">
+         </div>
         </div>
         <script type="text/x-thebe-config">
          {
@@ -1206,16 +1221,16 @@
         </script>
        </div>
        <div class="prev-next-bottom">
-        <a class="left-prev" href="../notebooks/tigapics.html" id="prev-link" title="previous page">
-         Catalog:
-         <em>
-          tigapics
-         </em>
-        </a>
-        <a class="right-next" href="../notebooks/model_tables.html" id="next-link" title="next page">
+        <a class="left-prev" href="../notebooks/reports_raw.html" id="prev-link" title="previous page">
          Dataset:
          <em>
-          model_tables
+          reports_raw
+         </em>
+        </a>
+        <a class="right-next" href="../notebooks/tigapics.html" id="next-link" title="next page">
+         DataCatalog:
+         <em>
+          tigapics
          </em>
         </a>
        </div>
