@@ -1,7 +1,358 @@
 <!DOCTYPE html>
+
 <html>
- <head>
-  <style>
+<head><script type="application/ld+json">{
+  "$schema": "../schema.json",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "Dataset",
+  "name": "reports",
+  "conditionsOfAccess": "Public",
+  "description": "Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.",
+  "url": "https://github.com/MosquitoAlert/Data",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "citation": [
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
+  "temporalCoverage": "2014-05-27/..",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "zenodo",
+      "description": "Distribution from Zenodo cloud.",
+      "encodingFormat": "[JSON].ZIP",
+      "workExample": "./notebooks/reports.py",
+      "contentUrl": [
+        "https://doi.org/10.5281/zenodo.597466"
+      ],
+      "contentSize": "5MB"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "mosquitoalert_github",
+      "description": "Distribution from MosquitoAlert Github repository",
+      "encodingFormat": "JSON",
+      "workExample": "./notebooks/reports.py",
+      "contentUrl": [
+        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports{YEAR}.json",
+        "https://github.com/MosquitoAlert/Data/raw/master/translation_dict.json"
+      ],
+      "contentSize": "73MB"
+    }
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "version_UUID",
+      "description": "UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_time",
+      "description": "Date and time on phone when first version of report was created. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date time string. Example: 2016-01-03T12:04:00.996Z",
+      "qudt:dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_date",
+      "description": "Date part of creation_time string (provided separately simply for convenience) with YYYY-MM-DD format. Example: 2016-01-03 ",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_day_since_launch",
+      "description": "Creation_date expressed as number of days since 13June 2014 ,the day Mosquito Alert was launched (under its former name,Tigatrapp).",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_year",
+      "description": "Year part of creation_time string (provided separately simply for convenience).",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_month",
+      "description": "Month part of creation_time string (provided separately simply for convenience).",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "site_cat",
+      "description": "An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).",
+      "qudt:dataType": "xsd:int",
+      "maxValue": 5,
+      "minValue": 0
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "type",
+      "description": " Type of report: adult, site, mission or bite",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "lon",
+      "description": "Longitude of report location.",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "lat",
+      "description": "Latitude of report location.",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "movelab_annotation",
+      "description": "This field contains information from the validation process.",
+      "qudt:dataType": "xsd:complexType",
+      "value": [
+        {
+          "@type": "PropertyValue",
+          "name": "edited_user_notes",
+          "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "crowdcrafting_score_cat",
+          "description": "Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.",
+          "qudt:dataType": "xsd:string",
+          "maxValue": 2,
+          "minValue": -2
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "crowdcrafting_n_response",
+          "description": "Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "site_certainty_category",
+          "description": "If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))",
+          "qudt:dataType": "xsd:int",
+          "maxValue": 2,
+          "minValue": -3
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "tiger_certainty_category",
+          "description": "If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))",
+          "qudt:dataType": "xsd:int",
+          "maxValue": 2,
+          "minValue": -3
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "aegypti_certainty_category",
+          "description": "If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))",
+          "qudt:dataType": "xsd:int",
+          "maxValue": 2,
+          "minValue": -3
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "photo_html",
+          "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
+          "qudt:dataType": "xsd:anyURI"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "score",
+          "description": "",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "classification",
+          "description": "",
+          "qudt:dataType": "xsd:string"
+        }
+      ]
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "movelab_annotation_euro",
+      "description": "",
+      "qudt:dataType": "xsd:complexType",
+      "value": [
+        {
+          "@type": "PropertyValue",
+          "name": "edited_user_notes",
+          "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "photo_html",
+          "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
+          "qudt:dataType": "xsd:anyURI"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "class_name",
+          "description": "Name of the classification label. Available mosquito species labels are: Unclassified (id:1), Other species (id:2), Aedes albopictus (id:3), Aedes aegypti (id:5), Aedes japonicus (id:6), Aedes koreicus (id:7), Complex (id:8), Not sure (id:9), Culex sp. (id:10). Available breeding site labels are: site (id: Null)",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "class_label",
+          "description": "",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "class_id",
+          "description": "",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "class_value",
+          "description": "",
+          "qudt:dataType": "xsd:int"
+        }
+      ]
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "tiger_responses",
+      "description": "Similar to 'tiger_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'tiger_responses_text'.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "tiger_responses_text",
+      "description": "Adult mosquito related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "site_responses",
+      "description": "Similar to 'site_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'site_responses_text'.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "site_responses_text",
+      "description": "Breeding site related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "tigaprob_cat",
+      "description": "",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "visible",
+      "description": "",
+      "qudt:dataType": "xsd:boolean"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "latest_version",
+      "description": "",
+      "qudt:dataType": "xsd:boolean"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "n_photos",
+      "description": "",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "final_expert_status_text",
+      "description": "",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "responses",
+      "description": "Bites related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "cached_visible",
+      "description": "",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "poxsd:int",
+      "description": "",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "country",
+      "description": "",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "session",
+      "description": "",
+      "qudt:dataType": "xsd:decimal"
+    }
+  ],
+  "measurementTechnique": [
+    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
+    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
+  ],
+  "creator": [
+    {
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
+    }
+  ]
+}</script>
+<style>
    #hidden {
         display: none;
         }
@@ -10,9 +361,9 @@
         background-color: #92a2d1;
         }
   </style>
-  <script src="../_static/extra_interact.js" type="text/javascript">
-  </script>
-  <script type="application/ld+json">
+<script src="../_static/extra_interact.js" type="text/javascript">
+</script>
+<script type="application/ld+json">
    {
   "$schema": "../schema.json",
   "@context": {
@@ -365,2387 +716,2382 @@
   ]
 }
   </script>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
    Metadata table — Mosquito Alert Data Portal
   </title>
-  <link href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css" rel="stylesheet"/>
-  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
-  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
-  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
-  <link href="../_static/vendor/open-sans_all/1.44.1/index.css" rel="stylesheet"/>
-  <link href="../_static/vendor/lato_latin-ext/1.44.1/index.css" rel="stylesheet"/>
-  <link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/sphinx-book-theme.c441f2ba0852f4cabcb80105e3a46ae6.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/togglebutton.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/copybutton.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/mystnb.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
-  <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
-   <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
-    <link as="script" href="../_static/js/index.d3f166471bb80abb5163.js" rel="preload">
-     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
-     </script>
-     <script src="../_static/jquery.js">
-     </script>
-     <script src="../_static/underscore.js">
-     </script>
-     <script src="../_static/doctools.js">
-     </script>
-     <script src="../_static/togglebutton.js">
-     </script>
-     <script src="../_static/clipboard.min.js">
-     </script>
-     <script src="../_static/copybutton.js">
-     </script>
-     <script>
+<link href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css" rel="stylesheet"/>
+<link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../_static/vendor/open-sans_all/1.44.1/index.css" rel="stylesheet"/>
+<link href="../_static/vendor/lato_latin-ext/1.44.1/index.css" rel="stylesheet"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/sphinx-book-theme.c441f2ba0852f4cabcb80105e3a46ae6.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/togglebutton.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/mystnb.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+<link as="script" href="../_static/js/index.d3f166471bb80abb5163.js" rel="preload"/>
+<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+</script>
+<script src="../_static/jquery.js">
+</script>
+<script src="../_static/underscore.js">
+</script>
+<script src="../_static/doctools.js">
+</script>
+<script src="../_static/togglebutton.js">
+</script>
+<script src="../_static/clipboard.min.js">
+</script>
+<script src="../_static/copybutton.js">
+</script>
+<script>
       var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';
      </script>
-     <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js">
-     </script>
-     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js">
-     </script>
-     <script>
+<script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js">
+</script>
+<script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js">
+</script>
+<script>
       const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
      </script>
-     <script async="async" src="../_static/sphinx-thebe.js">
-     </script>
-     <link href="../genindex.html" rel="index" title="Index"/>
-     <link href="../search.html" rel="search" title="Search">
-      <link href="../notebooks/reports.html" rel="next" title="Dataset: reports">
-       <link href="../meta/mosquito_alert/intro.html" rel="prev" title="Mosquito Alert">
-        <meta content="width=device-width, initial-scale=1" name="viewport"/>
-        <meta content="en" name="docsearch:language"/>
-       </link>
-      </link>
-     </link>
-    </link>
-   </link>
-  </link>
- </head>
- <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
-  <div class="container-xl">
-   <div class="row">
-    <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-     <div class="navbar-brand-box">
-      <a class="navbar-brand text-wrap" href="../index.html">
-       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
-       <h1 class="site-logo" id="site-title">
+<script async="async" src="../_static/sphinx-thebe.js">
+</script>
+<link href="../genindex.html" rel="index" title="Index">
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../notebooks/reports.html" rel="next" title="Dataset: reports"/>
+<link href="../meta/mosquito_alert/intro.html" rel="prev" title="Mosquito Alert"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+</link>
+</head>
+<body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+<div class="container-xl">
+<div class="row">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+<div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+<img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
+<h1 class="site-logo" id="site-title">
         Mosquito Alert Data Portal
        </h1>
-      </a>
-     </div>
-     <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
-      <i class="icon fas fa-search">
-      </i>
-      <input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
-     </form>
-     <nav aria-label="Main navigation" class="bd-links" id="bd-docs-nav">
-      <ul class="nav sidenav_l1">
-       <li class="toctree-l1">
-        <a class="reference internal" href="../README_ma.html">
+</a>
+</div>
+<form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="icon fas fa-search">
+</i>
+<input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
+</form>
+<nav aria-label="Main navigation" class="bd-links" id="bd-docs-nav">
+<ul class="nav sidenav_l1">
+<li class="toctree-l1">
+<a class="reference internal" href="../README_ma.html">
          Mosquito Alert Data Portal
         </a>
-       </li>
-      </ul>
-      <ul class="current nav sidenav_l1">
-       <li class="toctree-l1 current active collapsible-parent">
-        <a class="reference internal" href="../meta/mosquito_alert/intro.html">
+</li>
+</ul>
+<ul class="current nav sidenav_l1">
+<li class="toctree-l1 current active collapsible-parent">
+<a class="reference internal" href="../meta/mosquito_alert/intro.html">
          Mosquito Alert
         </a>
-        <ul class="current collapse-ul">
-         <li class="toctree-l2 current active collapsible-parent">
-          <a class="current reference internal" href="#">
+<ul class="current collapse-ul">
+<li class="toctree-l2 current active collapsible-parent">
+<a class="current reference internal" href="#">
            reports
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/reports.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/reports.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="reports_raw.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="reports_raw.html">
            reports_raw
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/reports_raw.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/reports_raw.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="tigapics.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="tigapics.html">
            tigapics
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/tigapics.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/tigapics.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="sampling_effort.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="sampling_effort.html">
            sampling_effort
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/sampling_effort.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/sampling_effort.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="user_locations.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="user_locations.html">
            user_locations
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/user_locations.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/user_locations.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="analytic_tables.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="analytic_tables.html">
            analytic_tables
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/analytic_tables.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/analytic_tables.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-         <li class="toctree-l2 collapsible-parent">
-          <a class="reference internal" href="model_tables.html">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+<li class="toctree-l2 collapsible-parent">
+<a class="reference internal" href="model_tables.html">
            model_tables
           </a>
-          <ul class="collapse-ul">
-           <li class="toctree-l3">
-            <a class="reference internal" href="../notebooks/model_tables.html">
+<ul class="collapse-ul">
+<li class="toctree-l3">
+<a class="reference internal" href="../notebooks/model_tables.html">
              code-example
             </a>
-           </li>
-          </ul>
-          <i class="fas fa-chevron-down">
-          </i>
-         </li>
-        </ul>
-        <i class="fas fa-chevron-down">
-        </i>
-       </li>
-      </ul>
-     </nav>
-     <!-- To handle the deprecated key -->
-     <div class="navbar_extra_footer">
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+</ul>
+<i class="fas fa-chevron-down">
+</i>
+</li>
+</ul>
+</nav>
+<!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
       Powered by
       <a href="https://jupyterbook.org">
        Jupyter Book
       </a>
-     </div>
-    </div>
-    <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-     <div class="topbar container-xl fixed-top">
-      <div class="topbar-contents row">
-       <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-       </div>
-       <div class="col pl-md-4 topbar-main">
-        <button aria-controls="site-navigation" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler ml-0" data-placement="left" data-target=".site-navigation" data-toggle="tooltip" id="navbar-toggler" title="Toggle navigation" type="button">
-         <i class="fas fa-bars">
-         </i>
-         <i class="fas fa-arrow-left">
-         </i>
-         <i class="fas fa-arrow-up">
-         </i>
-        </button>
-        <div class="dropdown-buttons-trigger">
-         <button aria-label="Download this page" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
-          <i class="fas fa-download">
-          </i>
-         </button>
-         <div class="dropdown-buttons">
-          <!-- ipynb file if we had a myst markdown file -->
-          <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/reports.ipynb">
-           <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
+</div>
+</div>
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<div class="topbar container-xl fixed-top">
+<div class="topbar-contents row">
+<div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+</div>
+<div class="col pl-md-4 topbar-main">
+<button aria-controls="site-navigation" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler ml-0" data-placement="left" data-target=".site-navigation" data-toggle="tooltip" id="navbar-toggler" title="Toggle navigation" type="button">
+<i class="fas fa-bars">
+</i>
+<i class="fas fa-arrow-left">
+</i>
+<i class="fas fa-arrow-up">
+</i>
+</button>
+<div class="dropdown-buttons-trigger">
+<button aria-label="Download this page" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
+<i class="fas fa-download">
+</i>
+</button>
+<div class="dropdown-buttons">
+<!-- ipynb file if we had a myst markdown file -->
+<!-- Download raw file -->
+<a class="dropdown-buttons" href="../_sources/meta_ipynb/reports.ipynb">
+<button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
-          </a>
-          <!-- Download PDF via print -->
-          <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" id="download-print" onclick="window.print()" title="Print to PDF" type="button">
+</a>
+<!-- Download PDF via print -->
+<button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" id="download-print" onclick="window.print()" title="Print to PDF" type="button">
            .pdf
           </button>
-         </div>
-        </div>
-        <!-- Source interaction buttons -->
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button">
-         <button aria-label="Fullscreen mode" class="btn btn-secondary topbarbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode" type="button">
-          <i class="fas fa-expand">
-          </i>
-         </button>
-        </a>
-        <!-- Launch buttons -->
-        <div class="dropdown-buttons-trigger">
-         <button aria-label="Launch interactive content" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
-          <i class="fas fa-rocket">
-          </i>
-         </button>
-         <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/reports.ipynb">
-           <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
-            <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
+</div>
+</div>
+<!-- Source interaction buttons -->
+<!-- Full screen (wrap in <a> to have style consistency -->
+<a class="full-screen-button">
+<button aria-label="Fullscreen mode" class="btn btn-secondary topbarbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode" type="button">
+<i class="fas fa-expand">
+</i>
+</button>
+</a>
+<!-- Launch buttons -->
+<div class="dropdown-buttons-trigger">
+<button aria-label="Launch interactive content" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
+<i class="fas fa-rocket">
+</i>
+</button>
+<div class="dropdown-buttons">
+<a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/reports.ipynb">
+<button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
+<img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
            </button>
-          </a>
-         </div>
-        </div>
-       </div>
-       <!-- Table of contents -->
-       <div class="d-none d-md-block col-md-2 bd-toc show">
-       </div>
-      </div>
-     </div>
-     <div class="row" id="main-content">
-      <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-       <div>
-        <div class="section" id="metadata-table">
-         <h1>
+</a>
+</div>
+</div>
+</div>
+<!-- Table of contents -->
+<div class="d-none d-md-block col-md-2 bd-toc show">
+</div>
+</div>
+</div>
+<div class="row" id="main-content">
+<div class="col-12 col-md-9 pl-md-3 pr-md-0">
+<div>
+<div class="section" id="metadata-table">
+<h1>
           Metadata table
           <a class="headerlink" href="#metadata-table" title="Permalink to this headline">
            ¶
           </a>
-         </h1>
-         <div class="cell tag_remove-input docutils container">
-         </div>
-         <div class="cell tag_parameters tag_remove-input docutils container">
-         </div>
-         <div class="cell tag_injected-parameters docutils container">
-         </div>
-         <div class="cell tag_remove-input tag_full-width docutils container">
-          <div class="cell_output docutils container">
-           <div class="output text_html">
-            <table border="1">
-             <tr>
-             </tr>
-             <tr>
-             </tr>
-             <tr>
-              <th>
+</h1>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_parameters tag_remove-input docutils container">
+</div>
+<div class="cell tag_injected-parameters docutils container">
+</div>
+<div class="cell tag_remove-input tag_full-width docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<table border="1">
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+<th>
                @type
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                Dataset
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                name
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                reports
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                conditionsOfAccess
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                Public
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                description
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                url
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                https://github.com/MosquitoAlert/Data
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                license
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                https://creativecommons.org/publicdomain/zero/1.0/
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                citation
               </th>
-              <td style="text-align:left">
-               <ul>
-                <li>
+<td style="text-align:left">
+<ul>
+<li>
                  Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5
                 </li>
-                <li>
+<li>
                  Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
                 </li>
-               </ul>
-              </td>
-             </tr>
-             <tr>
-              <th>
+</ul>
+</td>
+</tr>
+<tr>
+<th>
                temporalCoverage
               </th>
-              <td style="text-align:left">
+<td style="text-align:left">
                2014-05-27/..
               </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+<tr>
+<th>
                spatialCoverage
               </th>
-              <td style="text-align:left">
-               <table border="1">
-                <tr>
-                 <th>
+<td style="text-align:left">
+<table border="1">
+<tr>
+<th>
                   @type
                  </th>
-                 <td style="text-align:left">
+<td style="text-align:left">
                   Place
                  </td>
-                </tr>
-                <tr>
-                 <th>
+</tr>
+<tr>
+<th>
                   name
                  </th>
-                 <td style="text-align:left">
+<td style="text-align:left">
                   Worldwide
                  </td>
-                </tr>
-                <tr>
-                 <th>
+</tr>
+<tr>
+<th>
                   sameAs
                  </th>
-                 <td style="text-align:left">
+<td style="text-align:left">
                   https://www.wikidata.org/wiki/Q13780930
                  </td>
-                </tr>
-               </table>
-              </td>
-             </tr>
-             <tr>
-              <th>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th>
                distribution
               </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+<td id="collapseButton" onclick="collapse(this)">
+<i class="fas fa-chevron-down">
+</i>
+</td>
+<tr id="hidden">
+<td>
+</td>
+<td style="text-align:left">
+<ul>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      DataDownload
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      zenodo
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Distribution from Zenodo cloud.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      encodingFormat
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      [JSON].ZIP
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      workExample
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      ./notebooks/reports.py
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      contentUrl
                     </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
+<td style="text-align:left">
+<ul>
+<li>
                        https://doi.org/10.5281/zenodo.597466
                       </li>
-                     </ul>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+</ul>
+</td>
+</tr>
+<tr>
+<th>
                      contentSize
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      5MB
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      DataDownload
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      mosquitoalert_github
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Distribution from MosquitoAlert Github repository
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      encodingFormat
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      JSON
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      workExample
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      ./notebooks/reports.py
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      contentUrl
                     </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
+<td style="text-align:left">
+<ul>
+<li>
                        https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports{YEAR}.json
                       </li>
-                      <li>
+<li>
                        https://github.com/MosquitoAlert/Data/raw/master/translation_dict.json
                       </li>
-                     </ul>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+</ul>
+</td>
+</tr>
+<tr>
+<th>
                      contentSize
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      73MB
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
+</tr>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+</tr>
+<tr>
+<th>
                variableMeasured
               </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+<td id="collapseButton" onclick="collapse(this)">
+<i class="fas fa-chevron-down">
+</i>
+</td>
+<tr id="hidden">
+<td>
+</td>
+<td style="text-align:left">
+<ul>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      version_UUID
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      creation_time
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Date and time on phone when first version of report was created. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date time string. Example: 2016-01-03T12:04:00.996Z
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:dateTime
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      creation_date
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Date part of creation_time string (provided separately simply for convenience) with YYYY-MM-DD format. Example: 2016-01-03
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      creation_day_since_launch
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Creation_date expressed as number of days since 13June 2014 ,the day Mosquito Alert was launched (under its former name,Tigatrapp).
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      creation_year
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Year part of creation_time string (provided separately simply for convenience).
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      creation_month
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Month part of creation_time string (provided separately simply for convenience).
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      site_cat
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      maxValue
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      5
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      minValue
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      0
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      type
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Type of report: adult, site, mission or bite
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      lon
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Longitude of report location.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:decimal
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      lat
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Latitude of report location.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:decimal
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      movelab_annotation
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      This field contains information from the validation process.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:complexType
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      value
                     </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+<td style="text-align:left">
+<ul>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           edited_user_notes
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           crowdcrafting_score_cat
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           maxValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           2
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           minValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           -2
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           crowdcrafting_n_response
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           site_certainty_category
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           maxValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           2
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           minValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           -3
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           tiger_certainty_category
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           maxValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           2
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           minValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           -3
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           aegypti_certainty_category
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           maxValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           2
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           minValue
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           -3
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           photo_html
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:anyURI
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           score
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           classification
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                     </ul>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      movelab_annotation_euro
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:complexType
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      value
                     </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+<td style="text-align:left">
+<ul>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           edited_user_notes
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           photo_html
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:anyURI
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           class_name
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           Name of the classification label. Available mosquito species labels are: Unclassified (id:1), Other species (id:2), Aedes albopictus (id:3), Aedes aegypti (id:5), Aedes japonicus (id:6), Aedes koreicus (id:7), Complex (id:8), Not sure (id:9), Culex sp. (id:10). Available breeding site labels are: site (id: Null)
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           class_label
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:string
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           class_id
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                      <li>
-                       <table border="1">
-                        <tr>
-                         <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                           @type
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           PropertyValue
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           name
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           class_value
                          </td>
-                        </tr>
-                        <tr>
-                         <th>
+</tr>
+<tr>
+<th>
                           description
                          </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                           qudt:dataType
                          </th>
-                         <td style="text-align:left">
+<td style="text-align:left">
                           xsd:int
                          </td>
-                        </tr>
-                       </table>
-                      </li>
-                     </ul>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      tiger_responses
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Similar to 'tiger_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'tiger_responses_text'.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      tiger_responses_text
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Adult mosquito related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      site_responses
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Similar to 'site_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'site_responses_text'.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      site_responses_text
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Breeding site related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      tigaprob_cat
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      visible
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:boolean
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      latest_version
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:boolean
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      n_photos
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      final_expert_status_text
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:int
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      responses
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Bites related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      cached_visible
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:decimal
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      poxsd:int
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:string
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      country
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:decimal
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      PropertyValue
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      session
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      description
                     </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
+<td style="text-align:left">
+</td>
+</tr>
+<tr>
+<th>
                      qudt:dataType
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      xsd:decimal
                     </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
+</tr>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+</tr>
+<tr>
+<th>
                measurementTechnique
               </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
+<td id="collapseButton" onclick="collapse(this)">
+<i class="fas fa-chevron-down">
+</i>
+</td>
+<tr id="hidden">
+<td>
+</td>
+<td style="text-align:left">
+<ul>
+<li>
                   Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
                  </li>
-                 <li>
+<li>
                   Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
                  </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
+</ul>
+</td>
+</tr>
+</tr>
+<tr>
+<th>
                creator
               </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+<td id="collapseButton" onclick="collapse(this)">
+<i class="fas fa-chevron-down">
+</i>
+</td>
+<tr id="hidden">
+<td>
+</td>
+<td style="text-align:left">
+<ul>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Project
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      @id
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      MA
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      contactPoint
                     </th>
-                    <td style="text-align:left">
-                     <table border="1">
-                      <tr>
-                       <th>
+<td style="text-align:left">
+<table border="1">
+<tr>
+<th>
                         @type
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         ContactPoint
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         email
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         info@mosquitoalert.com
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         url
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         http://www.mosquitoalert.com/
                        </td>
-                      </tr>
-                     </table>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Person
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      @id
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      JP
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Palmer, John Rossman Bertholf
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      identifier
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      https://orcid.org/0000-0002-2648-7860
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      contactPoint
                     </th>
-                    <td style="text-align:left">
-                     <table border="1">
-                      <tr>
-                       <th>
+<td style="text-align:left">
+<table border="1">
+<tr>
+<th>
                         @type
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         ContactPoint
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         roleName
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         principal investigator
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         email
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         john.palmer@upf.edu
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         url
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/
                        </td>
-                      </tr>
-                     </table>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</li>
+<li>
+<table border="1">
+<tr>
+<th>
                      @type
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Person
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      @id
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      AE
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      name
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      Escobar Rúbies, Agustí
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      identifier
                     </th>
-                    <td style="text-align:left">
+<td style="text-align:left">
                      https://orcid.org/0000-0002-6856-0480
                     </td>
-                   </tr>
-                   <tr>
-                    <th>
+</tr>
+<tr>
+<th>
                      contactPoint
                     </th>
-                    <td style="text-align:left">
-                     <table border="1">
-                      <tr>
-                       <th>
+<td style="text-align:left">
+<table border="1">
+<tr>
+<th>
                         @type
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         ContactPoint
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         roleName
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         programmer
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         email
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         a.escobar@creaf.uab.es
                        </td>
-                      </tr>
-                      <tr>
-                       <th>
+</tr>
+<tr>
+<th>
                         url
                        </th>
-                       <td style="text-align:left">
+<td style="text-align:left">
                         http://www.creaf.cat/es/personal/agusti-escobar-rubies/
                        </td>
-                      </tr>
-                     </table>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-            </table>
-           </div>
-          </div>
-         </div>
-         <div class="toctree-wrapper compound">
-         </div>
-        </div>
-        <script type="text/x-thebe-config">
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<script type="text/x-thebe-config">
          {
         requestKernel: true,
         binderOptions: {
@@ -2763,37 +3109,37 @@
         predefinedOutput: true
     }
         </script>
-        <script>
+<script>
          kernelName = 'python3'
         </script>
-       </div>
-       <div class="prev-next-bottom">
-        <a class="left-prev" href="../meta/mosquito_alert/intro.html" id="prev-link" title="previous page">
+</div>
+<div class="prev-next-bottom">
+<a class="left-prev" href="../meta/mosquito_alert/intro.html" id="prev-link" title="previous page">
          Mosquito Alert
         </a>
-        <a class="right-next" href="../notebooks/reports.html" id="next-link" title="next page">
+<a class="right-next" href="../notebooks/reports.html" id="next-link" title="next page">
          Dataset:
          <em>
           reports
          </em>
-        </a>
-       </div>
-      </div>
-     </div>
-     <footer class="footer mt-5 mt-md-0">
-      <div class="container">
-       <p>
+</a>
+</div>
+</div>
+</div>
+<footer class="footer mt-5 mt-md-0">
+<div class="container">
+<p>
         By The Mosquito Alert community
         <br/>
         © Copyright CC0 2021.
         <br/>
-       </p>
-      </div>
-     </footer>
-    </main>
-   </div>
-  </div>
-  <script src="../_static/js/index.d3f166471bb80abb5163.js">
-  </script>
- </body>
+</p>
+</div>
+</footer>
+</main>
+</div>
+</div>
+<script src="../_static/js/index.d3f166471bb80abb5163.js">
+</script>
+</body>
 </html>
