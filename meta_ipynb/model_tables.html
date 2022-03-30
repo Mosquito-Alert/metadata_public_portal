@@ -298,6 +298,303 @@
       }
     }
   ]
+}</script><script type="application/ld+json">{
+  "$schema": "../schema.json",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "DataCatalog",
+  "name": "model_tables",
+  "conditionsOfAccess": "Public",
+  "description": "Results from the Bayesian multilevel model that feed the Mosquito Alert raster maps of the 'Available Models' layer. Access to data is possible within direct http download or ftp authentication to the host webserver.mosquitoalert.com",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "citation": [
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
+  "temporalCoverage": "2014/..",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+  },
+  "hasPart": [
+    {
+      "@type": "Dataset",
+      "name": "encounter_prob_monthly_grid",
+      "description": "Estimated probability of encounter for a given type of mosquito on monthly basis. Estimates are based on the data sent by citizens to Mosquito Alert. Tables are stored in folders by time and mosquito species: MOSQUITO_TYPE is 'tig' for Aedes Albopictus and 'jap' for Aedes Japonicus. The first estimates for a month are based on observations received for that month in previous years, estimates that are updated weekly with data for the current year. Estimates are displayed in grids of approximately 2x2 kilometers (grid of 0.05 degrees latitude by 0.05 degrees longitude). This calculation takes into account the sampling effort, considering the number of participants with the active app in each grid in the defined time (see the “sampling effort” layer). The probability of mosquitoes is higher in a grid in which 10 observations have been received and there are 5 participants, than in another with 10 observations and 10 participants. Modeling observations and active participants determines the value of the probability shown on the map.",
+      "temporalCoverage": "2014/..",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver",
+          "description": "Distribution by HTTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "http://webserver.mosquitoalert.com/static/tigapublic/models/vector/grid/{MOSQUITO_TYPE}/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver_sftp",
+          "description": "Distribution by SFTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/models/vector/grid/{MOSQUITO_TYPE}/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        }
+      ],
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "month",
+          "description": "Month number",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "TigacellID",
+          "description": "Longitude and latitude underscore separated ID. Example: -0.05_38.6",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_l95",
+          "description": "Lower probability value for 95% confidence level ",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "median_u95",
+          "description": "Median probability value",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_u95",
+          "description": "Upper probability value for 95% confidence level",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "sd",
+          "description": "Standard deviation value",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "lon",
+          "description": "Longitude value of the pixel cell",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "lat",
+          "description": "Latitude value of the pixel cell",
+          "qudt:dataType": "xsd:decimal"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "name": "encounter_prob_monthly_municipality",
+      "description": "Same as gridded probability of encounter but resampling is done over the municipality administrative units level. Spatial coverage is restricted to Spain only and temporal coverage goes from 2014 to 2020. Only tiger mosquito is available.",
+      "temporalCoverage": "2014/2020",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Spain",
+        "sameAs": "https://www.wikidata.org/wiki/Q29"
+      },
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver",
+          "description": "Distribution by HTTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "http://webserver.mosquitoalert.com/static/tigapublic/models/vector/municipalities/{MOSQUITO_TYPE}/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver_sftp",
+          "description": "Distribution by SFTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/models/vector/municipalities/{MOSQUITO_TYPE}/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        }
+      ],
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "month",
+          "description": "Month number",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "PROVMUN",
+          "description": "Municipality code. Example: 15044",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_l95",
+          "description": "Lower probability value for 95% confidence level ",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_median",
+          "description": "Mediant probability value ",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_u95",
+          "description": "Upper probability value for 95% confidence level",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "sd",
+          "description": "Standard deviation probability value",
+          "qudt:dataType": "xsd:decimal"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "name": "biting_prob_monthly_grid",
+      "description": "Estimated probability of mosquito bites on monthly basis. Estimates are based on the data sent by citizens to Mosquito Alert. Tables are stored in folders by time. The first estimates for a month are based on observations received for that month in previous years, estimates that are updated weekly with data for the current year. Estimates are displayed in grids of approximately 2x2 kilometers (grid of 0.05 degrees latitude by 0.05 degrees longitude). This calculation takes into account the sampling effort, considering the number of participants with the active app in each grid in the defined time (see the “sampling effort” layer). The probability of mosquitoes is higher in a grid in which 10 observations have been received and there are 5 participants, than in another with 10 observations and 10 participants. Modeling observations and active participants determines the value of the probability shown on the map.",
+      "temporalCoverage": "2020/..",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver",
+          "description": "Distribution by HTTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "http://webserver.mosquitoalert.com/static/tigapublic/models/biting/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        },
+        {
+          "@type": "DataDownload",
+          "name": "mosquitoalert_webserver_sftp",
+          "description": "Distribution by SFTP download from MosquitoAlert webserver",
+          "encodingFormat": "CSV",
+          "workExample": "./notebook/model_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/models/biting/{YEAR}/{MONTH}/mascp_monthly.csv"
+          ],
+          "contentSize": "0.1MB"
+        }
+      ],
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "month",
+          "description": "Month number",
+          "qudt:dataType": "xsd:int"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "TigacellID",
+          "description": "Longitude and latitude underscore separated ID. Example: -0.05_38.6",
+          "qudt:dataType": "xsd:string"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_l95",
+          "description": "Lower probability value for 95% confidence level ",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "median_u95",
+          "description": "Median probability value",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "prob_u95",
+          "description": "Upper probability value for 95% confidence level",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "sd",
+          "description": "Standard deviation value",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "lon",
+          "description": "Longitude value of the pixel cell",
+          "qudt:dataType": "xsd:decimal"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "lat",
+          "description": "Latitude value of the pixel cell",
+          "qudt:dataType": "xsd:decimal"
+        }
+      ]
+    }
+  ],
+  "measurementTechnique": [
+    "Mobile application for citizen science",
+    "Data validation by entomologists"
+  ],
+  "creator": [
+    {
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
+    }
+  ]
 }</script>
 <style>
    #hidden {
@@ -658,8 +955,8 @@
      </script>
 <script async="async" src="../_static/sphinx-thebe.js">
 </script>
-<link href="../genindex.html" rel="index" title="Index">
-<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search">
 <link href="../notebooks/model_tables.html" rel="next" title="DataCatalog: model_tables"/>
 <link href="../notebooks/analytic_tables.html" rel="prev" title="DataCatalog: analytic_tables"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>

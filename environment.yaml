@@ -1,0 +1,14 @@
+name: metadata
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - tqdm
+  - requests
+  - matplotlib
+  - numpy
+  - xarray
+  - paramiko
+  - bs4
+  - pyarrow

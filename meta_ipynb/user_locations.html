@@ -112,6 +112,117 @@
     }
   ],
   "measurementTechnique": "Mobile application for citizen science"
+}</script><script type="application/ld+json">{
+  "$schema": "../schema.json",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "Dataset",
+  "name": "user_locations",
+  "conditionsOfAccess": "Private",
+  "description": "Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.",
+  "license": "All rights reserved",
+  "citation": [
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
+  "temporalCoverage": "2014/..",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "cluster_ceab",
+      "description": "Distribution by SFTP protocol from CEAB cluster.",
+      "encodingFormat": "RDS",
+      "workExample": "",
+      "contentUrl": [
+        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds",
+        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds"
+      ],
+      "contentSize": "8-15MB"
+    }
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "year",
+      "description": "Year in which the background location was recorded.",
+      "unitText": "years",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "biweek",
+      "description": "An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.",
+      "unitText": "biweek",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "TigacellID",
+      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
+      "unitText": "",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "masked_lon",
+      "description": "Longitude of the SW corner of the sampling cell.",
+      "unitText": "degrees",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "masked_lat",
+      "description": "Latitude of the SW corner of the sampling cell.",
+      "unitText": "degrees",
+      "qudt:dataType": "xsd:decimal"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "participation_days",
+      "description": "Number of days elapsed between the time of the participant's first background location and the time of this one",
+      "unitText": "days",
+      "qudt:dataType": "xsd:long"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "fix_date",
+      "description": "The date on which this location was recorded. YYYY-MM-DD",
+      "unitText": "",
+      "qudt:dataType": "xsd:date"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "user_coverage_uuid",
+      "description": "Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).",
+      "unitText": "",
+      "qudt:dataType": "xsd:string"
+    }
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "@id": "CEAB",
+      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
+    },
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf"
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí"
+    }
+  ],
+  "measurementTechnique": "Mobile application for citizen science"
 }</script>
 <style>
    #hidden {
@@ -286,8 +397,8 @@
      </script>
 <script async="async" src="../_static/sphinx-thebe.js">
 </script>
-<link href="../genindex.html" rel="index" title="Index">
-<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search">
 <link href="../notebooks/user_locations.html" rel="next" title="Dataset: user_locations"/>
 <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>

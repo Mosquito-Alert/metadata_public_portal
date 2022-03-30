@@ -194,6 +194,199 @@
     "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
     "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
   ]
+}</script><script type="application/ld+json">{
+  "$schema": "../schema.json",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "Dataset",
+  "name": "reports_raw",
+  "conditionsOfAccess": "Private",
+  "description": "Validated and not validated reports from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters. Useful for studying usage, sampling effort etc. Reports that the participant has deleted are excluded.",
+  "url": "",
+  "identifier": "",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "citation": [
+    "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
+  "temporalCoverage": "2014/..",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "cluster_ceab",
+      "description": "Distribution by SFTP protocol from CEAB cluster.",
+      "encodingFormat": "RDS",
+      "workExample": "",
+      "contentUrl": [
+        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds"
+      ],
+      "contentSize": "+10MB"
+    }
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "version_UUID",
+      "description": "Unique random UUID assigned to the report version by the device before it was uploaded to the Mosquito Alert server. Each record should have a unique version_UUID.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "version_number",
+      "description": "Version number of the report. These are assigned sequentially starting with 0.",
+      "unitText": "",
+      "dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "user",
+      "description": "Unique random UUID of the participant who uploaded this report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "report_id",
+      "description": "Random 4-digit character string assigned to the report. This is not guaranteed to be unique on its own, but is used as an easy code for participants to use to identify the report (for example, if sending a physical specimen). See unique_report_id for the unique report identifier.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "server_upload_time",
+      "description": "Date and time recorded by the Mosquito Alert server when this report version was uploaded.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "phone_upload_time",
+      "description": "Date and time recorded by the participant's device when this report version was uploaded.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "creation_time",
+      "description": "Date and time recorded by the participant's device when the first version of this report was created. This is normally the date/time that one cares about for modeling as it is taken as the closest time to the actual observation. (In constrast, upload may have happened at a later time, based on availability of a data connection, and subsequent versions of the report may have been created at later times because the participant wanted to edit details of the initial observation.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "version_time",
+      "description": "Date and time recorded by the participant's device when this version of the report was created.",
+      "unitText": "",
+      "dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "type",
+      "description": "Type of report. Options are adult, site, bite, or mission.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "mission",
+      "description": "Identifier of the mission in case this is a mission report.",
+      "unitText": "",
+      "dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "location_choice",
+      "description": "Choice participant selected when identifying location of the report. Either current or selected, the latter signifying that the participant selected a location on the map different from their current location.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "current_location_lon",
+      "description": "Longitude of the participant's current location at the time of creating the first version of this report.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "current_location_lat",
+      "description": "Latitude of the participant's current location at the time of creating the first version of this report.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "selected_location_lon",
+      "description": "Longitude of the location participant selected on the map (if any) as the place of the observation.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "selected_location_lat",
+      "description": "Latitude of the location participant selected on the map (if any) as the place of the observation.",
+      "unitText": "Decimal degrees",
+      "dataType": "xsd:double"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "package_name",
+      "description": "Name of the app package used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "package_version",
+      "description": "Version of the app package used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "os",
+      "description": "Operating system of the device used to create the report.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "unique_report_id",
+      "description": "Unique ID created for each report (not report version) by concatinating user_id and report_id. Note each version of the report will have this same ID.",
+      "unitText": "",
+      "dataType": "xsd:string"
+    }
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "@id": "CEAB",
+      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
+    },
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf"
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí"
+    }
+  ],
+  "measurementTechnique": [
+    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
+    "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
+  ]
 }</script>
 <style>
    #hidden {
@@ -450,8 +643,8 @@
      </script>
 <script async="async" src="../_static/sphinx-thebe.js">
 </script>
-<link href="../genindex.html" rel="index" title="Index">
-<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="../search.html" rel="search" title="Search">
 <link href="../notebooks/reports_raw.html" rel="next" title="Dataset: reports_raw"/>
 <link href="../notebooks/reports.html" rel="prev" title="Dataset: reports"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
