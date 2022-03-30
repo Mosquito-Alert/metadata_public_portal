@@ -339,7 +339,9 @@ resolve to the most recent version of the data.</p>
 
 <span class="c1"># Get the latest zenodo file version of the dataset</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl</span><span class="p">)</span>
-<span class="n">file_url</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;filename&quot;</span><span class="p">})[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span>
+<span class="n">file_url</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;filename&quot;</span><span class="p">})[</span>
+    <span class="s2">&quot;href&quot;</span>
+<span class="p">]</span>
 <span class="n">file_contentUrl</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">file_url</span><span class="p">)</span>
 
 <span class="c1"># Download the dataset</span>

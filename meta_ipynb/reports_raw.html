@@ -40,13 +40,14 @@
   "distribution": [
     {
       "@type": "DataDownload",
-      "name": "ceab_cluster",
+      "name": "cluster_ceab",
       "description": "Distribution by SFTP protocol from CEAB cluster.",
-      "encodingFormat": "application/RDS",
-      "url": "",
+      "encodingFormat": "RDS",
+      "workExample": "",
       "contentUrl": [
         "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds"
-      ]
+      ],
+      "contentSize": "+10MB"
     }
   ],
   "variableMeasured": [
@@ -459,7 +460,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/reports_raw.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/reports_raw.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -494,45 +495,8 @@
            <div class="output text_html">
             <table border="1">
              <tr>
-              <th>
-               @context
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <table border="1">
-                 <tr>
-                  <th>
-                   @vocab
-                  </th>
-                  <td style="text-align:left">
-                   https://schema.org/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   qudt
-                  </th>
-                  <td style="text-align:left">
-                   http://qudt.org/schema/qudt/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   xsd
-                  </th>
-                  <td style="text-align:left">
-                   http://www.w3.org/2001/XMLSchema#
-                  </td>
-                 </tr>
-                </table>
-               </td>
-              </tr>
+             </tr>
+             <tr>
              </tr>
              <tr>
               <th>
@@ -555,7 +519,7 @@
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Public
+               Private
               </td>
              </tr>
              <tr>
@@ -593,6 +557,14 @@
                citation
               </th>
               <td style="text-align:left">
+               <ul>
+                <li>
+                 Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5
+                </li>
+                <li>
+                 Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
+                </li>
+               </ul>
               </td>
              </tr>
              <tr>
@@ -664,7 +636,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     ceab_cluster
+                     cluster_ceab
                     </td>
                    </tr>
                    <tr>
@@ -680,12 +652,12 @@
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     Rds
+                     RDS
                     </td>
                    </tr>
                    <tr>
                     <th>
-                     url
+                     workExample
                     </th>
                     <td style="text-align:left">
                     </td>
@@ -695,7 +667,19 @@
                      contentUrl
                     </th>
                     <td style="text-align:left">
-                     sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds
+                     <ul>
+                      <li>
+                       sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/mosquito_alert_raw_reports.Rds
+                      </li>
+                     </ul>
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentSize
+                    </th>
+                    <td style="text-align:left">
+                     +10MB
                     </td>
                    </tr>
                   </table>

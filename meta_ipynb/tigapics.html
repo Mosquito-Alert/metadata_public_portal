@@ -24,7 +24,10 @@
   "name": "tigapics",
   "conditionsOfAccess": "Public",
   "description": "Pictures of adult mosquitos and breeding sites. Classification labels are provided for ML training for the pictures of mosquitos visualized on the MosquitoAlert map.",
-  "url": "http://webserver.mosquitoalert.com",
+  "url": [
+    "http://webserver.mosquitoalert.com",
+    "https://www.ebi.ac.uk/biostudies/studies/S-BIAD249"
+  ],
   "identifier": "",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
@@ -42,14 +45,22 @@
       "@type": "Dataset",
       "name": "tigapics_mosquitoalert",
       "description": "Incremental backup of all the pictures (adults and sites) that can be viewed at the Mosquito Alert map webserver given a picture IID. Pictures could be downloaded even directly from webserver.mosquitoalert.com from its static resources but it's more convenient to use sftp to the backup.",
+      "temporalCoverage": "2014/2021",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "mosquitoalert_com",
+          "name": "mosquitoalert_webserver",
           "description": "Distribution by image download from MosquitoAlert webserver",
           "encodingFormat": "JPG, PNG",
-          "url": "./notebooks/tigapics.py",
-          "contentUrl": "http://webserver.mosquitoalert.com/media/tigapics/{ID_PICNAME}",
+          "workExample": "./notebooks/tigapics.py",
+          "contentUrl": [
+            "http://webserver.mosquitoalert.com/media/tigapics/{ID_PICNAME}"
+          ],
           "contentSize": "1/10MB"
         },
         {
@@ -57,42 +68,60 @@
           "name": "laurus_backup",
           "description": "Distribution by SFTP protocol from Laurus-CREAF VM.",
           "encodingFormat": "JPG, PNG",
-          "url": "./notebooks/tigapics.py",
-          "contentUrl": "sftp://{USERNAME}@158.109.47.9/home/backup_aux/webuser/backup/synced_media/tigapics/{ID_PICNAME}.jpg",
+          "workExample": "./notebooks/tigapics.py",
+          "contentUrl": [
+            "sftp://{USERNAME}@158.109.47.9/home/backup_aux/webuser/backup/synced_media/tigapics/{ID_PICNAME}.jpg"
+          ],
           "contentSize": "1/10MB"
         }
-      ]
+      ],
+      "variableMeasured": []
     },
     {
       "@type": "Dataset",
       "name": "tigapics_labels_bioimagearchive",
       "description": "Adult mosquito labels that describe the tigapics_bioimagearchive dataset. Note that this list contains a 'path' attribute that provides {SPECIES}/{ID_PICNAME}.",
-      "url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD249",
+      "temporalCoverage": "2014/2021",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
           "name": "bioimagearchive",
           "description": "Distribution by image-labels download from BioStudies webserver",
           "encodingFormat": "TSV",
-          "url": "./notebooks/tigapics.py",
-          "contentUrl": "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/File_List.pagetab.tsv",
+          "workExample": "./notebooks/tigapics.py",
+          "contentUrl": [
+            "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/File_List.pagetab.tsv"
+          ],
           "contentSize": "7MB"
         }
-      ]
+      ],
+      "variableMeasured": []
     },
     {
       "@type": "Dataset",
       "name": "tigapics_bioimagearchive",
       "description": "Adult mosquito pictures useful for machine-learning classification from the BioImage Archive repository. It is possible to download single images or species-chunks ('Aedes_albopictus', 'Aedes_aegypti', 'Aedes_japonicus', 'Aedes_koreicus', 'Japonicus_koreicus', 'Complex', 'Culex', 'Other_species', 'Not_sure'). Beside images, a file list is provided to label each image for ML classification.",
-      "url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD249",
+      "temporalCoverage": "2014/2021",
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Worldwide",
+        "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+      },
       "distribution": [
         {
           "@type": "DataDownload",
           "name": "bioimagearchive_single_image",
           "description": "Distribution by image download from the BioImage Archive repository",
           "encodingFormat": "JPG, PNG",
-          "url": "./notebooks/tigapics.py",
-          "contentUrl": "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}/{ID_PICNAME}",
+          "workExample": "./notebooks/tigapics.py",
+          "contentUrl": [
+            "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}/{ID_PICNAME}"
+          ],
           "contentSize": "1/10MB"
         },
         {
@@ -100,33 +129,55 @@
           "name": "bioimagearchive_class",
           "description": "Distribution by image-chunks download from the BioImage Archive repository",
           "encodingFormat": "[JPG, PNG].ZIP",
-          "url": "./notebooks/tigapics.py",
-          "contentUrl": "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}",
-          "contentSize": "50/1000MB"
+          "workExample": "./notebooks/tigapics.py",
+          "contentUrl": [
+            "https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}"
+          ],
+          "contentSize": "50-1000MB"
         }
-      ]
-    }
-  ],
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
-    },
-    {
-      "@type": "Person",
-      "@id": "JG",
-      "name": "Garriga Farriol, Joan"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
+      ],
+      "variableMeasured": []
     }
   ],
   "measurementTechnique": [
     "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.",
     "Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as \"adult mosquito\", that contain at least one picture and that it has been evaluated by entomological experts."
+  ],
+  "creator": [
+    {
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "JG",
+      "name": "Garriga Farriol, Joan",
+      "identifier": "https://orcid.org/0000-0002-4561-7835",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "data scientist",
+        "email": "jgarriga@ceab.csic.es",
+        "url": "https://www.ceab.csic.es/es/persona/joan-garriga-farriol/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
+    }
   ]
 }
   </script>
@@ -382,7 +433,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/tigapics.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/tigapics.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -417,52 +468,15 @@
            <div class="output text_html">
             <table border="1">
              <tr>
-              <th>
-               @context
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <table border="1">
-                 <tr>
-                  <th>
-                   @vocab
-                  </th>
-                  <td style="text-align:left">
-                   https://schema.org/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   qudt
-                  </th>
-                  <td style="text-align:left">
-                   http://qudt.org/schema/qudt/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   xsd
-                  </th>
-                  <td style="text-align:left">
-                   http://www.w3.org/2001/XMLSchema#
-                  </td>
-                 </tr>
-                </table>
-               </td>
-              </tr>
+             </tr>
+             <tr>
              </tr>
              <tr>
               <th>
                @type
               </th>
               <td style="text-align:left">
-               Dataset
+               DataCatalog
               </td>
              </tr>
              <tr>
@@ -478,7 +492,7 @@
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Public.
+               Public
               </td>
              </tr>
              <tr>
@@ -494,7 +508,14 @@
                url
               </th>
               <td style="text-align:left">
-               http://webserver.mosquitoalert.com
+               <ul>
+                <li>
+                 http://webserver.mosquitoalert.com
+                </li>
+                <li>
+                 https://www.ebi.ac.uk/biostudies/studies/S-BIAD249
+                </li>
+               </ul>
               </td>
              </tr>
              <tr>
@@ -519,10 +540,10 @@
               <td style="text-align:left">
                <ul>
                 <li>
-                 Direct Evidence of Adult Aedes albopictus Dispersal by Car. Roger, Eritja et al. (DOI: 10.1038/s41598-017-12652-5)
+                 Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5
                 </li>
                 <li>
-                 Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. (DOI: 10.1038/s41467-017-00914-9)
+                 Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
                 </li>
                </ul>
               </td>
@@ -570,145 +591,6 @@
              </tr>
              <tr>
               <th>
-               variableMeasured
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
-               creator
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Organization
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     CEAB
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Person
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     JG
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Garriga Farriol, Joan
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Person
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     AE
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Escobar Rúbies, Agustí
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
-               measurementTechnique
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
-                 </li>
-                 <li>
-                  Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
                hasPart
               </th>
               <td style="text-align:left">
@@ -733,18 +615,51 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Public
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
                     Incremental backup of all the pictures (adults and sites) that can be viewed at the Mosquito Alert map webserver given a picture IID. Pictures could be downloaded even directly from webserver.mosquitoalert.com from its static resources but it's more convenient to use sftp to the backup.
+                   </td>
+                  </tr>
+                  <tr>
+                   <th>
+                    temporalCoverage
+                   </th>
+                   <td style="text-align:left">
+                    2014/2021
+                   </td>
+                  </tr>
+                  <tr>
+                   <th>
+                    spatialCoverage
+                   </th>
+                   <td style="text-align:left">
+                    <table border="1">
+                     <tr>
+                      <th>
+                       @type
+                      </th>
+                      <td style="text-align:left">
+                       Place
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       name
+                      </th>
+                      <td style="text-align:left">
+                       Worldwide
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       sameAs
+                      </th>
+                      <td style="text-align:left">
+                       https://www.wikidata.org/wiki/Q13780930
+                      </td>
+                     </tr>
+                    </table>
                    </td>
                   </tr>
                   <tr>
@@ -775,7 +690,7 @@
                           name
                          </th>
                          <td style="text-align:left">
-                          mosquitoalert_com
+                          mosquitoalert_webserver
                          </td>
                         </tr>
                         <tr>
@@ -796,7 +711,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/tigapics.py
@@ -807,7 +722,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          http://webserver.mosquitoalert.com/media/tigapics/{ID_PICNAME}
+                          <ul>
+                           <li>
+                            http://webserver.mosquitoalert.com/media/tigapics/{ID_PICNAME}
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -856,7 +775,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/tigapics.py
@@ -867,7 +786,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          sftp://{USERNAME}@158.109.47.9/home/backup_aux/webuser/backup/synced_media/tigapics/{ID_PICNAME}.jpg
+                          <ul>
+                           <li>
+                            sftp://{USERNAME}@158.109.47.9/home/backup_aux/webuser/backup/synced_media/tigapics/{ID_PICNAME}.jpg
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -881,6 +804,21 @@
                        </table>
                       </li>
                      </ul>
+                    </td>
+                   </tr>
+                  </tr>
+                  <tr>
+                   <th>
+                    variableMeasured
+                   </th>
+                   <td id="collapseButton" onclick="collapse(this)">
+                    <i class="fas fa-chevron-down">
+                    </i>
+                   </td>
+                   <tr id="hidden">
+                    <td>
+                    </td>
+                    <td style="text-align:left">
                     </td>
                    </tr>
                   </tr>
@@ -906,14 +844,6 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Public
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
@@ -922,10 +852,43 @@
                   </tr>
                   <tr>
                    <th>
-                    url
+                    temporalCoverage
                    </th>
                    <td style="text-align:left">
-                    https://www.ebi.ac.uk/biostudies/studies/S-BIAD249
+                    2014/2021
+                   </td>
+                  </tr>
+                  <tr>
+                   <th>
+                    spatialCoverage
+                   </th>
+                   <td style="text-align:left">
+                    <table border="1">
+                     <tr>
+                      <th>
+                       @type
+                      </th>
+                      <td style="text-align:left">
+                       Place
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       name
+                      </th>
+                      <td style="text-align:left">
+                       Worldwide
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       sameAs
+                      </th>
+                      <td style="text-align:left">
+                       https://www.wikidata.org/wiki/Q13780930
+                      </td>
+                     </tr>
+                    </table>
                    </td>
                   </tr>
                   <tr>
@@ -977,7 +940,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/tigapics.py
@@ -988,7 +951,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          https://www.ebi.ac.uk/biostudies/files/S-BIAD249/File_List.pagetab.tsv
+                          <ul>
+                           <li>
+                            https://www.ebi.ac.uk/biostudies/files/S-BIAD249/File_List.pagetab.tsv
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -1002,6 +969,21 @@
                        </table>
                       </li>
                      </ul>
+                    </td>
+                   </tr>
+                  </tr>
+                  <tr>
+                   <th>
+                    variableMeasured
+                   </th>
+                   <td id="collapseButton" onclick="collapse(this)">
+                    <i class="fas fa-chevron-down">
+                    </i>
+                   </td>
+                   <tr id="hidden">
+                    <td>
+                    </td>
+                    <td style="text-align:left">
                     </td>
                    </tr>
                   </tr>
@@ -1027,14 +1009,6 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Public
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
@@ -1043,10 +1017,43 @@
                   </tr>
                   <tr>
                    <th>
-                    url
+                    temporalCoverage
                    </th>
                    <td style="text-align:left">
-                    https://www.ebi.ac.uk/biostudies/studies/S-BIAD249
+                    2014/2021
+                   </td>
+                  </tr>
+                  <tr>
+                   <th>
+                    spatialCoverage
+                   </th>
+                   <td style="text-align:left">
+                    <table border="1">
+                     <tr>
+                      <th>
+                       @type
+                      </th>
+                      <td style="text-align:left">
+                       Place
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       name
+                      </th>
+                      <td style="text-align:left">
+                       Worldwide
+                      </td>
+                     </tr>
+                     <tr>
+                      <th>
+                       sameAs
+                      </th>
+                      <td style="text-align:left">
+                       https://www.wikidata.org/wiki/Q13780930
+                      </td>
+                     </tr>
+                    </table>
                    </td>
                   </tr>
                   <tr>
@@ -1098,7 +1105,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/tigapics.py
@@ -1109,7 +1116,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}/{ID_PICNAME}
+                          <ul>
+                           <li>
+                            https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}/{ID_PICNAME}
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -1158,7 +1169,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/tigapics.py
@@ -1169,7 +1180,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}
+                          <ul>
+                           <li>
+                            https://www.ebi.ac.uk/biostudies/files/S-BIAD249/{CLASS}
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -1177,7 +1192,7 @@
                           contentSize
                          </th>
                          <td style="text-align:left">
-                          50/1000MB
+                          50-1000MB
                          </td>
                         </tr>
                        </table>
@@ -1186,10 +1201,280 @@
                     </td>
                    </tr>
                   </tr>
+                  <tr>
+                   <th>
+                    variableMeasured
+                   </th>
+                   <td id="collapseButton" onclick="collapse(this)">
+                    <i class="fas fa-chevron-down">
+                    </i>
+                   </td>
+                   <tr id="hidden">
+                    <td>
+                    </td>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                  </tr>
                  </table>
                 </li>
                </ul>
               </td>
+             </tr>
+             <tr>
+              <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
+                 </li>
+                 <li>
+                  Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr>
+              <th>
+               creator
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Project
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     MA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        info@mosquitoalert.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.mosquitoalert.com/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Person
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     JG
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Garriga Farriol, Joan
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-4561-7835
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        data scientist
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        jgarriga@ceab.csic.es
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.ceab.csic.es/es/persona/joan-garriga-farriol/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Person
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     AE
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Escobar Rúbies, Agustí
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-6856-0480
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        programmer
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        a.escobar@creaf.uab.es
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.creaf.cat/es/personal/agusti-escobar-rubies/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
              </tr>
             </table>
            </div>

@@ -14,6 +14,7 @@
   </script>
   <script type="application/ld+json">
    {
+  "$schema": "../schema.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
@@ -25,7 +26,9 @@
   "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
   "identifier": "",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "citation": "",
+  "citation": [
+    "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
+  ],
   "temporalCoverage": "2014/..",
   "spatialCoverage": {
     "@type": "Place",
@@ -38,16 +41,18 @@
       "name": "zenodo",
       "description": "Distribution from Zenodo cloud",
       "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
-      "contentUrl": "https://doi.org/10.5281/zenodo.5802476",
+      "workExample": "./notebooks/sampling_effort.py",
+      "contentUrl": [
+        "https://doi.org/10.5281/zenodo.5802476"
+      ],
       "contentSize": "11MB"
     },
     {
       "@type": "DataDownload",
-      "name": "github",
+      "name": "mosquitoalert_github",
       "description": "Distribution from MosquitoAlert Github repository",
       "encodingFormat": "CSV.GZ",
-      "url": "./notebooks/sampling_effort.py",
+      "workExample": "./notebooks/sampling_effort.py",
       "contentUrl": [
         "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_025.csv.gz",
         "https://github.com/Mosquito-Alert/sampling_effort_data/raw/main/sampling_effort_daily_cellres_05.csv.gz"
@@ -381,7 +386,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/sampling_effort.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/sampling_effort.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -416,45 +421,8 @@
            <div class="output text_html">
             <table border="1">
              <tr>
-              <th>
-               @context
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <table border="1">
-                 <tr>
-                  <th>
-                   @vocab
-                  </th>
-                  <td style="text-align:left">
-                   https://schema.org/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   qudt
-                  </th>
-                  <td style="text-align:left">
-                   http://qudt.org/schema/qudt/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   xsd
-                  </th>
-                  <td style="text-align:left">
-                   http://www.w3.org/2001/XMLSchema#
-                  </td>
-                 </tr>
-                </table>
-               </td>
-              </tr>
+             </tr>
+             <tr>
              </tr>
              <tr>
               <th>
@@ -508,6 +476,11 @@
                citation
               </th>
               <td style="text-align:left">
+               <ul>
+                <li>
+                 Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
+                </li>
+               </ul>
               </td>
              </tr>
              <tr>
@@ -600,7 +573,7 @@
                    </tr>
                    <tr>
                     <th>
-                     url
+                     workExample
                     </th>
                     <td style="text-align:left">
                      ./notebooks/sampling_effort.py
@@ -611,7 +584,11 @@
                      contentUrl
                     </th>
                     <td style="text-align:left">
-                     https://doi.org/10.5281/zenodo.5802476
+                     <ul>
+                      <li>
+                       https://doi.org/10.5281/zenodo.5802476
+                      </li>
+                     </ul>
                     </td>
                    </tr>
                    <tr>
@@ -639,7 +616,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     github
+                     mosquitoalert_github
                     </td>
                    </tr>
                    <tr>
@@ -660,7 +637,7 @@
                    </tr>
                    <tr>
                     <th>
-                     url
+                     workExample
                     </th>
                     <td style="text-align:left">
                      ./notebooks/sampling_effort.py

@@ -14,17 +14,16 @@
   </script>
   <script type="application/ld+json">
    {
-  "$schema": "../schema_dataset.json",
+  "$schema": "../schema.json",
   "@context": {
     "@vocab": "https://schema.org/",
     "qudt": "http://qudt.org/schema/qudt/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@type": "Dataset",
+  "@type": "DataCatalog",
   "name": "analytic_tables",
   "conditionsOfAccess": "Private",
   "description": "Tables from Mosquito Alert database (TigaData) selected for analytic purposes. Export from database is performed daily. Access to data is possible within ftp authentication to the host webserver.mosquitoalert.com",
-  "identifier": "",
   "license": "All rights reserved",
   "citation": [
     "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
@@ -44,11 +43,13 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "webserver_mosquitoalert_com",
+          "name": "mosquitoalert_webserver",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
-          "url": "./notebooks/analytic_tables.py",
-          "contentUrl": "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_tigauser.csv",
+          "workExample": "./notebooks/analytic_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_tigauser.csv"
+          ],
           "contentSize": "~10MB"
         }
       ],
@@ -116,11 +117,13 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "webserver_mosquitoalert_com",
+          "name": "mosquitoalert_webserver",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
-          "url": "./notebooks/analytic_tables.py",
-          "contentUrl": "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_report.csv",
+          "workExample": "./notebooks/analytic_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_report.csv"
+          ],
           "contentSize": "~14MB"
         }
       ],
@@ -380,10 +383,10 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "webserver_mosquitoalert_com",
+          "name": "mosquitoalert_webserver",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
-          "url": "./notebooks/analytic_tables.py",
+          "workExample": "./notebooks/analytic_tables.py",
           "contentUrl": [
             "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_photo.csv",
             "sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/earlyImageService/mosquito_alert_photos_clean.csv"
@@ -430,6 +433,16 @@
     "Data validation by entomologists"
   ],
   "creator": [
+    {
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
+    },
     {
       "@type": "Person",
       "@id": "JP",
@@ -709,7 +722,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/analytic_tables.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/analytic_tables.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -744,52 +757,15 @@
            <div class="output text_html">
             <table border="1">
              <tr>
-              <th>
-               @context
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <table border="1">
-                 <tr>
-                  <th>
-                   @vocab
-                  </th>
-                  <td style="text-align:left">
-                   https://schema.org/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   qudt
-                  </th>
-                  <td style="text-align:left">
-                   http://qudt.org/schema/qudt/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   xsd
-                  </th>
-                  <td style="text-align:left">
-                   http://www.w3.org/2001/XMLSchema#
-                  </td>
-                 </tr>
-                </table>
-               </td>
-              </tr>
+             </tr>
+             <tr>
              </tr>
              <tr>
               <th>
                @type
               </th>
               <td style="text-align:left">
-               Dataset
+               DataCatalog
               </td>
              </tr>
              <tr>
@@ -818,16 +794,10 @@
              </tr>
              <tr>
               <th>
-               identifier
-              </th>
-              <td style="text-align:left">
-              </td>
-             </tr>
-             <tr>
-              <th>
                license
               </th>
               <td style="text-align:left">
+               All rights reserved
               </td>
              </tr>
              <tr>
@@ -837,10 +807,10 @@
               <td style="text-align:left">
                <ul>
                 <li>
-                 Direct Evidence of Adult Aedes albopictus Dispersal by Car. Roger, Eritja et al. (DOI: 10.1038/s41598-017-12652-5)
+                 Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5
                 </li>
                 <li>
-                 Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. (DOI: 10.1038/s41467-017-00914-9)
+                 Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
                 </li>
                </ul>
               </td>
@@ -888,130 +858,6 @@
              </tr>
              <tr>
               <th>
-               creator
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Organization
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     CEAB
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Person
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     JP
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Palmer, John Rossman Bertholf
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Person
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     AE
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Escobar Rúbies, Agustí
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
-               measurementTechnique
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  Mobile application for citizen science
-                 </li>
-                 <li>
-                  Data validation by entomologists
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
                hasPart
               </th>
               <td style="text-align:left">
@@ -1032,14 +878,6 @@
                    </th>
                    <td style="text-align:left">
                     tigaserver_app_tigauser
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Private
                    </td>
                   </tr>
                   <tr>
@@ -1078,7 +916,7 @@
                           name
                          </th>
                          <td style="text-align:left">
-                          webserver_mosquitoalert_com
+                          mosquitoalert_webserver
                          </td>
                         </tr>
                         <tr>
@@ -1099,7 +937,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/analytic_tables.py
@@ -1110,7 +948,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_tigauser.csv
+                          <ul>
+                           <li>
+                            sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_tigauser.csv
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -1483,14 +1325,6 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Private
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
@@ -1525,7 +1359,7 @@
                           name
                          </th>
                          <td style="text-align:left">
-                          webserver_mosquitoalert_com
+                          mosquitoalert_webserver
                          </td>
                         </tr>
                         <tr>
@@ -1546,7 +1380,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/analytic_tables.py
@@ -1557,7 +1391,11 @@
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_report.csv
+                          <ul>
+                           <li>
+                            sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_report.csv
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -2628,14 +2466,6 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Private
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
@@ -3073,14 +2903,6 @@
                   </tr>
                   <tr>
                    <th>
-                    conditionsOfAccess
-                   </th>
-                   <td style="text-align:left">
-                    Public
-                   </td>
-                  </tr>
-                  <tr>
-                   <th>
                     description
                    </th>
                    <td style="text-align:left">
@@ -3115,7 +2937,7 @@
                           name
                          </th>
                          <td style="text-align:left">
-                          webserver_mosquitoalert_com
+                          mosquitoalert_webserver
                          </td>
                         </tr>
                         <tr>
@@ -3136,7 +2958,7 @@
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/analytic_tables.py
@@ -3372,6 +3194,261 @@
                 </li>
                </ul>
               </td>
+             </tr>
+             <tr>
+              <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  Mobile application for citizen science
+                 </li>
+                 <li>
+                  Data validation by entomologists
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr>
+              <th>
+               creator
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Project
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     MA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        info@mosquitoalert.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.mosquitoalert.com/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Person
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     JP
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Palmer, John Rossman Bertholf
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-2648-7860
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        principal investigator
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        john.palmer@upf.edu
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Person
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     AE
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Escobar Rúbies, Agustí
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-6856-0480
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        programmer
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        a.escobar@creaf.uab.es
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.creaf.cat/es/personal/agusti-escobar-rubies/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
              </tr>
             </table>
            </div>

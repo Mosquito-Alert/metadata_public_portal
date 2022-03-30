@@ -20,12 +20,11 @@
     "qudt": "http://qudt.org/schema/qudt/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@type": "DataCatalog",
+  "@type": "Dataset",
   "name": "reports",
   "conditionsOfAccess": "Public",
   "description": "Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.",
   "url": "https://github.com/MosquitoAlert/Data",
-  "identifier": "https://doi.org/10.5281/zenodo.597466",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
     "Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5",
@@ -56,15 +55,8 @@
       "encodingFormat": "JSON",
       "workExample": "./notebooks/reports.py",
       "contentUrl": [
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2014.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2015.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2016.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2017.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2018.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2019.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2020.json",
-        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2021.json",
-        "https://github.com/MosquitoAlert/Data/blob/master/translation_dict.json"
+        "https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports{YEAR}.json",
+        "https://github.com/MosquitoAlert/Data/raw/master/translation_dict.json"
       ],
       "contentSize": "73MB"
     }
@@ -74,43 +66,43 @@
       "@type": "PropertyValue",
       "name": "version_UUID",
       "description": "UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_time",
       "description": "Date and time on phone when first version of report was created. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date time string. Example: 2016-01-03T12:04:00.996Z",
-      "dataType": "xsd:dateTime"
+      "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_date",
       "description": "Date part of creation_time string (provided separately simply for convenience) with YYYY-MM-DD format. Example: 2016-01-03 ",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_day_since_launch",
       "description": "Creation_date expressed as number of days since 13June 2014 ,the day Mosquito Alert was launched (under its former name,Tigatrapp).",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_year",
       "description": "Year part of creation_time string (provided separately simply for convenience).",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_month",
       "description": "Month part of creation_time string (provided separately simply for convenience).",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "site_cat",
       "description": "An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).",
-      "dataType": "xsd:int",
+      "qudt:dataType": "xsd:int",
       "maxValue": 5,
       "minValue": 0
     },
@@ -118,37 +110,37 @@
       "@type": "PropertyValue",
       "name": "type",
       "description": " Type of report: adult, site, mission or bite",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "lon",
       "description": "Longitude of report location.",
-      "dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:decimal"
     },
     {
       "@type": "PropertyValue",
       "name": "lat",
       "description": "Latitude of report location.",
-      "dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:decimal"
     },
     {
       "@type": "PropertyValue",
       "name": "movelab_annotation",
       "description": "This field contains information from the validation process.",
-      "dataType": "xsd:complexType",
+      "qudt:dataType": "xsd:complexType",
       "value": [
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
           "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "crowdcrafting_score_cat",
           "description": "Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.",
-          "dataType": "xsd:string",
+          "qudt:dataType": "xsd:string",
           "maxValue": 2,
           "minValue": -2
         },
@@ -156,13 +148,13 @@
           "@type": "PropertyValue",
           "name": "crowdcrafting_n_response",
           "description": "Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.",
-          "dataType": "xsd:int"
+          "qudt:dataType": "xsd:int"
         },
         {
           "@type": "PropertyValue",
           "name": "site_certainty_category",
           "description": "If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))",
-          "dataType": "xsd:int",
+          "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
         },
@@ -170,7 +162,7 @@
           "@type": "PropertyValue",
           "name": "tiger_certainty_category",
           "description": "If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))",
-          "dataType": "xsd:int",
+          "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
         },
@@ -178,7 +170,7 @@
           "@type": "PropertyValue",
           "name": "aegypti_certainty_category",
           "description": "If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))",
-          "dataType": "xsd:int",
+          "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
         },
@@ -186,19 +178,19 @@
           "@type": "PropertyValue",
           "name": "photo_html",
           "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
-          "dataType": "xsd:anyURI"
+          "qudt:dataType": "xsd:anyURI"
         },
         {
           "@type": "PropertyValue",
           "name": "score",
           "description": "",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "classification",
           "description": "",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         }
       ]
     },
@@ -206,43 +198,43 @@
       "@type": "PropertyValue",
       "name": "movelab_annotation_euro",
       "description": "",
-      "dataType": "xsd:complexType",
+      "qudt:dataType": "xsd:complexType",
       "value": [
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
           "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "photo_html",
           "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
-          "dataType": "xsd:anyURI"
+          "qudt:dataType": "xsd:anyURI"
         },
         {
           "@type": "PropertyValue",
           "name": "class_name",
           "description": "Name of the classification label. Available mosquito species labels are: Unclassified (id:1), Other species (id:2), Aedes albopictus (id:3), Aedes aegypti (id:5), Aedes japonicus (id:6), Aedes koreicus (id:7), Complex (id:8), Not sure (id:9), Culex sp. (id:10). Available breeding site labels are: site (id: Null)",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "class_label",
           "description": "",
-          "dataType": "xsd:string"
+          "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "class_id",
           "description": "",
-          "dataType": "xsd:int"
+          "qudt:dataType": "xsd:int"
         },
         {
           "@type": "PropertyValue",
           "name": "class_value",
           "description": "",
-          "dataType": "xsd:int"
+          "qudt:dataType": "xsd:int"
         }
       ]
     },
@@ -250,85 +242,85 @@
       "@type": "PropertyValue",
       "name": "tiger_responses",
       "description": "Similar to 'tiger_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'tiger_responses_text'.",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "tiger_responses_text",
       "description": "Adult mosquito related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "site_responses",
       "description": "Similar to 'site_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'site_responses_text'.",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "site_responses_text",
       "description": "Breeding site related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "tigaprob_cat",
       "description": "",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "visible",
       "description": "",
-      "dataType": "xsd:boolean"
+      "qudt:dataType": "xsd:boolean"
     },
     {
       "@type": "PropertyValue",
       "name": "latest_version",
       "description": "",
-      "dataType": "xsd:boolean"
+      "qudt:dataType": "xsd:boolean"
     },
     {
       "@type": "PropertyValue",
       "name": "n_photos",
       "description": "",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "final_expert_status_text",
       "description": "",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "responses",
       "description": "Bites related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "cached_visible",
       "description": "",
-      "dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:decimal"
     },
     {
       "@type": "PropertyValue",
       "name": "poxsd:int",
       "description": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "country",
       "description": "",
-      "dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:decimal"
     },
     {
       "@type": "PropertyValue",
       "name": "session",
       "description": "",
-      "dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:decimal"
     }
   ],
   "measurementTechnique": [
@@ -625,7 +617,7 @@
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/meta_ipynb/reports.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh_pages?urlpath=tree/meta_ipynb/reports.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -660,45 +652,8 @@
            <div class="output text_html">
             <table border="1">
              <tr>
-              <th>
-               @context
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <table border="1">
-                 <tr>
-                  <th>
-                   @vocab
-                  </th>
-                  <td style="text-align:left">
-                   https://schema.org/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   qudt
-                  </th>
-                  <td style="text-align:left">
-                   http://qudt.org/schema/qudt/
-                  </td>
-                 </tr>
-                 <tr>
-                  <th>
-                   xsd
-                  </th>
-                  <td style="text-align:left">
-                   http://www.w3.org/2001/XMLSchema#
-                  </td>
-                 </tr>
-                </table>
-               </td>
-              </tr>
+             </tr>
+             <tr>
              </tr>
              <tr>
               <th>
@@ -742,14 +697,6 @@
              </tr>
              <tr>
               <th>
-               identifier
-              </th>
-              <td style="text-align:left">
-               https://doi.org/10.5281/zenodo.597466
-              </td>
-             </tr>
-             <tr>
-              <th>
                license
               </th>
               <td style="text-align:left">
@@ -761,7 +708,14 @@
                citation
               </th>
               <td style="text-align:left">
-               Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes.  John R B, Palmer et al. 2017 (DOI: 10.1038/s41467-017-00914-9)
+               <ul>
+                <li>
+                 Eritja, R., Palmer, J. R. B., Roiz, D., Sanpera-Calbet, I., and Bartumeus, F., “Direct Evidence of Adult Aedes albopictus Dispersal by Car”, Scientific Reports, vol. 7, 2017. doi:10.1038/s41598-017-12652-5
+                </li>
+                <li>
+                 Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9
+                </li>
+               </ul>
               </td>
              </tr>
              <tr>
@@ -769,7 +723,7 @@
                temporalCoverage
               </th>
               <td style="text-align:left">
-               2014/..
+               2014-05-27/..
               </td>
              </tr>
              <tr>
@@ -849,12 +803,12 @@
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     JSON.ZIP
+                     [JSON].ZIP
                     </td>
                    </tr>
                    <tr>
                     <th>
-                     url
+                     workExample
                     </th>
                     <td style="text-align:left">
                      ./notebooks/reports.py
@@ -865,7 +819,11 @@
                      contentUrl
                     </th>
                     <td style="text-align:left">
-                     https://doi.org/10.5281/zenodo.597466
+                     <ul>
+                      <li>
+                       https://doi.org/10.5281/zenodo.597466
+                      </li>
+                     </ul>
                     </td>
                    </tr>
                    <tr>
@@ -893,7 +851,7 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     github
+                     mosquitoalert_github
                     </td>
                    </tr>
                    <tr>
@@ -914,7 +872,7 @@
                    </tr>
                    <tr>
                     <th>
-                     url
+                     workExample
                     </th>
                     <td style="text-align:left">
                      ./notebooks/reports.py
@@ -927,31 +885,10 @@
                     <td style="text-align:left">
                      <ul>
                       <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2014.json
+                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports{YEAR}.json
                       </li>
                       <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2015.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2016.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2017.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2018.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2019.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2020.json
-                      </li>
-                      <li>
-                       https://raw.githubusercontent.com/MosquitoAlert/Data/master/all_reports2021.json
-                      </li>
-                      <li>
-                       https://github.com/MosquitoAlert/Data/blob/master/translation_dict.json
+                       https://github.com/MosquitoAlert/Data/raw/master/translation_dict.json
                       </li>
                      </ul>
                     </td>
@@ -1006,12 +943,12 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     UUID randomly generated on phone to identify eachunique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA
+                     UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA
                     </td>
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1047,7 +984,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:dateTime
@@ -1083,7 +1020,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1119,7 +1056,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -1155,7 +1092,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -1191,7 +1128,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -1222,12 +1159,12 @@
                      description
                     </th>
                     <td style="text-align:left">
-                     An integer indicating the type of breeding site (as recorded byparticipant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).
+                     An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).
                     </td>
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -1279,7 +1216,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1315,7 +1252,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:decimal
@@ -1351,7 +1288,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:decimal
@@ -1383,6 +1320,14 @@
                     </th>
                     <td style="text-align:left">
                      This field contains information from the validation process.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:complexType
                     </td>
                    </tr>
                    <tr>
@@ -1419,14 +1364,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -1462,14 +1400,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -1521,14 +1452,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -1564,14 +1488,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -1623,14 +1540,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -1682,14 +1592,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -1741,14 +1644,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:anyURI
@@ -1783,14 +1679,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -1825,14 +1714,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -1872,6 +1754,14 @@
                    </tr>
                    <tr>
                     <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:complexType
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
                      value
                     </th>
                     <td style="text-align:left">
@@ -1904,14 +1794,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -1947,14 +1830,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:anyURI
@@ -1990,14 +1866,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -2032,14 +1901,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:string
@@ -2074,14 +1936,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -2116,14 +1971,7 @@
                         </tr>
                         <tr>
                          <th>
-                          unitText
-                         </th>
-                         <td style="text-align:left">
-                         </td>
-                        </tr>
-                        <tr>
-                         <th>
-                          dataType
+                          qudt:dataType
                          </th>
                          <td style="text-align:left">
                           xsd:int
@@ -2164,7 +2012,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2200,7 +2048,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2236,7 +2084,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2272,7 +2120,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2307,7 +2155,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -2342,7 +2190,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:boolean
@@ -2377,7 +2225,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:boolean
@@ -2412,7 +2260,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -2447,7 +2295,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -2483,7 +2331,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2518,7 +2366,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:decimal
@@ -2553,7 +2401,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -2588,7 +2436,7 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:decimal
@@ -2623,13 +2471,36 @@
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:decimal
                     </td>
                    </tr>
                   </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr>
+              <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
+                 </li>
+                 <li>
+                  Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
                  </li>
                 </ul>
                </td>
@@ -2655,7 +2526,7 @@
                      @type
                     </th>
                     <td style="text-align:left">
-                     Organization
+                     Project
                     </td>
                    </tr>
                    <tr>
@@ -2663,7 +2534,7 @@
                      @id
                     </th>
                     <td style="text-align:left">
-                     CEAB
+                     MA
                     </td>
                    </tr>
                    <tr>
@@ -2671,7 +2542,40 @@
                      name
                     </th>
                     <td style="text-align:left">
-                     Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)
+                     Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        info@mosquitoalert.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.mosquitoalert.com/
+                       </td>
+                      </tr>
+                     </table>
                     </td>
                    </tr>
                   </table>
@@ -2702,6 +2606,55 @@
                      Palmer, John Rossman Bertholf
                     </td>
                    </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-2648-7860
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        principal investigator
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        john.palmer@upf.edu
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
                   </table>
                  </li>
                  <li>
@@ -2730,30 +2683,56 @@
                      Escobar Rúbies, Agustí
                     </td>
                    </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-6856-0480
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        programmer
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        a.escobar@creaf.uab.es
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.creaf.cat/es/personal/agusti-escobar-rubies/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
                   </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr>
-              <th>
-               measurementTechnique
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
-                 </li>
-                 <li>
-                  Quality control. Each report containing at least one picture evaluated by three independent entomologist and, if needed, reviewed by a fourth expert(senior entomologist). The dataset only includes reports from citizen staged by them as "adult mosquito", that contain at least one picture and that it has been evaluated by entomological experts.
                  </li>
                 </ul>
                </td>
