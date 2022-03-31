@@ -7,8 +7,8 @@ dependencies:
   - tqdm
   - requests
   - pandas
- # - matplotlib
- # - xarray
- # - paramiko
+  - matplotlib
+  - xarray
+  - paramiko
   - bs4
   - pyarrow

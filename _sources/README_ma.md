@@ -33,6 +33,8 @@ Every metadata has an associated *Python* script (i.e. jupyter notebook tutorial
 
 In the following table are listed all the datasets currently available at the metadata web-portal with the respective licenses and access restrictions. *Private* data is stored in a restricted access disk storage on the CEAB-CSIC computer cluster. Note that if a dataset is labeled as *Private* it does not necessarily imply that it cannot be distributed, since their access may be guaranteed after signing a ad-hoc contract of use.
 
+Code-examples could be executed from a Binder interactive session: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh-pages)
+
 | Dataset | Project | Description | License  | Example | Format |
 | ------- |:-------:| :-----------|:--------:|:-------:|:------:|
 | {doc}`reports <../meta_ipynb/reports>` | MosquitoAlert | Yearly validated reports of bites, breeding sites and adult mosquito encounters. | Public CC0-1.0  | {doc}`✔ <../notebooks/reports>` | `.json` `.csv` |
