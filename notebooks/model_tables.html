@@ -278,19 +278,6 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/Mosquito-Alert/metadata"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -389,11 +376,18 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">src.ftp</span> <span class="k">as</span> <span class="nn">ftp</span>
 
 <span class="c1"># Setup the root path of the application</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Load the metadata</span>
+
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/model_tables.json&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/model_tables.html&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">load_metadata</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 
 <span class="c1"># Get contentUrl from metadata file</span>
-<span class="n">meta_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/model_tables.json&quot;</span>
-<span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -409,7 +403,7 @@ on the <a class="reference external" href="http://webserver.mosquitoalert.com/st
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
@@ -448,7 +442,7 @@ name and password to ssh-access a remote machine.</p>
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">meta_filename</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
