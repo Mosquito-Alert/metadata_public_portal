@@ -6,9 +6,9 @@ dependencies:
   - python
   - tqdm
   - requests
-  - matplotlib
-  - numpy
-  - xarray
-  - paramiko
+  - pandas
+ # - matplotlib
+ # - xarray
+ # - paramiko
   - bs4
   - pyarrow

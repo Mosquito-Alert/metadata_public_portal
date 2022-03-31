@@ -1,8 +1,28 @@
 import json, os, shutil, requests, subprocess
 from urllib.parse import urlparse
+from bs4 import BeautifulSoup
 import os.path
 
 
+def load_metadata(meta_filename):
+    """
+    Loads the metadata file from json or from the header of the metadata table
+    """
+
+    if isinstance(meta_filename, list):
+        if len(meta_filename) == 2:
+            try:
+                with open(meta_filename[0], "r") as f:
+                    return json.loads(f.read())
+            except IOError:
+                with open(meta_filename[1], "r") as f:
+                    soup = BeautifulSoup(f.read(), "html.parser")
+                    return json.loads(
+                        soup.find("script", type="application/ld+json").text
+                    )
+    else:
+        with open(meta_filename, "r") as f:
+            return json.loads(f.read())
 
 
 def download_file(url, filename, method="curl"):
@@ -31,36 +51,36 @@ def makedirs(path: str):
         os.makedirs(path)
 
 
-def project_path():
+def project_path(i: str = 0):
     """
-    Get the project's path o a python file
+    Get the project's path of a python file
     """
-    filepath = os.path.abspath("")
-    return os.path.dirname(filepath)
+    abspath = os.path.abspath("")
+    if i == 0:
+        return abspath
+    else:
+        return "/".join(abspath.split("/")[slice(0, -i)])
 
 
 def get_meta(
-    filename: str,
+    meta,
     idx_distribution: int = 0,
     idx_hasPart: int = None,
     parse: bool = False,
 ):
-    """ Get the contentUrl field from the metadata json files.
-    
+    """Get the contentUrl field from the metadata json files.
+
     Args:
-        * filename: path to the metadata filename in json format
+        * meta: metadata file in json format
         * idx_distribution: list index of the distribution key
         * idx_hasPart: list index of the hasPart if DataSet has parts
         * parse: parse the url if required (e.g. ftp, db connection)
-    
+
     Returns:
         * contentUrl field of a selected DataSet distribution option.
         * name of the DataSet relative to the selected distribution.
         * name of the relative distribution method.
     """
-
-    with open(filename) as f:
-        meta = json.load(f)
 
     if isinstance(idx_hasPart, int):
         try:
@@ -160,16 +180,13 @@ def extract_element_from_json(obj, path):
         return outer_arr
 
 
-def info_meta(filename: str):
+def info_meta(meta):
     """
     Get general information from the metadata catalog file.
-    
-    Args:
-        *filename: path to the metadata catalog file.
-    """
 
-    with open(filename) as f:
-        meta = json.loads(f.read())
+    Args:
+        *meta: metadata json file.
+    """
 
     meta_name = extract_element_from_json(meta, ["name"])[0]
     print(f"Metadata name: {meta_name}")
@@ -201,7 +218,7 @@ def info_meta(filename: str):
 def set_ipynb_tag(notebooks: str):
 
     import nbformat as nbf
-    
+
     """
     Appends ipynb metadata tags from code comments.
 
