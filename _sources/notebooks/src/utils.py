@@ -113,9 +113,10 @@ def get_meta(
             contentUrl = urlparse(meta_distr["contentUrl"])
     else:
         contentUrl = meta_distr["contentUrl"]
-        if isinstance(contentUrl, list):
-            if len(contentUrl) == 1:
-                contentUrl = contentUrl[0]
+
+    if isinstance(contentUrl, list):
+        if len(contentUrl) == 1:
+            contentUrl = contentUrl[0]
 
     return contentUrl, meta_name, meta_distr["name"]
 

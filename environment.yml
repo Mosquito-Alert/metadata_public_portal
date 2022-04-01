@@ -6,9 +6,19 @@ dependencies:
   - python
   - tqdm
   - requests
-  - pandas
-  - matplotlib
-  - xarray
-  - paramiko
   - bs4
+  - paramiko
+#  - psycopg2
+# Pandas and co.
+  - pandas
   - pyarrow
+  - matplotlib
+# netCDF datasets
+#  - xarray
+#  - h5netcdf
+#  - cartopy
+#  - cdsapi
+# Pip installs
+#  - pip
+#  - pip:
+#    sodapy

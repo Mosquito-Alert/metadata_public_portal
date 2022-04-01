@@ -437,7 +437,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
 
 <span class="c1"># Setup the root path of the application</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Load the metadata</span>
 
@@ -463,7 +463,7 @@ that can be viewed at the Mosquito Alert map webserver given a picture IID.</p>
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
@@ -604,12 +604,12 @@ classes that may correspond to species.</p>
 </div>
 </div>
 <p>In order to get a picture from the <a class="reference external" href="https://www.ebi.ac.uk/biostudies/studies/S-BIAD249/">Mosquito Alert BioImage Archive</a>
-we should know the relative class-chunks available. One may chose between
-<em>Aedes_albopictus</em>, <em>Aedes_aegypti</em>, <em>Aedes_japonicus</em>, <em>Aedes_koreicus</em>,
+we should know the relative classes available. One may chose between the follwing
+classes: <em>Aedes_albopictus</em>, <em>Aedes_aegypti</em>, <em>Aedes_japonicus</em>, <em>Aedes_koreicus</em>,
 <em>Japonicus_koreicus</em>, <em>Complex</em>, <em>Culex</em>, <em>Other_species</em> and <em>Not_sure</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the chunk-species</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the class to download</span>
 <span class="n">CLASS</span> <span class="o">=</span> <span class="s2">&quot;Aedes_japonicus&quot;</span>
 <span class="n">contentUrl_pic</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CLASS</span><span class="o">=</span><span class="n">CLASS</span><span class="p">)</span>
 </pre></div>

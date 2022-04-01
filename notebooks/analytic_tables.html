@@ -370,7 +370,7 @@ check what datasets are in the catalog.</p>
 <span class="kn">import</span> <span class="nn">src.ftp</span> <span class="k">as</span> <span class="nn">ftp</span>
 
 <span class="c1"># Setup the root path of the application</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
 
 <span class="c1"># Load the metadata</span>
 
@@ -411,7 +411,7 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert user password to connect by ftp</span>
-<span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enter </span><span class="si">{</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> user password:&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="n">read_csv_sftp</span><span class="p">(</span>
