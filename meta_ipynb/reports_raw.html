@@ -2,12 +2,16 @@
 <html>
  <head>
   <style>
-   #hidden {
-        display: none;
+   #hidden_row {
+        background-color: #fff099ff;
         }
 
         #collapseButton:hover {
-        background-color: #92a2d1;
+        background-color: #ffdd18ff;
+        }
+
+        #hidden {
+        display: none;
         }
   </style>
   <script src="../_static/extra_interact.js" type="text/javascript">
@@ -56,133 +60,133 @@
       "name": "version_UUID",
       "description": "Unique random UUID assigned to the report version by the device before it was uploaded to the Mosquito Alert server. Each record should have a unique version_UUID.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "version_number",
       "description": "Version number of the report. These are assigned sequentially starting with 0.",
       "unitText": "",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "user",
       "description": "Unique random UUID of the participant who uploaded this report.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "report_id",
       "description": "Random 4-digit character string assigned to the report. This is not guaranteed to be unique on its own, but is used as an easy code for participants to use to identify the report (for example, if sending a physical specimen). See unique_report_id for the unique report identifier.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "server_upload_time",
       "description": "Date and time recorded by the Mosquito Alert server when this report version was uploaded.",
       "unitText": "",
-      "dataType": "xsd:dateTime"
+      "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "phone_upload_time",
       "description": "Date and time recorded by the participant's device when this report version was uploaded.",
       "unitText": "",
-      "dataType": "xsd:dateTime"
+      "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_time",
       "description": "Date and time recorded by the participant's device when the first version of this report was created. This is normally the date/time that one cares about for modeling as it is taken as the closest time to the actual observation. (In constrast, upload may have happened at a later time, based on availability of a data connection, and subsequent versions of the report may have been created at later times because the participant wanted to edit details of the initial observation.",
       "unitText": "",
-      "dataType": "xsd:dateTime"
+      "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "version_time",
       "description": "Date and time recorded by the participant's device when this version of the report was created.",
       "unitText": "",
-      "dataType": "xsd:dateTime"
+      "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "type",
       "description": "Type of report. Options are adult, site, bite, or mission.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "mission",
       "description": "Identifier of the mission in case this is a mission report.",
       "unitText": "",
-      "dataType": "xsd:int"
+      "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "location_choice",
       "description": "Choice participant selected when identifying location of the report. Either current or selected, the latter signifying that the participant selected a location on the map different from their current location.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "current_location_lon",
       "description": "Longitude of the participant's current location at the time of creating the first version of this report.",
       "unitText": "Decimal degrees",
-      "dataType": "xsd:double"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "current_location_lat",
       "description": "Latitude of the participant's current location at the time of creating the first version of this report.",
       "unitText": "Decimal degrees",
-      "dataType": "xsd:double"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "selected_location_lon",
       "description": "Longitude of the location participant selected on the map (if any) as the place of the observation.",
       "unitText": "Decimal degrees",
-      "dataType": "xsd:double"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "selected_location_lat",
       "description": "Latitude of the location participant selected on the map (if any) as the place of the observation.",
       "unitText": "Decimal degrees",
-      "dataType": "xsd:double"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "package_name",
       "description": "Name of the app package used to create the report.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "package_version",
       "description": "Version of the app package used to create the report.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "os",
       "description": "Operating system of the device used to create the report.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "unique_report_id",
       "description": "Unique ID created for each report (not report version) by concatinating user_id and report_id. Note each version of the report will have this same ID.",
       "unitText": "",
-      "dataType": "xsd:string"
+      "qudt:dataType": "xsd:string"
     }
   ],
   "creator": [
@@ -256,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
       </script>
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
-       <link href="../notebooks/reports_raw.html" rel="next" title="Dataset: reports_raw">
+       <link href="tigapics.html" rel="next" title="Metadata table">
         <link href="../notebooks/reports.html" rel="prev" title="Dataset: reports"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
@@ -326,29 +330,17 @@ const thebe_selector_output = ".output, .cell_output"
             </ul>
            </input>
           </li>
-          <li class="toctree-l2 current active has-children">
+          <li class="toctree-l2 current active">
            <a class="current reference internal" href="#">
             reports_raw
            </a>
-           <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-           <label for="toctree-checkbox-3">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/reports_raw.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 has-children">
            <a class="reference internal" href="tigapics.html">
             tigapics
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-           <label for="toctree-checkbox-4">
+           <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+           <label for="toctree-checkbox-3">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -364,8 +356,8 @@ const thebe_selector_output = ".output, .cell_output"
            <a class="reference internal" href="sampling_effort.html">
             sampling_effort
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-           <label for="toctree-checkbox-5">
+           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+           <label for="toctree-checkbox-4">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -377,29 +369,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 has-children">
+          <li class="toctree-l2">
            <a class="reference internal" href="user_locations.html">
             user_locations
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-           <label for="toctree-checkbox-6">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/user_locations.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 has-children">
            <a class="reference internal" href="analytic_tables.html">
             analytic_tables
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-           <label for="toctree-checkbox-7">
+           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+           <label for="toctree-checkbox-5">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -412,8 +392,42 @@ const thebe_selector_output = ".output, .cell_output"
            </ul>
           </li>
           <li class="toctree-l2 has-children">
+           <a class="reference internal" href="photos_clean.html">
+            photos_clean
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+           <label for="toctree-checkbox-6">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/photos_clean.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
            <a class="reference internal" href="model_tables.html">
             model_tables
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+           <label for="toctree-checkbox-7">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/model_tables.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="muni_preds.html">
+            muni_preds
            </a>
            <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
            <label for="toctree-checkbox-8">
@@ -422,7 +436,7 @@ const thebe_selector_output = ".output, .cell_output"
            </label>
            <ul>
             <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/model_tables.html">
+             <a class="reference internal" href="../notebooks/muni_preds.html">
               code-example
              </a>
             </li>
@@ -648,7 +662,7 @@ const thebe_selector_output = ".output, .cell_output"
                </table>
               </td>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                distribution
               </th>
@@ -728,7 +742,7 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
               </tr>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                variableMeasured
               </th>
@@ -776,7 +790,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -819,7 +833,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -862,7 +876,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -905,7 +919,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -948,7 +962,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:dateTime
@@ -991,7 +1005,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:dateTime
@@ -1034,7 +1048,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:dateTime
@@ -1077,7 +1091,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:dateTime
@@ -1120,7 +1134,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1163,7 +1177,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:int
@@ -1206,7 +1220,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1250,10 +1264,10 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:double
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -1294,10 +1308,10 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:double
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -1338,10 +1352,10 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:double
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -1382,10 +1396,10 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:double
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -1425,7 +1439,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1468,7 +1482,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1511,7 +1525,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1554,7 +1568,7 @@ const thebe_selector_output = ".output, .cell_output"
                    </tr>
                    <tr>
                     <th>
-                     dataType
+                     qudt:dataType
                     </th>
                     <td style="text-align:left">
                      xsd:string
@@ -1566,7 +1580,7 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
               </tr>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                creator
               </th>
@@ -1667,7 +1681,7 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
               </tr>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                measurementTechnique
               </th>
@@ -1693,8 +1707,6 @@ const thebe_selector_output = ".output, .cell_output"
             </table>
            </div>
           </div>
-         </div>
-         <div class="toctree-wrapper compound">
          </div>
         </div>
         <script type="text/x-thebe-config">
@@ -1736,16 +1748,13 @@ const thebe_selector_output = ".output, .cell_output"
           </p>
          </div>
         </a>
-        <a class="right-next" href="../notebooks/reports_raw.html" id="next-link" title="next page">
+        <a class="right-next" href="tigapics.html" id="next-link" title="next page">
          <div class="prev-next-info">
           <p class="prev-next-subtitle">
            next
           </p>
           <p class="prev-next-title">
-           Dataset:
-           <em>
-            reports_raw
-           </em>
+           Metadata table
           </p>
          </div>
          <i class="fas fa-angle-right">

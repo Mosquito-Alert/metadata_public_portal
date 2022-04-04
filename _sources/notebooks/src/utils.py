@@ -37,7 +37,7 @@ def download_file(url, filename, method="curl"):
                 shutil.copyfileobj(r.raw, f, length=16 * 1024 * 1024)
 
     if method == "curl":
-        subprocess.call(["curl", "–o", filename, url], shell=False)
+        subprocess.call(["curl", "-o", filename, url], shell=False)
 
 
 def makedirs(path: str):

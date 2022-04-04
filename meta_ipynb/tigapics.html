@@ -2,12 +2,16 @@
 <html>
  <head>
   <style>
-   #hidden {
-        display: none;
+   #hidden_row {
+        background-color: #fff099ff;
         }
 
         #collapseButton:hover {
-        background-color: #92a2d1;
+        background-color: #ffdd18ff;
+        }
+
+        #hidden {
+        display: none;
         }
   </style>
   <script src="../_static/extra_interact.js" type="text/javascript">
@@ -230,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
        <link href="../notebooks/tigapics.html" rel="next" title="DataCatalog: tigapics">
-        <link href="../notebooks/reports_raw.html" rel="prev" title="Dataset: reports_raw"/>
+        <link href="reports_raw.html" rel="prev" title="Metadata table"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
         <!-- Google Analytics -->
@@ -299,29 +303,17 @@ const thebe_selector_output = ".output, .cell_output"
             </ul>
            </input>
           </li>
-          <li class="toctree-l2 has-children">
+          <li class="toctree-l2">
            <a class="reference internal" href="reports_raw.html">
             reports_raw
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-           <label for="toctree-checkbox-3">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/reports_raw.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 current active has-children">
            <a class="current reference internal" href="#">
             tigapics
            </a>
-           <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-           <label for="toctree-checkbox-4">
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+           <label for="toctree-checkbox-3">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -337,8 +329,8 @@ const thebe_selector_output = ".output, .cell_output"
            <a class="reference internal" href="sampling_effort.html">
             sampling_effort
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-           <label for="toctree-checkbox-5">
+           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+           <label for="toctree-checkbox-4">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -350,29 +342,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 has-children">
+          <li class="toctree-l2">
            <a class="reference internal" href="user_locations.html">
             user_locations
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-           <label for="toctree-checkbox-6">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/user_locations.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 has-children">
            <a class="reference internal" href="analytic_tables.html">
             analytic_tables
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-           <label for="toctree-checkbox-7">
+           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+           <label for="toctree-checkbox-5">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -385,8 +365,42 @@ const thebe_selector_output = ".output, .cell_output"
            </ul>
           </li>
           <li class="toctree-l2 has-children">
+           <a class="reference internal" href="photos_clean.html">
+            photos_clean
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+           <label for="toctree-checkbox-6">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/photos_clean.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
            <a class="reference internal" href="model_tables.html">
             model_tables
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+           <label for="toctree-checkbox-7">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/model_tables.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="muni_preds.html">
+            muni_preds
            </a>
            <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
            <label for="toctree-checkbox-8">
@@ -395,7 +409,7 @@ const thebe_selector_output = ".output, .cell_output"
            </label>
            <ul>
             <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/model_tables.html">
+             <a class="reference internal" href="../notebooks/muni_preds.html">
               code-example
              </a>
             </li>
@@ -702,7 +716,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </table>
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -847,7 +861,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -931,7 +945,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </table>
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -1012,7 +1026,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -1096,7 +1110,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </table>
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -1241,7 +1255,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -1261,7 +1275,7 @@ const thebe_selector_output = ".output, .cell_output"
                </ul>
               </td>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                measurementTechnique
               </th>
@@ -1284,7 +1298,7 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
               </tr>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                creator
               </th>
@@ -1547,7 +1561,7 @@ const thebe_selector_output = ".output, .cell_output"
        </div>
        <!-- Previous / next buttons -->
        <div class="prev-next-area">
-        <a class="left-prev" href="../notebooks/reports_raw.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="reports_raw.html" id="prev-link" title="previous page">
          <i class="fas fa-angle-left">
          </i>
          <div class="prev-next-info">
@@ -1555,10 +1569,7 @@ const thebe_selector_output = ".output, .cell_output"
            previous
           </p>
           <p class="prev-next-title">
-           Dataset:
-           <em>
-            reports_raw
-           </em>
+           Metadata table
           </p>
          </div>
         </a>

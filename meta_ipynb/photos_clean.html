@@ -25,10 +25,10 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@type": "Dataset",
-  "name": "user_locations",
-  "conditionsOfAccess": "Private",
-  "description": "Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.",
-  "license": "All rights reserved",
+  "name": "photos_clean",
+  "conditionsOfAccess": "Public",
+  "description": "Identifier references to Mosquito Alert report pictures that appear on the public Mosquito Alert webmap. This is a public version of the analytic_tables/tigaserver_app_photo dataset.",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
     "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
   ],
@@ -41,94 +41,91 @@
   "distribution": [
     {
       "@type": "DataDownload",
-      "name": "cluster_ceab",
-      "description": "Distribution by SFTP protocol from CEAB cluster.",
-      "encodingFormat": "RDS",
-      "workExample": "",
+      "name": "mosquitoalert_webserver",
+      "description": "Distribution download from MosquitoAlert webserver",
+      "encodingFormat": "CSV",
+      "workExample": "./notebooks/photos_clean.py",
       "contentUrl": [
-        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds",
-        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds"
+        "http://webserver.mosquitoalert.com/static/earlyImageService/mosquito_alert_photos_clean.csv"
       ],
-      "contentSize": "8-15MB"
+      "contentSize": "+9MB"
     }
   ],
   "variableMeasured": [
     {
       "@type": "PropertyValue",
-      "name": "year",
-      "description": "Year in which the background location was recorded.",
-      "unitText": "years",
-      "qudt:dataType": "xsd:string"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "biweek",
-      "description": "An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.",
-      "unitText": "biweek",
+      "name": "id",
+      "description": "Unique ID assigned to the photo when it was uploaded to the Mosquito Alert server.",
+      "unitText": "",
       "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
+      "name": "photo",
+      "description": "Path to photo on the Mosquito Alert server.",
       "unitText": "",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
-      "name": "masked_lon",
-      "description": "Longitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lat",
-      "description": "Latitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "participation_days",
-      "description": "Number of days elapsed between the time of the participant's first background location and the time of this one",
-      "unitText": "days",
-      "qudt:dataType": "xsd:long"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "fix_date",
-      "description": "The date on which this location was recorded. YYYY-MM-DD",
-      "unitText": "",
-      "qudt:dataType": "xsd:date"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "user_coverage_uuid",
-      "description": "Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).",
+      "name": "report_id",
+      "description": "UUID of the report in which this photo was uploaded.",
       "unitText": "",
       "qudt:dataType": "xsd:string"
-    }
-  ],
-  "creator": [
-    {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
     },
     {
-      "@type": "Person",
-      "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
+      "@type": "PropertyValue",
+      "name": "hide",
+      "description": "Indicator of whether this photo is hidden on the server. Only visible photos are included in this data set, so this variable is already FALSE (and can be ignored).",
+      "unitText": "",
+      "qudt:dataType": "xsd:boolean"
     },
     {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
+      "@type": "PropertyValue",
+      "name": "uuid",
+      "description": "UUID assigned to this photo by the app before it was sent to the Mosquito Alert server.",
+      "unitText": "",
+      "qudt:dataType": "xsd:string"
     }
   ],
   "measurementTechnique": [
     "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event."
+  ],
+  "creator": [
+    {
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "JP",
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "AE",
+      "name": "Escobar Rúbies, Agustí",
+      "identifier": "https://orcid.org/0000-0002-6856-0480",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "programmer",
+        "email": "a.escobar@creaf.uab.es",
+        "url": "http://www.creaf.cat/es/personal/agusti-escobar-rubies/"
+      }
+    }
   ]
 }
   </script>
@@ -180,8 +177,8 @@ const thebe_selector_output = ".output, .cell_output"
       </script>
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
-       <link href="analytic_tables.html" rel="next" title="Metadata table">
-        <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort"/>
+       <link href="../notebooks/photos_clean.html" rel="next" title="Dataset: photos_clean">
+        <link href="../notebooks/analytic_tables.html" rel="prev" title="DataCatalog: analytic_tables"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
         <!-- Google Analytics -->
@@ -289,8 +286,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 current active">
-           <a class="current reference internal" href="#">
+          <li class="toctree-l2">
+           <a class="reference internal" href="user_locations.html">
             user_locations
            </a>
           </li>
@@ -311,11 +308,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 has-children">
-           <a class="reference internal" href="photos_clean.html">
+          <li class="toctree-l2 current active has-children">
+           <a class="current reference internal" href="#">
             photos_clean
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
            <label for="toctree-checkbox-6">
             <i class="fas fa-chevron-down">
             </i>
@@ -397,7 +394,7 @@ const thebe_selector_output = ".output, .cell_output"
          <div class="dropdown-buttons">
           <!-- ipynb file if we had a myst markdown file -->
           <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/user_locations.ipynb">
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/photos_clean.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
@@ -423,7 +420,7 @@ const thebe_selector_output = ".output, .cell_output"
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/user_locations.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/photos_clean.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -485,7 +482,7 @@ const thebe_selector_output = ".output, .cell_output"
                name
               </th>
               <td style="text-align:left">
-               user_locations
+               photos_clean
               </td>
              </tr>
              <tr>
@@ -493,7 +490,7 @@ const thebe_selector_output = ".output, .cell_output"
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Private
+               Public
               </td>
              </tr>
              <tr>
@@ -501,7 +498,7 @@ const thebe_selector_output = ".output, .cell_output"
                description
               </th>
               <td style="text-align:left">
-               Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.
+               Identifier references to Mosquito Alert report pictures that appear on the public Mosquito Alert webmap. This is a public version of the analytic_tables/tigaserver_app_photo dataset.
               </td>
              </tr>
              <tr>
@@ -509,7 +506,7 @@ const thebe_selector_output = ".output, .cell_output"
                license
               </th>
               <td style="text-align:left">
-               All rights reserved
+               https://creativecommons.org/publicdomain/zero/1.0/
               </td>
              </tr>
              <tr>
@@ -593,7 +590,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     cluster_ceab
+                     mosquitoalert_webserver
                     </td>
                    </tr>
                    <tr>
@@ -601,7 +598,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Distribution by SFTP protocol from CEAB cluster.
+                     Distribution download from MosquitoAlert webserver
                     </td>
                    </tr>
                    <tr>
@@ -609,7 +606,7 @@ const thebe_selector_output = ".output, .cell_output"
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     RDS
+                     CSV
                     </td>
                    </tr>
                    <tr>
@@ -617,6 +614,7 @@ const thebe_selector_output = ".output, .cell_output"
                      workExample
                     </th>
                     <td style="text-align:left">
+                     ./notebooks/photos_clean.py
                     </td>
                    </tr>
                    <tr>
@@ -626,10 +624,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <td style="text-align:left">
                      <ul>
                       <li>
-                       sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds
-                      </li>
-                      <li>
-                       sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds
+                       http://webserver.mosquitoalert.com/static/earlyImageService/mosquito_alert_photos_clean.csv
                       </li>
                      </ul>
                     </td>
@@ -639,7 +634,7 @@ const thebe_selector_output = ".output, .cell_output"
                      contentSize
                     </th>
                     <td style="text-align:left">
-                     8-15MB
+                     +9MB
                     </td>
                    </tr>
                   </table>
@@ -676,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     year
+                     id
                     </td>
                    </tr>
                    <tr>
@@ -684,7 +679,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Year in which the background location was recorded.
+                     Unique ID assigned to the photo when it was uploaded to the Mosquito Alert server.
                     </td>
                    </tr>
                    <tr>
@@ -692,51 +687,6 @@ const thebe_selector_output = ".output, .cell_output"
                      unitText
                     </th>
                     <td style="text-align:left">
-                     years
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:string
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     biweek
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     biweek
                     </td>
                    </tr>
                    <tr>
@@ -764,7 +714,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     TigacellID
+                     photo
                     </td>
                    </tr>
                    <tr>
@@ -772,7 +722,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).
+                     Path to photo on the Mosquito Alert server.
                     </td>
                    </tr>
                    <tr>
@@ -807,7 +757,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     masked_lon
+                     report_id
                     </td>
                    </tr>
                    <tr>
@@ -815,7 +765,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Longitude of the SW corner of the sampling cell.
+                     UUID of the report in which this photo was uploaded.
                     </td>
                    </tr>
                    <tr>
@@ -823,7 +773,6 @@ const thebe_selector_output = ".output, .cell_output"
                      unitText
                     </th>
                     <td style="text-align:left">
-                     degrees
                     </td>
                    </tr>
                    <tr>
@@ -831,7 +780,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:string
                     </td>
                    </tr>
                   </table>
@@ -851,7 +800,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     masked_lat
+                     hide
                     </td>
                    </tr>
                    <tr>
@@ -859,7 +808,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Latitude of the SW corner of the sampling cell.
+                     Indicator of whether this photo is hidden on the server. Only visible photos are included in this data set, so this variable is already FALSE (and can be ignored).
                     </td>
                    </tr>
                    <tr>
@@ -867,7 +816,6 @@ const thebe_selector_output = ".output, .cell_output"
                      unitText
                     </th>
                     <td style="text-align:left">
-                     degrees
                     </td>
                    </tr>
                    <tr>
@@ -875,7 +823,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:boolean
                     </td>
                    </tr>
                   </table>
@@ -895,7 +843,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     participation_days
+                     uuid
                     </td>
                    </tr>
                    <tr>
@@ -903,94 +851,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Number of days elapsed between the time of the participant's first background location and the time of this one
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     days
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:long
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     fix_date
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     The date on which this location was recorded. YYYY-MM-DD
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:date
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     user_coverage_uuid
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).
+                     UUID assigned to this photo by the app before it was sent to the Mosquito Alert server.
                     </td>
                    </tr>
                    <tr>
@@ -1016,6 +877,26 @@ const thebe_selector_output = ".output, .cell_output"
              </tr>
              <tr id="hidden_row">
               <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr id="hidden_row">
+              <th>
                creator
               </th>
               <td id="collapseButton" onclick="collapse(this)">
@@ -1034,7 +915,7 @@ const thebe_selector_output = ".output, .cell_output"
                      @type
                     </th>
                     <td style="text-align:left">
-                     Organization
+                     Project
                     </td>
                    </tr>
                    <tr>
@@ -1042,7 +923,7 @@ const thebe_selector_output = ".output, .cell_output"
                      @id
                     </th>
                     <td style="text-align:left">
-                     CEAB
+                     MA
                     </td>
                    </tr>
                    <tr>
@@ -1050,7 +931,40 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)
+                     Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        info@mosquitoalert.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.mosquitoalert.com/
+                       </td>
+                      </tr>
+                     </table>
                     </td>
                    </tr>
                   </table>
@@ -1081,6 +995,55 @@ const thebe_selector_output = ".output, .cell_output"
                      Palmer, John Rossman Bertholf
                     </td>
                    </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-2648-7860
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        principal investigator
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        john.palmer@upf.edu
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
                   </table>
                  </li>
                  <li>
@@ -1109,27 +1072,56 @@ const thebe_selector_output = ".output, .cell_output"
                      Escobar Rúbies, Agustí
                     </td>
                    </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-6856-0480
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        programmer
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        a.escobar@creaf.uab.es
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.creaf.cat/es/personal/agusti-escobar-rubies/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
                   </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr id="hidden_row">
-              <th>
-               measurementTechnique
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
                  </li>
                 </ul>
                </td>
@@ -1138,6 +1130,8 @@ const thebe_selector_output = ".output, .cell_output"
             </table>
            </div>
           </div>
+         </div>
+         <div class="toctree-wrapper compound">
          </div>
         </div>
         <script type="text/x-thebe-config">
@@ -1164,7 +1158,7 @@ const thebe_selector_output = ".output, .cell_output"
        </div>
        <!-- Previous / next buttons -->
        <div class="prev-next-area">
-        <a class="left-prev" href="../notebooks/sampling_effort.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="../notebooks/analytic_tables.html" id="prev-link" title="previous page">
          <i class="fas fa-angle-left">
          </i>
          <div class="prev-next-info">
@@ -1172,20 +1166,20 @@ const thebe_selector_output = ".output, .cell_output"
            previous
           </p>
           <p class="prev-next-title">
-           Dataset:
-           <em>
-            sampling_effort
-           </em>
+           DataCatalog: analytic_tables
           </p>
          </div>
         </a>
-        <a class="right-next" href="analytic_tables.html" id="next-link" title="next page">
+        <a class="right-next" href="../notebooks/photos_clean.html" id="next-link" title="next page">
          <div class="prev-next-info">
           <p class="prev-next-subtitle">
            next
           </p>
           <p class="prev-next-title">
-           Metadata table
+           Dataset:
+           <em>
+            photos_clean
+           </em>
           </p>
          </div>
          <i class="fas fa-angle-right">

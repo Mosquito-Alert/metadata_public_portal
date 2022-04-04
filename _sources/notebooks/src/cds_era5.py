@@ -9,10 +9,20 @@ import cdsapi
 import xarray as xr
 
 
+def add_prefix(path: str, prefix: str = ""):
+    """
+    Append a prefix to a filename given the absolute path.
+    """
+
+    filename = os.path.basename(path)
+    dirname = os.path.dirname(path)
+    return f"{dirname}/{prefix}{filename}"
+
+
 def mask_file(mask: xr.DataArray, filepath: str):
     """
     Apply masking on a given netCDF-file.
-        
+
         Args:
         * mask: mask to apply.
         * filepath: filename-path of the netCDF-file on which to apply masking.
@@ -22,6 +32,7 @@ def mask_file(mask: xr.DataArray, filepath: str):
         filepath,
         mask_and_scale=False,  # Import preserving INT16 dtype
         chunks=None,  # Don't use Dask since mask is small-size
+        engine="netcdf4",  # Don't use h5netcdf since it gives errors
     )
 
     # Mask preserving INT dtype (if other=NaN then dtype changes to FLOAT64)
@@ -32,9 +43,14 @@ def mask_file(mask: xr.DataArray, filepath: str):
         encoding[var] = {"zlib": True}
 
     # Add prefix to filename and save masked netCDF file
-    filename = os.path.basename(filepath)
-    dirname = os.path.dirname(filepath)
-    ds_mask.to_netcdf(f"{dirname}/masked_{filename}", encoding=encoding)
+    filepath_mask = add_prefix(filepath, prefix="masked_")
+
+    # Check if there is an empty file with the same name and remove it
+    if os.path.exists(filepath_mask):
+        if os.path.getsize(filepath_mask) == 0:
+            os.remove(filepath_mask)
+
+    ds_mask.to_netcdf(filepath_mask, encoding=encoding, engine="netcdf4")
 
     return True
 

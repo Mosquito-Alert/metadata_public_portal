@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DataCatalog: model_tables &#8212; Mosquito Alert Data Portal</title>
+    <title>Dataset: muni_preds &#8212; Mosquito Alert Data Portal</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -50,8 +50,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Metadata table" href="../meta_ipynb/muni_preds.html" />
-    <link rel="prev" title="Metadata table" href="../meta_ipynb/model_tables.html" />
+    <link rel="prev" title="Metadata table" href="../meta_ipynb/muni_preds.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -201,35 +200,35 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../meta_ipynb/model_tables.html">
      model_tables
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
     <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="model_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../meta_ipynb/muni_preds.html">
+     muni_preds
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       code-example
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../meta_ipynb/muni_preds.html">
-     muni_preds
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-    <label for="toctree-checkbox-8">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="muni_preds.html">
        code-example
       </a>
      </li>
@@ -278,7 +277,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/model_tables.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/notebooks/muni_preds.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -309,24 +308,9 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-1-encounter-prob-monthly-grid">
-   Part 1:
-   <em>
-    encounter_prob_monthly_grid
-   </em>
+  <a class="reference internal nav-link" href="#distribution-from-mosquito-alert-mosquitoalertes-github-repository">
+   1. Distribution from Mosquito-Alert/MosquitoAlertES Github repository
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distribution-by-http-download-from-mosquitoalert-webserver">
-     1.1. Distribution by HTTP download from MosquitoAlert webserver
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distribution-by-sftp-download-from-mosquitoalert-webserver">
-     1.2. Distribution by SFTP download from MosquitoAlert webserver
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -338,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>DataCatalog: model_tables</h1>
+                <h1>Dataset: muni_preds</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -349,24 +333,9 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#part-1-encounter-prob-monthly-grid">
-   Part 1:
-   <em>
-    encounter_prob_monthly_grid
-   </em>
+  <a class="reference internal nav-link" href="#distribution-from-mosquito-alert-mosquitoalertes-github-repository">
+   1. Distribution from Mosquito-Alert/MosquitoAlertES Github repository
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distribution-by-http-download-from-mosquitoalert-webserver">
-     1.1. Distribution by HTTP download from MosquitoAlert webserver
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distribution-by-sftp-download-from-mosquitoalert-webserver">
-     1.2. Distribution by SFTP download from MosquitoAlert webserver
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -377,14 +346,17 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="datacatalog-model-tables">
-<h1>DataCatalog: <em>model_tables</em><a class="headerlink" href="#datacatalog-model-tables" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="dataset-muni-preds">
+<h1>Dataset: <em>muni_preds</em><a class="headerlink" href="#dataset-muni-preds" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
-<span class="kn">import</span> <span class="nn">src.ftp</span> <span class="k">as</span> <span class="nn">ftp</span>
 
 <span class="c1"># Setup the root path of the application</span>
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
@@ -392,8 +364,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Load the metadata</span>
 
 <span class="n">meta_filename</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/model_tables.json&quot;</span><span class="p">,</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/model_tables.html&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/muni_preds.json&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/muni_preds.html&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">load_metadata</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 
@@ -403,18 +375,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="part-1-encounter-prob-monthly-grid">
-<h2>Part 1: <em>encounter_prob_monthly_grid</em><a class="headerlink" href="#part-1-encounter-prob-monthly-grid" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="distribution-by-http-download-from-mosquitoalert-webserver">
-<h3>1.1. Distribution by HTTP download from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-http-download-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
-<p>This distribution allows to download the estimated probability of encountering
-for a given type of mosquito on monthly basis. This information is displayed
-on the <a class="reference external" href="http://webserver.mosquitoalert.com/static/tigapublic/spain.html#/en/">Mosquito Alert public map</a>.</p>
+<div class="section" id="distribution-from-mosquito-alert-mosquitoalertes-github-repository">
+<h2>1. Distribution from Mosquito-Alert/MosquitoAlertES Github repository<a class="headerlink" href="#distribution-from-mosquito-alert-mosquitoalertes-github-repository" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 
 <span class="c1"># Make folders for data download</span>
@@ -424,73 +391,27 @@ on the <a class="reference external" href="http://webserver.mosquitoalert.com/st
 </div>
 </div>
 </div>
-<p>In order to get a model output we need to provide the mosquito type, year and
-month.</p>
+<p>This dataset has a <strong>5 day forecast</strong>. Here we take the past 2 weeks and
+the 5 days of forecast.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set mosquito type (&#39;tig&#39; for Aedes Albopictus and &#39;jap&#39; for Aedes Japonicus)</span>
-<span class="n">MOSQUITO_TYPE</span> <span class="o">=</span> <span class="s2">&quot;tig&quot;</span>
-<span class="c1"># For example get all the months for a given year</span>
-<span class="n">YEAR</span> <span class="o">=</span> <span class="s2">&quot;2021&quot;</span>
-<span class="n">MONTH</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Request a chunk of data in json format and concatenate all of them into a dataframe</span>
 
-<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">MONTH</span><span class="p">:</span>
-    <span class="c1"># Download each CSV-file</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MOSQUITO_TYPE</span><span class="o">=</span><span class="n">MOSQUITO_TYPE</span><span class="p">,</span> <span class="n">YEAR</span><span class="o">=</span><span class="n">YEAR</span><span class="p">,</span> <span class="n">MONTH</span><span class="o">=</span><span class="n">m</span><span class="p">))</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MOSQUITO_TYPE</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="distribution-by-sftp-download-from-mosquitoalert-webserver">
-<h3>1.2. Distribution by SFTP download from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-sftp-download-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
-<p>This distribution allows to download exactly the same dataset as above but
-within SFTP. Before we are able to download the dataset we would need a user
-name and password to ssh-access a remote machine.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata</span>
-<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">14</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># forecast</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">date_range</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">formatter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
 
-<span class="c1"># Make folders for data download</span>
-<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set mosquito type (&#39;tig&#39; for Aedes Albopictus and &#39;jap&#39; for Aedes Japonicus)</span>
-<span class="n">MOSQUITO_TYPE</span> <span class="o">=</span> <span class="s2">&quot;tig&quot;</span>
-<span class="c1"># For example get just one months for a given year</span>
-<span class="n">YEAR</span> <span class="o">=</span> <span class="s2">&quot;2021&quot;</span>
-<span class="n">MONTH</span> <span class="o">=</span> <span class="s2">&quot;01&quot;</span>
-<span class="n">contentUrl_path</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-    <span class="n">MOSQUITO_TYPE</span><span class="o">=</span><span class="n">MOSQUITO_TYPE</span><span class="p">,</span> <span class="n">YEAR</span><span class="o">=</span><span class="n">YEAR</span><span class="p">,</span> <span class="n">MONTH</span><span class="o">=</span><span class="n">MONTH</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert user password to connect by ftp</span>
-<span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enter </span><span class="si">{</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> user password:&quot;</span><span class="p">)</span>
+<span class="n">df_muni_preds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">date_range</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DATE</span><span class="o">=</span><span class="n">date</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">df_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">coerce_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_tmp</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;DATE&quot;</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
+    <span class="n">df_muni_preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_tmp</span><span class="p">)</span>
 
-<span class="c1"># Get the dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="n">read_csv_sftp</span><span class="p">(</span>
-    <span class="n">hostname</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-    <span class="n">port</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
-    <span class="n">username</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
-    <span class="n">remotepath</span><span class="o">=</span><span class="n">contentUrl_path</span><span class="p">,</span>
-<span class="p">)</span>
-
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_muni_preds</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -498,12 +419,21 @@ name and password to ssh-access a remote machine.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save reports on CSV or parquet</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MOSQUITO_TYPE</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save on CSV or parquet</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/muni_preds&quot;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>  <span class="c1"># x10 size if compared with the dataframe</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make the plot relative to the Solórzano municipality.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;NAMEUNIT == &#39;Solórzano&#39;&quot;</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">,</span> <span class="s2">&quot;ma_prob_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;ma_prob_mean_codnut3&quot;</span><span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;DATE&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Probability&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -535,19 +465,12 @@ name and password to ssh-access a remote machine.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../meta_ipynb/model_tables.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../meta_ipynb/muni_preds.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Metadata table</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../meta_ipynb/muni_preds.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Metadata table</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

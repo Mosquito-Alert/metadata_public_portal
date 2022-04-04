@@ -37,13 +37,15 @@ Code-examples could be executed from a Binder interactive session: [![Binder](ht
 
 | Dataset | Project | Description | License  | Example | Format |
 | ------- |:-------:| :-----------|:--------:|:-------:|:------:|
-| {doc}`reports <../meta_ipynb/reports>` | MosquitoAlert | Yearly validated reports of bites, breeding sites and adult mosquito encounters. | Public CC0-1.0  | {doc}`✔ <../notebooks/reports>` | `.json` `.csv` |
+| {doc}`reports <../meta_ipynb/reports>` | MosquitoAlert | Yearly validated reports of bites, breeding sites and adult mosquito encounters. | Public CC0-1.0  | {doc}`✔ <../notebooks/reports>` | `.json`|
 | {doc}`reports_raw <../meta_ipynb/reports_raw>` | MosquitoAlert | Yearly validated and not validated reports. Available on demand for research purposes only.| Private  | <r>✖</r> | `.Rds` |
 | {doc}`tigapics <../meta_ipynb/tigapics>` | MosquitoAlert | Pictures of adult mosquitos and breeding sites. Classification labels are provided for ML training for the pictures of mosquitos visualized on the MosquitoAlert map. | Public CC0-1.0 | {doc}`✔ <../notebooks/tigapics>` | `.jpeg` `.png` |
 | {doc}`sampling_effort <../meta_ipynb/sampling_effort>` | MosquitoAlert| Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. | Public CC0-1.0 | {doc}`✔ <../notebooks/sampling_effort>` | `.csv` |
 | {doc}`user_locations <../meta_ipynb/user_locations>` | MosquitoAlert | Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. | Private | <r>✖</r> | `.Rds`|
 | {doc}`analytic_tables <../meta_ipynb/analytic_tables>` | MosquitoAlert| Tables from Mosquito Alert database selected for analytic purposes. Available on demand for research purposes only since it could contain user sensible information. | Private | {doc}`✔ <../notebooks/analytic_tables>` | `.csv` |
+| {doc}`photos_clean <../meta_ipynb/photos_clean>` | MosquitoAlert| Identifier references to report pictures that appear on the public MA webmap. This is a public version of the _tigaserver_app_photo_ dataset of the _analytic_tables_ catalog. | Public CC0-1.0 | {doc}`✔ <../notebooks/photos_clean>` | `.csv` |
 | {doc}`model_tables <../meta_ipynb/model_tables>` | MosquitoAlert | Results from the Bayesian multilevel model that feed the Mosquito Alert raster maps. | Public CC0-1.0 | {doc}`✔ <../notebooks/model_tables>` | `.csv` |
+| {doc}`muni_preds <../meta_ipynb/muni_preds>` | MosquitoAlert | Daily estimates of Mosquito Alert probabilities for _Ae. albopictus_ in Spain, aggregated by municipality. | Public CC0-1.0 | {doc}`✔ <../notebooks/muni_preds>` | `.json` |
 
 ### 2.3. Interoperability
 

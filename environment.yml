@@ -15,7 +15,9 @@ dependencies:
   - matplotlib
 # netCDF datasets
 #  - xarray
+#  - dask
 #  - h5netcdf
+#  - netcdf4
 #  - cartopy
 #  - cdsapi
 # Pip installs

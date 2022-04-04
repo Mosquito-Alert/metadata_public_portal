@@ -2,12 +2,16 @@
 <html>
  <head>
   <style>
-   #hidden {
-        display: none;
+   #hidden_row {
+        background-color: #fff099ff;
         }
 
         #collapseButton:hover {
-        background-color: #92a2d1;
+        background-color: #ffdd18ff;
+        }
+
+        #hidden {
+        display: none;
         }
   </style>
   <script src="../_static/extra_interact.js" type="text/javascript">
@@ -43,7 +47,7 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "mosquitoalert_webserver",
+          "name": "mosquitoalert_webserver_sftp",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
           "workExample": "./notebooks/analytic_tables.py",
@@ -117,7 +121,7 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "mosquitoalert_webserver",
+          "name": "mosquitoalert_webserver_sftp",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
           "workExample": "./notebooks/analytic_tables.py",
@@ -311,11 +315,13 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "webserver_mosquitoalert_com",
+          "name": "mosquitoalert_webserver_sftp",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
-          "url": "./notebooks/analytic_tables.py",
-          "contentUrl": "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_fix.csv",
+          "workExample": "./notebooks/analytic_tables.py",
+          "contentUrl": [
+            "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_fix.csv"
+          ],
           "contentSize": "~160MB"
         }
       ],
@@ -383,13 +389,12 @@
       "distribution": [
         {
           "@type": "DataDownload",
-          "name": "mosquitoalert_webserver",
+          "name": "mosquitoalert_webserver_sftp",
           "description": "Distribution by SFTP protocol from MosquitoAlert webserver.",
           "encodingFormat": "CSV",
           "workExample": "./notebooks/analytic_tables.py",
           "contentUrl": [
-            "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_photo.csv",
-            "sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/earlyImageService/mosquito_alert_photos_clean.csv"
+            "sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_photo.csv"
           ],
           "contentSize": "~6MB"
         }
@@ -519,7 +524,7 @@ const thebe_selector_output = ".output, .cell_output"
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
        <link href="../notebooks/analytic_tables.html" rel="next" title="DataCatalog: analytic_tables">
-        <link href="../notebooks/user_locations.html" rel="prev" title="Dataset: user_locations"/>
+        <link href="user_locations.html" rel="prev" title="Metadata table"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
         <!-- Google Analytics -->
@@ -588,29 +593,17 @@ const thebe_selector_output = ".output, .cell_output"
             </ul>
            </input>
           </li>
-          <li class="toctree-l2 has-children">
+          <li class="toctree-l2">
            <a class="reference internal" href="reports_raw.html">
             reports_raw
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-           <label for="toctree-checkbox-3">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/reports_raw.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 has-children">
            <a class="reference internal" href="tigapics.html">
             tigapics
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-           <label for="toctree-checkbox-4">
+           <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+           <label for="toctree-checkbox-3">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -626,8 +619,8 @@ const thebe_selector_output = ".output, .cell_output"
            <a class="reference internal" href="sampling_effort.html">
             sampling_effort
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-           <label for="toctree-checkbox-5">
+           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+           <label for="toctree-checkbox-4">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -639,29 +632,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 has-children">
+          <li class="toctree-l2">
            <a class="reference internal" href="user_locations.html">
             user_locations
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-           <label for="toctree-checkbox-6">
-            <i class="fas fa-chevron-down">
-            </i>
-           </label>
-           <ul>
-            <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/user_locations.html">
-              code-example
-             </a>
-            </li>
-           </ul>
           </li>
           <li class="toctree-l2 current active has-children">
            <a class="current reference internal" href="#">
             analytic_tables
            </a>
-           <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-           <label for="toctree-checkbox-7">
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+           <label for="toctree-checkbox-5">
             <i class="fas fa-chevron-down">
             </i>
            </label>
@@ -674,8 +655,42 @@ const thebe_selector_output = ".output, .cell_output"
            </ul>
           </li>
           <li class="toctree-l2 has-children">
+           <a class="reference internal" href="photos_clean.html">
+            photos_clean
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+           <label for="toctree-checkbox-6">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/photos_clean.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
            <a class="reference internal" href="model_tables.html">
             model_tables
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+           <label for="toctree-checkbox-7">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/model_tables.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="muni_preds.html">
+            muni_preds
            </a>
            <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
            <label for="toctree-checkbox-8">
@@ -684,7 +699,7 @@ const thebe_selector_output = ".output, .cell_output"
            </label>
            <ul>
             <li class="toctree-l3">
-             <a class="reference internal" href="../notebooks/model_tables.html">
+             <a class="reference internal" href="../notebooks/muni_preds.html">
               code-example
              </a>
             </li>
@@ -928,7 +943,7 @@ const thebe_selector_output = ".output, .cell_output"
                     Stores all user's Mosquito Alert application scores and some general information about the users
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -956,7 +971,7 @@ const thebe_selector_output = ".output, .cell_output"
                           name
                          </th>
                          <td style="text-align:left">
-                          mosquitoalert_webserver
+                          mosquitoalert_webserver_sftp
                          </td>
                         </tr>
                         <tr>
@@ -1009,7 +1024,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -1371,7 +1386,7 @@ const thebe_selector_output = ".output, .cell_output"
                     Register of Mosquito Alert reports made by users at a given time and location with a given mobile device. Only the report ID is stored and not the whole report data content.
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -1399,7 +1414,7 @@ const thebe_selector_output = ".output, .cell_output"
                           name
                          </th>
                          <td style="text-align:left">
-                          mosquitoalert_webserver
+                          mosquitoalert_webserver_sftp
                          </td>
                         </tr>
                         <tr>
@@ -1452,7 +1467,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -2512,7 +2527,7 @@ const thebe_selector_output = ".output, .cell_output"
                     Sampling effort measurement given by Mosquito Alert users location
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -2540,7 +2555,7 @@ const thebe_selector_output = ".output, .cell_output"
                           name
                          </th>
                          <td style="text-align:left">
-                          webserver_mosquitoalert_com
+                          mosquitoalert_webserver_sftp
                          </td>
                         </tr>
                         <tr>
@@ -2561,7 +2576,7 @@ const thebe_selector_output = ".output, .cell_output"
                         </tr>
                         <tr>
                          <th>
-                          url
+                          workExample
                          </th>
                          <td style="text-align:left">
                           ./notebooks/analytic_tables.py
@@ -2572,7 +2587,11 @@ const thebe_selector_output = ".output, .cell_output"
                           contentUrl
                          </th>
                          <td style="text-align:left">
-                          sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_fix.csv
+                          <ul>
+                           <li>
+                            sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_fix.csv
+                           </li>
+                          </ul>
                          </td>
                         </tr>
                         <tr>
@@ -2589,7 +2608,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -2949,7 +2968,7 @@ const thebe_selector_output = ".output, .cell_output"
                     Identifier references to Mosquito Alert report pictures
                    </td>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     distribution
                    </th>
@@ -2977,7 +2996,7 @@ const thebe_selector_output = ".output, .cell_output"
                           name
                          </th>
                          <td style="text-align:left">
-                          mosquitoalert_webserver
+                          mosquitoalert_webserver_sftp
                          </td>
                         </tr>
                         <tr>
@@ -3013,9 +3032,6 @@ const thebe_selector_output = ".output, .cell_output"
                            <li>
                             sftp://epidata@webserver.mosquitoalert.com:9122/tmp/tigaserver_app_photo.csv
                            </li>
-                           <li>
-                            sftp://epidata@webserver.mosquitoalert.com:9122/home/epidata/earlyImageService/mosquito_alert_photos_clean.csv
-                           </li>
                           </ul>
                          </td>
                         </tr>
@@ -3033,7 +3049,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </tr>
-                  <tr>
+                  <tr id="hidden_row">
                    <th>
                     variableMeasured
                    </th>
@@ -3235,7 +3251,7 @@ const thebe_selector_output = ".output, .cell_output"
                </ul>
               </td>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                measurementTechnique
               </th>
@@ -3258,7 +3274,7 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
               </tr>
              </tr>
-             <tr>
+             <tr id="hidden_row">
               <th>
                creator
               </th>
@@ -3521,7 +3537,7 @@ const thebe_selector_output = ".output, .cell_output"
        </div>
        <!-- Previous / next buttons -->
        <div class="prev-next-area">
-        <a class="left-prev" href="../notebooks/user_locations.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="user_locations.html" id="prev-link" title="previous page">
          <i class="fas fa-angle-left">
          </i>
          <div class="prev-next-info">
@@ -3529,10 +3545,7 @@ const thebe_selector_output = ".output, .cell_output"
            previous
           </p>
           <p class="prev-next-title">
-           Dataset:
-           <em>
-            user_locations
-           </em>
+           Metadata table
           </p>
          </div>
         </a>

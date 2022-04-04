@@ -25,110 +25,107 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@type": "Dataset",
-  "name": "user_locations",
-  "conditionsOfAccess": "Private",
-  "description": "Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.",
-  "license": "All rights reserved",
+  "name": "muni_preds",
+  "conditionsOfAccess": "Public",
+  "description": "Daily estimates of Mosquito Alert probabilities for Ae. albopictus in Spain, aggregated by municipality. The day for which these estimates are made is shown in last 10 characters of the file name (before the file extension) in the format YYYY-MM-DD. So, for example, muni_preds_2018-02-01.json contains estimates for 1 February 2018.",
+  "url": "https://github.com/Mosquito-Alert/MosquitoAlertES/tree/main/data",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
     "Palmer, J. R. B., “Citizen science provides a reliable and scalable tool to track disease-carrying mosquitoes”, Nature Communications, vol. 8, 2017. doi:10.1038/s41467-017-00914-9"
   ],
-  "temporalCoverage": "2014/..",
+  "temporalCoverage": "2018-01-01/..",
   "spatialCoverage": {
     "@type": "Place",
-    "name": "Worldwide",
-    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+    "name": "Spain",
+    "sameAs": "https://en.wikipedia.org/wiki/Spain"
   },
   "distribution": [
     {
       "@type": "DataDownload",
-      "name": "cluster_ceab",
-      "description": "Distribution by SFTP protocol from CEAB cluster.",
-      "encodingFormat": "RDS",
+      "name": "mosquitoalert_github",
+      "description": "Distribution from Mosquito-Alert/MosquitoAlertES Github repository",
+      "encodingFormat": "JSON",
       "workExample": "",
       "contentUrl": [
-        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds",
-        "sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds"
+        "https://raw.githubusercontent.com/Mosquito-Alert/MosquitoAlertES/main/data/muni_preds_{DATE}.json"
       ],
-      "contentSize": "8-15MB"
+      "contentSize": "230kB"
     }
   ],
   "variableMeasured": [
     {
       "@type": "PropertyValue",
-      "name": "year",
-      "description": "Year in which the background location was recorded.",
-      "unitText": "years",
-      "qudt:dataType": "xsd:string"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "biweek",
-      "description": "An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.",
-      "unitText": "biweek",
+      "name": "NATCODE",
+      "description": "Unique 11 digit code for municipality taken from Instituto Geográfico Nacional (IGN) Spanish municipality polygons dataset: recintos_municipales_inspire_peninbal_etrs89. The code is formed, from left to right, from codes for country (2 digits), autonomous communit (2 digits), province (2 ditis), and municipality (5 digits).",
       "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
-      "name": "TigacellID",
-      "description": "Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).",
-      "unitText": "",
+      "name": "NAMEUNIT",
+      "description": "Municopality name, taken from Instituto Geográfico Nacional (IGN) Spanish municipality polygons dataset: recintos_municipales_inspire_peninbal_etrs89.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
-      "name": "masked_lon",
-      "description": "Longitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "masked_lat",
-      "description": "Latitude of the SW corner of the sampling cell.",
-      "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "participation_days",
-      "description": "Number of days elapsed between the time of the participant's first background location and the time of this one",
-      "unitText": "days",
-      "qudt:dataType": "xsd:long"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "fix_date",
-      "description": "The date on which this location was recorded. YYYY-MM-DD",
-      "unitText": "",
-      "qudt:dataType": "xsd:date"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "user_coverage_uuid",
-      "description": "Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).",
-      "unitText": "",
+      "name": "CODNUT1",
+      "description": "NUTS 1 region containing the municipality. NUTS 1 refers to 'major socio-economic regions' and for Spain IGN identifies it as 'Grandes Regiones'.",
       "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "CODNUT2",
+      "description": "NUTS 2 region containing the municipality. NUTS 2 refers to 'basic regions for the application of regional policies' and for Spain IGN identifies it as 'CCAA'.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "CODNUT3",
+      "description": "NUTS 3 region containing the municipality. NUTS 4 refers to 'small regions for specific diagnoses' and for Spain IGN identifies it as 'Provincia'.",
+      "qudt:dataType": "xsd:string"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "ma_prob_mean",
+      "description": "Mosquito Alert Ae. albopictus probability estimated for the municipality. The estimate is made by first estimating the probabilities of at least one valid Ae. albopictus report being submitted to Mosquito Alert on the day in question from a grid of points across Spain at 1 km intervals, assuming a fixed, uniform sampling effort of 0.025. Point estimates are then averaged across municipalities.",
+      "qudt:dataType": "xsd:decimal",
+      "maxValue": 1,
+      "minValue": 0
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "ma_prob_mean_codnut3",
+      "description": "Mosquito Alert Ae. albopictus probability estimated for the NUTS 3 region (province) containing the municipality. The estimates are made in the same way as for ma_prob_mean, but with points averaged across provinces.",
+      "qudt:dataType": "xsd:decimal",
+      "maxValue": 1,
+      "minValue": 0
     }
+  ],
+  "measurementTechnique": [
+    ""
   ],
   "creator": [
     {
-      "@type": "Organization",
-      "@id": "CEAB",
-      "name": "Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)"
+      "@type": "Project",
+      "@id": "MA",
+      "name": "Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@mosquitoalert.com",
+        "url": "http://www.mosquitoalert.com/"
+      }
     },
     {
       "@type": "Person",
       "@id": "JP",
-      "name": "Palmer, John Rossman Bertholf"
-    },
-    {
-      "@type": "Person",
-      "@id": "AE",
-      "name": "Escobar Rúbies, Agustí"
+      "name": "Palmer, John Rossman Bertholf",
+      "identifier": "https://orcid.org/0000-0002-2648-7860",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "principal investigator",
+        "email": "john.palmer@upf.edu",
+        "url": "https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/"
+      }
     }
-  ],
-  "measurementTechnique": [
-    "Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs \"face-to-face data collection events\" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event."
   ]
 }
   </script>
@@ -180,8 +177,8 @@ const thebe_selector_output = ".output, .cell_output"
       </script>
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
-       <link href="analytic_tables.html" rel="next" title="Metadata table">
-        <link href="../notebooks/sampling_effort.html" rel="prev" title="Dataset: sampling_effort"/>
+       <link href="../notebooks/muni_preds.html" rel="next" title="Dataset: muni_preds">
+        <link href="../notebooks/model_tables.html" rel="prev" title="DataCatalog: model_tables"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
         <!-- Google Analytics -->
@@ -289,8 +286,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 current active">
-           <a class="current reference internal" href="#">
+          <li class="toctree-l2">
+           <a class="reference internal" href="user_locations.html">
             user_locations
            </a>
           </li>
@@ -345,11 +342,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 has-children">
-           <a class="reference internal" href="muni_preds.html">
+          <li class="toctree-l2 current active has-children">
+           <a class="current reference internal" href="#">
             muni_preds
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
            <label for="toctree-checkbox-8">
             <i class="fas fa-chevron-down">
             </i>
@@ -397,7 +394,7 @@ const thebe_selector_output = ".output, .cell_output"
          <div class="dropdown-buttons">
           <!-- ipynb file if we had a myst markdown file -->
           <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/user_locations.ipynb">
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/muni_preds.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
@@ -423,7 +420,7 @@ const thebe_selector_output = ".output, .cell_output"
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/user_locations.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/muni_preds.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -485,7 +482,7 @@ const thebe_selector_output = ".output, .cell_output"
                name
               </th>
               <td style="text-align:left">
-               user_locations
+               muni_preds
               </td>
              </tr>
              <tr>
@@ -493,7 +490,7 @@ const thebe_selector_output = ".output, .cell_output"
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Private
+               Public
               </td>
              </tr>
              <tr>
@@ -501,7 +498,15 @@ const thebe_selector_output = ".output, .cell_output"
                description
               </th>
               <td style="text-align:left">
-               Background tracks of Mosquito Alert participants in 0.05 and 0.025 degree longitude/latitude sampling cells with minimal processing. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset contains data only on Android participants until 2020, when background tracking was implemented in the iOS app as well.
+               Daily estimates of Mosquito Alert probabilities for Ae. albopictus in Spain, aggregated by municipality. The day for which these estimates are made is shown in last 10 characters of the file name (before the file extension) in the format YYYY-MM-DD. So, for example, muni_preds_2018-02-01.json contains estimates for 1 February 2018.
+              </td>
+             </tr>
+             <tr>
+              <th>
+               url
+              </th>
+              <td style="text-align:left">
+               https://github.com/Mosquito-Alert/MosquitoAlertES/tree/main/data
               </td>
              </tr>
              <tr>
@@ -509,7 +514,7 @@ const thebe_selector_output = ".output, .cell_output"
                license
               </th>
               <td style="text-align:left">
-               All rights reserved
+               https://creativecommons.org/publicdomain/zero/1.0/
               </td>
              </tr>
              <tr>
@@ -529,7 +534,7 @@ const thebe_selector_output = ".output, .cell_output"
                temporalCoverage
               </th>
               <td style="text-align:left">
-               2014/..
+               2018-01-01/..
               </td>
              </tr>
              <tr>
@@ -551,7 +556,7 @@ const thebe_selector_output = ".output, .cell_output"
                   name
                  </th>
                  <td style="text-align:left">
-                  Worldwide
+                  Spain
                  </td>
                 </tr>
                 <tr>
@@ -559,7 +564,7 @@ const thebe_selector_output = ".output, .cell_output"
                   sameAs
                  </th>
                  <td style="text-align:left">
-                  https://www.wikidata.org/wiki/Q13780930
+                  https://en.wikipedia.org/wiki/Spain
                  </td>
                 </tr>
                </table>
@@ -593,7 +598,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     cluster_ceab
+                     mosquitoalert_github
                     </td>
                    </tr>
                    <tr>
@@ -601,7 +606,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Distribution by SFTP protocol from CEAB cluster.
+                     Distribution from Mosquito-Alert/MosquitoAlertES Github repository
                     </td>
                    </tr>
                    <tr>
@@ -609,7 +614,7 @@ const thebe_selector_output = ".output, .cell_output"
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     RDS
+                     JSON
                     </td>
                    </tr>
                    <tr>
@@ -626,10 +631,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <td style="text-align:left">
                      <ul>
                       <li>
-                       sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations.Rds
-                      </li>
-                      <li>
-                       sftp://j.palmer@cluster-ceab.ceab.csic.es/home/usuaris/j.palmer/research/mosquito_model_data_prep/data/proc/user_locations_small_cell.Rds
+                       https://raw.githubusercontent.com/Mosquito-Alert/MosquitoAlertES/main/data/muni_preds_{DATE}.json
                       </li>
                      </ul>
                     </td>
@@ -639,7 +641,7 @@ const thebe_selector_output = ".output, .cell_output"
                      contentSize
                     </th>
                     <td style="text-align:left">
-                     8-15MB
+                     230kB
                     </td>
                    </tr>
                   </table>
@@ -676,7 +678,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     year
+                     NATCODE
                     </td>
                    </tr>
                    <tr>
@@ -684,59 +686,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Year in which the background location was recorded.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     years
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:string
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     biweek
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     An integer representing the biweek in which the background location was recorded. Biweeks are counted as two-week intervals beginning on 1 January 2014.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     biweek
+                     Unique 11 digit code for municipality taken from Instituto Geográfico Nacional (IGN) Spanish municipality polygons dataset: recintos_municipales_inspire_peninbal_etrs89. The code is formed, from left to right, from codes for country (2 digits), autonomous communit (2 digits), province (2 ditis), and municipality (5 digits).
                     </td>
                    </tr>
                    <tr>
@@ -764,7 +714,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     TigacellID
+                     NAMEUNIT
                     </td>
                    </tr>
                    <tr>
@@ -772,14 +722,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Unique identifier of the sampling cell (formed simply by pasting together masked_lon and masked_lat, seperated by an underscore (_).
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
+                     Municopality name, taken from Instituto Geográfico Nacional (IGN) Spanish municipality polygons dataset: recintos_municipales_inspire_peninbal_etrs89.
                     </td>
                    </tr>
                    <tr>
@@ -807,7 +750,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     masked_lon
+                     CODNUT1
                     </td>
                    </tr>
                    <tr>
@@ -815,189 +758,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Longitude of the SW corner of the sampling cell.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     degrees
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:decimal
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     masked_lat
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Latitude of the SW corner of the sampling cell.
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     degrees
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:decimal
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     participation_days
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Number of days elapsed between the time of the participant's first background location and the time of this one
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                     days
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:long
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     fix_date
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     The date on which this location was recorded. YYYY-MM-DD
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     qudt:dataType
-                    </th>
-                    <td style="text-align:left">
-                     xsd:date
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     PropertyValue
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     user_coverage_uuid
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Unique random UUID assigned to the participant when the app is first activated and linked to their background tracks. This identifier is intentionally different from the reporting UUID for privacy purposes (so that background tracks and reports cannot be linked).
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     unitText
-                    </th>
-                    <td style="text-align:left">
+                     NUTS 1 region containing the municipality. NUTS 1 refers to 'major socio-economic regions' and for Spain IGN identifies it as 'Grandes Regiones'.
                     </td>
                    </tr>
                    <tr>
@@ -1009,6 +770,201 @@ const thebe_selector_output = ".output, .cell_output"
                     </td>
                    </tr>
                   </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     CODNUT2
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     NUTS 2 region containing the municipality. NUTS 2 refers to 'basic regions for the application of regional policies' and for Spain IGN identifies it as 'CCAA'.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     CODNUT3
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     NUTS 3 region containing the municipality. NUTS 4 refers to 'small regions for specific diagnoses' and for Spain IGN identifies it as 'Provincia'.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:string
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     ma_prob_mean
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Mosquito Alert Ae. albopictus probability estimated for the municipality. The estimate is made by first estimating the probabilities of at least one valid Ae. albopictus report being submitted to Mosquito Alert on the day in question from a grid of points across Spain at 1 km intervals, assuming a fixed, uniform sampling effort of 0.025. Point estimates are then averaged across municipalities.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:decimal
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     maxValue
+                    </th>
+                    <td style="text-align:left">
+                     1
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     minValue
+                    </th>
+                    <td style="text-align:left">
+                     0
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     ma_prob_mean_codnut3
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Mosquito Alert Ae. albopictus probability estimated for the NUTS 3 region (province) containing the municipality. The estimates are made in the same way as for ma_prob_mean, but with points averaged across provinces.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:decimal
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     maxValue
+                    </th>
+                    <td style="text-align:left">
+                     1
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     minValue
+                    </th>
+                    <td style="text-align:left">
+                     0
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr id="hidden_row">
+              <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
                  </li>
                 </ul>
                </td>
@@ -1034,7 +990,7 @@ const thebe_selector_output = ".output, .cell_output"
                      @type
                     </th>
                     <td style="text-align:left">
-                     Organization
+                     Project
                     </td>
                    </tr>
                    <tr>
@@ -1042,7 +998,7 @@ const thebe_selector_output = ".output, .cell_output"
                      @id
                     </th>
                     <td style="text-align:left">
-                     CEAB
+                     MA
                     </td>
                    </tr>
                    <tr>
@@ -1050,7 +1006,40 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     Consejo Superior de Investigaciones Científicas - Centro de Estudios Avanzados de Blanes (CSIC-CEAB)
+                     Mosquito Alert, Proyecto Coordinado por CREAF, CEAB-CSIC e ICREA
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        info@mosquitoalert.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        http://www.mosquitoalert.com/
+                       </td>
+                      </tr>
+                     </table>
                     </td>
                    </tr>
                   </table>
@@ -1081,55 +1070,56 @@ const thebe_selector_output = ".output, .cell_output"
                      Palmer, John Rossman Bertholf
                     </td>
                    </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-2648-7860
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        principal investigator
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        john.palmer@upf.edu
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.upf.edu/web/gritim/entry/-/-/50722/adscripcion/john-rossman-bertholf-palmer/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
                   </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Person
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     AE
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     Escobar Rúbies, Agustí
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                </ul>
-               </td>
-              </tr>
-             </tr>
-             <tr id="hidden_row">
-              <th>
-               measurementTechnique
-              </th>
-              <td id="collapseButton" onclick="collapse(this)">
-               <i class="fas fa-chevron-down">
-               </i>
-              </td>
-              <tr id="hidden">
-               <td>
-               </td>
-               <td style="text-align:left">
-                <ul>
-                 <li>
-                  Sampling. Anonymous citizen scientists send reports of possible observations of mosquitoes, their breeding sites and bites using the open source and free smartphone app Mosquito Alert. To send an observation, participants need to answer a small questionnaire (taxonomic questions in the case of mosquitoes or some descriptors in the case of breeding sites), indicate the location (current participant location or selecting it on a map), add a picture (optional) and notes or comments (optional). The app and project website offers information to help identify the target species and take good pictures that allow a proper post validation from entomologists (see more information onQuality Control section). Participants can edit or remove the observation at any time (only if the participant still maintains the Mosquito Alert app in their phone). The last version of each report is considered the prevailing information. There is no pre-set sampling frequency: participants can send as many data as they like. The project runs "face-to-face data collection events" mainly in schools, meaning that in some places and for a given time period, data sampling might be more intense. This is also true when and where there has been a particular dissemination event.
                  </li>
                 </ul>
                </td>
@@ -1138,6 +1128,8 @@ const thebe_selector_output = ".output, .cell_output"
             </table>
            </div>
           </div>
+         </div>
+         <div class="toctree-wrapper compound">
          </div>
         </div>
         <script type="text/x-thebe-config">
@@ -1164,7 +1156,7 @@ const thebe_selector_output = ".output, .cell_output"
        </div>
        <!-- Previous / next buttons -->
        <div class="prev-next-area">
-        <a class="left-prev" href="../notebooks/sampling_effort.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="../notebooks/model_tables.html" id="prev-link" title="previous page">
          <i class="fas fa-angle-left">
          </i>
          <div class="prev-next-info">
@@ -1172,20 +1164,23 @@ const thebe_selector_output = ".output, .cell_output"
            previous
           </p>
           <p class="prev-next-title">
-           Dataset:
+           DataCatalog:
            <em>
-            sampling_effort
+            model_tables
            </em>
           </p>
          </div>
         </a>
-        <a class="right-next" href="analytic_tables.html" id="next-link" title="next page">
+        <a class="right-next" href="../notebooks/muni_preds.html" id="next-link" title="next page">
          <div class="prev-next-info">
           <p class="prev-next-subtitle">
            next
           </p>
           <p class="prev-next-title">
-           Metadata table
+           Dataset:
+           <em>
+            muni_preds
+           </em>
           </p>
          </div>
          <i class="fas fa-angle-right">
