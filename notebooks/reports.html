@@ -435,23 +435,92 @@ resolve to the most recent version of the data.</p>
 it as a file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge all reports into a dataframe</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge all reports into a dataframe. Json is a nested data format, thus one should</span>
+<span class="c1"># decide to what level data should be unrolled (i.e. json sublevels are transformed</span>
+<span class="c1"># to new columns). Note that json flattening implies a bigger table with many columns.</span>
+<span class="c1"># Here we provide two options: a compact table (level = 0) and fully expanded</span>
+<span class="c1"># table (level = None). For more information, see Pandas function</span>
+<span class="c1"># [_json_normalize_](https://pandas.pydata.org/docs/reference/api/pandas.json_normalize.html)</span>
+
+<span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># normalize only the root level (keys-&gt;column names, values-&gt;table values)</span>
+<span class="c1"># level = None  # normalize all levels</span>
+
 <span class="n">df_reports</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">df_responses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">reports</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;all_reports&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-    <span class="n">df_reports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">coerce_float</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">df_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">max_level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">df_reports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_dict</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">max_level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;responses&quot;</span><span class="p">])</span>
+        <span class="n">df_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_reports</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">level</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">df_responses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_responses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If we normalize all the levels (i.e. level = None), than the <em>responses</em> attribute
+of reports dataset is a list of dictionaries and thus it is bypassed by
+<em>json_normalize</em>. In this case, we need to explicitly flatten <em>responses</em>
+and concatenate with all the other attributes. On the other hand, if the table
+is compact (i.e. level = 0), we could use <em>json_normalize</em> to unroll the attributes
+of our interest but first we need to transform them in a dictionary data format.</p>
+</div>
+<p>Let’s make an example on how to unroll nested attributes. Suppose that would
+like to study mosquito bites in Netherlands. This information is given by the
+attribute <em>responses</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unroll the _responses_ attribute if we only unrolled the root level</span>
+<span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;responses&quot;</span>
+    <span class="n">df_responses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[[</span><span class="n">col</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">),</span> <span class="n">record_path</span><span class="o">=</span><span class="n">col</span>
+    <span class="p">)</span>
+
+<span class="c1"># Join responses with some usefull attributes from the main table to filter and</span>
+<span class="c1"># group bites over space and time</span>
+<span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;version_UUID&quot;</span><span class="p">,</span> <span class="s2">&quot;creation_year&quot;</span><span class="p">,</span> <span class="s2">&quot;creation_month&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;country&quot;</span><span class="p">]</span>
+<span class="n">df_responses</span> <span class="o">=</span> <span class="n">df_responses</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;report&quot;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;version_UUID&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;m:m&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;report&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Transform float types to integers. Note that Int&#39; has a NaN type, while &#39;int&#39;</span>
+<span class="c1"># do not have NaNs thus filtering is not possible if missing values are present.</span>
+<span class="n">df_responses</span> <span class="o">=</span> <span class="n">df_responses</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;Int16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;question_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Int16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;answer_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Int16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;answer_value&quot;</span><span class="p">:</span> <span class="s2">&quot;Int16&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Filter for total mosquito bites registered by a user in Netherlands</span>
+<span class="n">df_bite</span> <span class="o">=</span> <span class="n">df_responses</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;type == &#39;bite&#39; &amp; country == 6 &amp; question_id == 1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Count bites on monthly basis grouped by year</span>
+<span class="n">df_bite_stats</span> <span class="o">=</span> <span class="n">df_bite</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;creation_year&quot;</span><span class="p">,</span> <span class="s2">&quot;creation_month&quot;</span><span class="p">])[</span>
+    <span class="s2">&quot;answer_value&quot;</span>
+<span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1">#  Plot the temporal coverage of bites for Netherlands on log-scale</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">df_bite_stats</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Bite counts&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Some attributes of reports are key-value json-like data, that need additional
-tables to be fully comprehensive (for example, tiger_responses). Since
-multilanguage translations are available, we make language as index.</p>
+tables to be fully comprehensive (for example, tiger_responses, responses, etc).
+Since multilanguage translations are available, we make language as index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reports_translation</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;translation_dict&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
@@ -475,12 +544,38 @@ multilanguage translations are available, we make language as index.</p>
 </div>
 </div>
 </div>
+<p>Imagine that you need to translate the questions and answers of mosquito bites
+(i.e. <em>df_responses</em> dataframe) in another language. The above translation table
+could do this job for you.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example, let&#39;s translate to English.</span>
+<span class="n">lang</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+<span class="n">translation</span> <span class="o">=</span> <span class="n">df_reports_translation</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="n">df_responses</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">translation</span><span class="p">)</span>
+<span class="n">questions</span> <span class="o">=</span> <span class="n">df_responses</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">translation</span><span class="p">)</span>
+<span class="n">df_responses</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;translated_answer_</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span>
+<span class="n">df_responses</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;translated_question_</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">questions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all the reports could be translated since they miss the question and
+answer ID tag due to an older version of the Mosquito Alert mobile app. Starting
+from 2020, translations are available.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save reports on CSV or parquet</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/all_reports&quot;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>  <span class="c1"># x10 size if compared with the dataframe</span>
+
+<span class="c1"># Save the reports responses unrolled</span>
+<span class="n">df_responses</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">_responses.parquet&quot;</span><span class="p">)</span>
+<span class="n">df_responses</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">_responses.csv&quot;</span><span class="p">)</span>
 
 <span class="c1"># Save seports translation on CSV</span>
 <span class="n">df_reports_translation</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">_translation.csv&quot;</span><span class="p">)</span>
