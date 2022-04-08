@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting Started &#8212; Mosquito Alert Data Portal</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mosquito Alert" href="meta/mosquito_alert/intro.html" />
+    <link rel="prev" title="Mosquito Alert Data Portal" href="README_ma.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/icon_DB_2.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README_ma.html">
+   Mosquito Alert Data Portal
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="meta/mosquito_alert/intro.html">
+   Mosquito Alert
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/reports.html">
+     reports
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/reports.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="meta_ipynb/reports_raw.html">
+     reports_raw
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/tigapics.html">
+     tigapics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/tigapics.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/sampling_effort.html">
+     sampling_effort
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/sampling_effort.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="meta_ipynb/user_locations.html">
+     user_locations
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/analytic_tables.html">
+     analytic_tables
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/analytic_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/photos_clean.html">
+     photos_clean
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/photos_clean.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/model_tables.html">
+     model_tables
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/model_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="meta_ipynb/muni_preds.html">
+     muni_preds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="notebooks/muni_preds.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/user_guide.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-metadata">
+   1. Access metadata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-get-the-data">
+   2. How to get the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-variables">
+   3. Dataset variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-code-examples">
+   4. Python code-examples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mybinder-online-service">
+     4.1 MyBinder online service
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-python-environment">
+     4.2 Local Python environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datacatalog-structure">
+   5. DataCatalog structure
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Getting Started</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-metadata">
+   1. Access metadata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-get-the-data">
+   2. How to get the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-variables">
+   3. Dataset variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-code-examples">
+   4. Python code-examples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mybinder-online-service">
+     4.1 MyBinder online service
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-python-environment">
+     4.2 Local Python environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datacatalog-structure">
+   5. DataCatalog structure
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <style>
+    div.center{
+        text-align: center
+    }
+</style>
+<div class="tex2jax_ignore mathjax_ignore section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="access-metadata">
+<h2>1. Access metadata<a class="headerlink" href="#access-metadata" title="Permalink to this headline">¶</a></h2>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part1_goto_metadata.webm" type="video/webm">
+  </video>
+</div>
+<p><a class="reference external" href="https://mosquito-alert.github.io/metadata_public_portal/README_ma.html">Mosquito Alert Data Portal</a> could be accessed from the <a class="reference external" href="http://www.mosquitoalert.com/">Mosquito Alert webpage</a>. In the main menu, hover over <em>Open Data</em> and chose _Mosquito Alert Data Portal and click on the link of the data portal.</p>
+<p>The <em>Accessibility</em> section provides a summary table of the available datasets. The headers of table are:</p>
+<ul class="simple">
+<li><p>Dataset: name of the dataset or data catalog (i.e. collection of datasets)</p></li>
+<li><p>Project: name of the project or general label that is useful to group similar datasets</p></li>
+<li><p>Description: short description of the dataset</p></li>
+<li><p>License: specifies the type of license and the conditions of access (i.e. public or private)</p></li>
+<li><p>Example: availability of a code-example for a given dataset</p></li>
+<li><p>Format: specifies the dataset file format</p></li>
+</ul>
+<p>This table provides a general overview of the datasets. However, to access to an exhaustive description of a dataset (i.e. metadata), just click on the dataset name of interest. Another way to access metadata is to navigate within the
+left-side contents menu. The <em>metadata table</em> of a given dataset attributes are defined by the <em><a class="reference external" href="http://Schema.org">Schema.org</a></em> vocabulary. Some attributes (i.e. <em>distribution</em>, variableMeasured, <em>measurementTechnique</em> and <em>creator</em>) are hidden and should be
+expanded to show the contents.</p>
+</div>
+<div class="section" id="how-to-get-the-data">
+<h2>2. How to get the data<a class="headerlink" href="#how-to-get-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part2_distribution_zenodo.webm" type="video/webm">
+  </video>
+</div>
+<p>Each dataset has a <em>distribution</em> attribute that provides a list of possibles ways to access the dataset (i.e. <em>DataDownload</em> type). For example, the <em>reports</em> dataset has two different ways of access:</p>
+<ul class="simple">
+<li><p>Distribution from Zenodo cloud (i.e. <em>zenodo</em>)</p></li>
+<li><p>Distribution from MosquitoAlert GitHub repository (i.e. <em>mosquitoalert_github</em>)</p></li>
+</ul>
+<p>Both distributions access to the same dataset, but the download and data file read procedures are slightly different. Note that the <em>encodingFormat</em> of <em>zenodo</em> distribution is <code class="docutils literal notranslate"><span class="pre">[JSON].ZIP</span></code>. This means that the dataset is stored as a set (i.e. […]) of <code class="docutils literal notranslate"><span class="pre">.json</span></code> files, compressed in one <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file. On the other hand,  <em>mosquitoalert_github</em> provides direct download for each <code class="docutils literal notranslate"><span class="pre">.json</span></code> file. Thus, the dataset <em>reports</em> downloaded from <em>zenodo</em> should be decompressed and there
+is no way to download only a report for a given year. For this last, the <em>mosquitoalert_github</em> distribution could be used instead, since as detailed below it provides a direct download link to a year-chunk data file.</p>
+<p>The attribute <em>contentUrl</em> provides the link to a dataset download. In case of the <em>zenodo</em> distribution of the dataset <em>reports</em>, this is just a DOI link generated by Zenodo when the dataset was published the first time to the repository. Open this link in a new browser’s tab to access the website of Zenodo where the dataset is stored. From here, it is possible to download a given version of the dataset or just the most recent one.</p>
+<p>In contrast, the <em>contentUrl</em> of the  mosquitoalert_github* distribution has a slightly different format in comparison with <em>zenodo</em>. It is a list of two urls, one for the yearly based <em>reports</em> files and another for a table of language translations. Note that the formatting <code class="docutils literal notranslate"><span class="pre">{YEAR}</span></code> in the first url should be substituted by a string corresponding to the year of interest. For example in <em>Python</em>, this substitution could be simply performed as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="s2">&quot;2015&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://url_path/all_reports</span><span class="si">{YEAR}</span><span class="s2">.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">YEAR</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># &quot;https://url_path/all_reports2015.json&quot;</span>
+</pre></div>
+</div>
+<p>The following clip is another example of how to use a <em>contentUrl</em> with <code class="docutils literal notranslate"><span class="pre">{...}</span></code> is the <em>tigapics_mosquitoalert</em> dataset from the <em>tigapics</em> catalog (see <a class="reference internal" href="#tigapics"><span class="std std-ref">DataCatalog structure</span></a>) if the photo ID is known (see <em>photos_clean</em> dataset).</p>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part6_getTigapics.webm" type="video/webm">
+  </video>
+</div>
+</div>
+<div class="section" id="dataset-variables">
+<h2>3. Dataset variables<a class="headerlink" href="#dataset-variables" title="Permalink to this headline">¶</a></h2>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part3_measurementVariables.webm" type="video/webm">
+  </video>
+</div>
+<p>Dataset variables are described in the <em>measurementVariables</em> metadata attribute. For each variable, a <em>description</em> and data types (i.e. <em>qudt:dataType</em>) are provided. Data types follow the <a class="reference external" href="https://www.w3.org/TR/xmlschema11-2/#typesystem">XML Schema Definition standard</a>. Optionally, units measurement information (i.e. <em>unitText</em> attribute) is also provided for physical quantities.</p>
+</div>
+<div class="section" id="python-code-examples">
+<h2>4. Python code-examples<a class="headerlink" href="#python-code-examples" title="Permalink to this headline">¶</a></h2>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part4_codeExamples.webm" type="video/webm">
+  </video>
+</div>
+<p><em>Python</em> scripts (i.e. jupyter notebooks) gives an example on how to programmatically access and read datasets. The list of available code-examples is provided in the dataset summary table of the <em>Accessability</em> section under the <em>Example</em> header. For a given dataset, for each <em>distribution</em>, a code-example is provided. The attribute <em>workExample</em> just gives a relative path to the code-example which is mainly used for website development purposes.</p>
+<p>To run all the examples, one need to set-up a <em>Python</em> environment on the local machine (see subsection <a class="reference internal" href="#local-env"><span class="std std-ref">Local Python environment</span></a>). However, it is also possible to run the examples relative to a <em>Public</em> datasets on the fly without any local installation of <em>Python</em> since we use <a class="reference external" href="https://mybinder.readthedocs.io/en/latest/introduction.html">MyBinder</a>, an online service for building and sharing reproducible and interactive computational environments (see section <a class="reference internal" href="#mybinder"><span class="std std-ref">MyBinder online service</span></a>).</p>
+<div class="section" id="mybinder-online-service">
+<span id="mybinder"></span><h3>4.1 MyBinder online service<a class="headerlink" href="#mybinder-online-service" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>MyBinder</strong> service could be used only for <em>Public</em> dataset access, since for security reasons it does not allow to fetch data from FTP sites and it is not advisable to type passwords into a running Binder session (e.g. access by SSH to another machine).</p>
+<p>To start a Binder session, follow those steps:</p>
+<ol>
+<li><p>Start a Binder interactive session: <a class="reference external" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata_public_portal/gh-pages"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes, the server could be busy or down for maintenance, thus one should retry to enter.</p>
+</div>
+</li>
+<li><p>Wait for Binder to start-up (few seconds) or to build the image (few minutes)</p></li>
+<li><p>Once in the Binder session starts, navigate the left-side menu to the <code class="docutils literal notranslate"><span class="pre">_sources/notebooks</span></code> folder where the code-example files (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) are stored</p></li>
+<li><p>Open a code-example (e.g. <code class="docutils literal notranslate"><span class="pre">reports.ipynb</span></code>) and chose the <em>Python kernel</em></p></li>
+<li><p>Execute cell codes in order and edit or modify the code if necessary</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not possible to save edited code in a Binder session, thus if needed export the hole file.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="local-python-environment">
+<span id="local-env"></span><h3>4.2 Local Python environment<a class="headerlink" href="#local-python-environment" title="Permalink to this headline">¶</a></h3>
+<p>One way to setup a local Python environment that runs the code-examples is by <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/index.html">Conda</a> package and environment manager. <strong>Conda</strong> uses the same configuration file (<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>) that  <strong>MyBinder</strong> uses, thus both environments are very similar.</p>
+<ol>
+<li><p>Install <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html">Miniconda</a></p></li>
+<li><p>Download the <a class="reference external" href="https://github.com/Mosquito-Alert/metadata_public_portal/archive/refs/heads/gh-pages.zip">Data Portal webpage</a> from the GitHub repository</p></li>
+<li><p>Build a new <em>conda</em> virtual environment given the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> configuration file that can be found in the root directory of the downloaded webpage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env create --name ma_data_portal --file environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Install <strong>Jupyter Lab</strong> to run the code-examples stored in <code class="docutils literal notranslate"><span class="pre">_sources/notebooks/</span></code> folder as notebooks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c conda-forge jupyterlab 
+</pre></div>
+</div>
+</li>
+<li><p>Lunch the Jupyter Lab session:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter lab
+</pre></div>
+</div>
+</li>
+<li><p>Chose the <em>ma_data_portal kernel</em> and run the code-examples in <code class="docutils literal notranslate"><span class="pre">_sources/notebooks</span></code></p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="datacatalog-structure">
+<span id="tigapics"></span><h2>5. DataCatalog structure<a class="headerlink" href="#datacatalog-structure" title="Permalink to this headline">¶</a></h2>
+<div class="center">
+  <video width="80%" controls loop autoplay muted>
+    <source src="./_static/videos/part5_dataCatalog.webm" type="video/webm">
+  </video>
+</div>
+<p>A data catalog is just a list of datasets described by a <em>hasPart</em> attribute. A catalog allows to avoid metadata redundancy and to group similar datasets together. As an example, the <em>tigapics</em> catalog contains datasets of photos generated by the Mosquito Alert application that have common attributes (i.e. <em>license</em>, <em>citation</em>, <em>measurementTechnique</em> and <em>creator</em>). Only the <em>temporalCoverage</em> and <em>spatialCoverage</em> are specified for each dataset since they may differ. The temporal and spatial coverage attributes given at the head of the data catalog gives a general information about the overall coverage.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="README_ma.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Mosquito Alert Data Portal</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="meta/mosquito_alert/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Mosquito Alert</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Mosquito Alert community<br/>
+    
+        &copy; Copyright CC0 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
