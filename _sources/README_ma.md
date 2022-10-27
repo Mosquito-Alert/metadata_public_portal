@@ -19,7 +19,7 @@ CEAB-CSIC has implemented a data management system based on FAIR principles in o
 
 ### 2.1. Findable data
 
-Metadata templates are built on [Google's Schema.org metadata standard](https://schema.org/docs/data-and-datasets.html) following the guidelines from [SOSO](https://github.com/ESIPFed/science-on-schema.org) published by the Earth Science Information Partners and the draft document ["DCAT-AP to Schema.org Mapping"](https://ec-jrc.github.io/dcat-ap-to-schema-org/) published by the *European Commission's Joint Research Centre*.
+Metadata templates are built on [Schema.org metadata standard](https://schema.org/docs/data-and-datasets.html) following the guidelines from [SOSO](https://github.com/ESIPFed/science-on-schema.org) published by the Earth Science Information Partners and the draft document ["DCAT-AP to Schema.org Mapping"](https://ec-jrc.github.io/dcat-ap-to-schema-org/) published by the *European Commission's Joint Research Centre*.
 
 The metadata information relative to a dataset is stored in `.json-ld` files (i.e. JSON for Linking Data) that are validated with Google' [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/u/0/).
 
