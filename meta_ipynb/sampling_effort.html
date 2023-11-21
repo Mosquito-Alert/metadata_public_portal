@@ -27,7 +27,7 @@
   "@type": "Dataset",
   "name": "sampling_effort",
   "conditionsOfAccess": "Public",
-  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
+  "description": "Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.",
   "identifier": "",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
@@ -70,14 +70,14 @@
       "name": "masked_lon",
       "description": "Longitude of the SW corner of the sampling cell.",
       "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "masked_lat",
       "description": "Latitude of the SW corner of the sampling cell.",
       "unitText": "degrees",
-      "qudt:dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
@@ -105,14 +105,14 @@
       "name": "SE_expected",
       "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
       "unitText": "",
-      "qudt:dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "SE",
       "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
       "unitText": "",
-      "qudt:dataType": "xsd:decimal"
+      "qudt:dataType": "xsd:float"
     }
   ],
   "creator": [
@@ -222,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="bd-toc-item active">
        <ul class="nav bd-sidenav">
         <li class="toctree-l1">
-         <a class="reference internal" href="../README_ma.html">
+         <a class="reference internal" href="../README.html">
           Mosquito Alert Data Portal
          </a>
         </li>
@@ -373,6 +373,113 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="mwi.html">
+            mwi
+           </a>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="senscape_traps.html">
+            irideon_senscape_traps
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+           <label for="toctree-checkbox-9">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/senscape_traps.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </li>
+        <li class="toctree-l1 has-children">
+         <a class="reference internal" href="../meta/public_health/intro.html">
+          Public Health
+         </a>
+         <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+         <label for="toctree-checkbox-10">
+          <i class="fas fa-chevron-down">
+          </i>
+         </label>
+         <ul>
+          <li class="toctree-l2">
+           <a class="reference internal" href="dengue.html">
+            dengue
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toctree-l1 has-children">
+         <a class="reference internal" href="../meta/environment/intro.html">
+          Environment
+         </a>
+         <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+         <label for="toctree-checkbox-11">
+          <i class="fas fa-chevron-down">
+          </i>
+         </label>
+         <ul>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="meteocat_xema.html">
+            meteocat_xema
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+           <label for="toctree-checkbox-12">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/meteocat_xema.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="era5h.html">
+            era5h
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+           <label for="toctree-checkbox-13">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/era5h.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="era5m.html">
+            era5m
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+           <label for="toctree-checkbox-14">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/era5m.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="ncep.html">
+            ncep
+           </a>
+          </li>
          </ul>
         </li>
        </ul>
@@ -512,7 +619,7 @@ const thebe_selector_output = ".output, .cell_output"
                description
               </th>
               <td style="text-align:left">
-               Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. The dataset relative to 0.025 degree starts in 2018 while the 0.05 starts in 2014. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.
+               Daily participant counts and sampling effort in 0.025 and 0.05 degree lon/lat sampling cells. The temporal coverage for 0.025 starts from 2018, while for 0.05 degree resolution starts from 2014. This dataset is updated nightly. It can be used for a variety of purposes, including (a) to adjust estimates of mosquito population densities and human-mosquito encounters based on sampling effort, and (b) to better understand the dynamics of citizen scientists' participation. The data is organized spatially by grids of sampling cells, drawn at intervals of 0.05 degree and 0.025 degree latitude and longitude, and it is based on optional anonymous background tracks from the Mosquito Alert app. The dataset includes raw track counts aggregated in sampling cells, along with estimates of sampling effort based on a model of participants' propensity to send any report as a function of the time elapsed since they first began participating.
               </td>
              </tr>
              <tr>
@@ -783,7 +890,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -827,7 +934,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -999,7 +1106,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:float
                     </td>
                    </tr>
                   </table>
@@ -1042,7 +1149,7 @@ const thebe_selector_output = ".output, .cell_output"
                      qudt:dataType
                     </th>
                     <td style="text-align:left">
-                     xsd:decimal
+                     xsd:float
                     </td>
                    </tr>
                   </table>

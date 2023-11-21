@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+   #hidden_row {
+        background-color: #fff099ff;
+        }
+
+        #collapseButton:hover {
+        background-color: #ffdd18ff;
+        }
+
+        #hidden {
+        display: none;
+        }
+  </style>
+  <script src="../_static/extra_interact.js" type="text/javascript">
+  </script>
+  <script type="application/ld+json">
+   {
+  "$schema": "../schema.json",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "Dataset",
+  "name": "era5h",
+  "conditionsOfAccess": "Private",
+  "description": "ERA5 hourly gridded data on single levels from 1979 to present. ERA5 is the fifth generation ECMWF reanalysis for the global climate and weather. ERA5 provides hourly estimates for a large number of atmospheric, ocean-wave and land-surface quantities. ERA5 is updated daily with a latency of about 5 days. In case that serious flaws are detected in this early release (called ERA5T), this data could be different from the final release 2 to 3 months later. Data has been regridded to a regular lat-lon grid of 0.25 degrees for the reanalysis and 0.5 degrees for the uncertainty estimate. This dataset is not intended for general public access since the original row dataset is freely distributed by ECMWF",
+  "license": "Free of charge, worldwide, non-exclusive, royalty free and perpetual. See https://apps.ecmwf.int/datasets/licences/copernicus/",
+  "citation": [
+    "ERA5 hourly data on single levels from 1979 to present [DOI: 10.24381/cds.adbb2d47]"
+  ],
+  "temporalCoverage": "1979-01-01/..",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "cds_api",
+      "description": "Distribution by Climate Data Store API",
+      "encodingFormat": "netCDF",
+      "workExample": "./notebooks/era5.py",
+      "contentUrl": [
+        "https://cds.climate.copernicus.eu/api/v2"
+      ],
+      "contentSize": ""
+    },
+    {
+      "@type": "DataDownload",
+      "name": "cluster_ceab",
+      "description": "Distribution by CSIC-CEAB cluster",
+      "encodingFormat": "netCDF",
+      "workExample": "./notebooks/era5.py",
+      "contentUrl": [
+        "sftp://{USER}@cluster-ceab:/leov1/era5/daily_chunks/masked_{VARIABLE_NAME}_t_{YEAR-MONTH-DAY}.nc"
+      ],
+      "contentSize": "10MB"
+    }
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "2m_temperature",
+      "description": "2 m above ground air temperature",
+      "unitText": "Degree Kelvin",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "2m_dewpoint_temperature",
+      "description": "2 m above ground dew point temperature",
+      "unitText": "Degree Kelvin",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "10m_u_component_of_wind",
+      "description": "10 m above ground wind velocity component u",
+      "unitText": "m s^-1",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "10m_v_component_of_wind",
+      "description": "10m above ground wind velocity component v",
+      "unitText": "m s^-1",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "total_precipitation",
+      "description": "Accumulated total precipitation during 1 hour",
+      "unitText": "mm h^-1",
+      "qudt:dataType": "xsd:int"
+    }
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "@id": "ECMWF",
+      "name": "European Centre for Medium-Range Weather Forecasts (ECMWF)",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "copernicus-support@ecmwf.int",
+        "url": "https://www.ecmwf.int/"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "ZJ",
+      "name": "Južnič Zonta, Živko",
+      "identifier": "https://orcid.org/0000-0002-2362-9771",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "roleName": "data engineer",
+        "email": "jzivko@gmail.com",
+        "url": "https://es.linkedin.com/in/zivko"
+      }
+    }
+  ],
+  "measurementTechnique": [
+    "Automatic weather station",
+    "Data assimilation (reanalysis) that combines first principle models with observations"
+  ]
+}
+  </script>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Metadata table — Mosquito Alert Data Portal
+  </title>
+  <link href="../_static/css/theme.css" rel="stylesheet"/>
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <link href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  <link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+  <link href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" rel="stylesheet" type="text/css"/>
+  <link href="../_static/togglebutton.css" rel="stylesheet" type="text/css"/>
+  <link href="../_static/copybutton.css" rel="stylesheet" type="text/css"/>
+  <link href="../_static/mystnb.css" rel="stylesheet" type="text/css"/>
+  <link href="../_static/sphinx-thebe.css" rel="stylesheet" type="text/css">
+   <link href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css">
+    <link href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css">
+     <link as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload">
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js">
+      </script>
+      <script src="../_static/jquery.js">
+      </script>
+      <script src="../_static/underscore.js">
+      </script>
+      <script src="../_static/doctools.js">
+      </script>
+      <script src="../_static/togglebutton.js">
+      </script>
+      <script src="../_static/clipboard.min.js">
+      </script>
+      <script src="../_static/copybutton.js">
+      </script>
+      <script>
+       var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';
+      </script>
+      <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js">
+      </script>
+      <script>
+       const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+      </script>
+      <script async="async" src="../_static/sphinx-thebe.js">
+      </script>
+      <link href="../genindex.html" rel="index" title="Index"/>
+      <link href="../search.html" rel="search" title="Search">
+       <link href="../notebooks/era5h.html" rel="next" title="Dataset: era5">
+        <link href="../notebooks/meteocat_xema.html" rel="prev" title="DataCatalog: meteocat_xema"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="None" name="docsearch:language"/>
+        <!-- Google Analytics -->
+       </link>
+      </link>
+     </link>
+    </link>
+   </link>
+  </link>
+ </head>
+ <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <div class="container-fluid" id="banner">
+  </div>
+  <div class="container-xl">
+   <div class="row">
+    <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+     <div class="navbar-brand-box">
+      <a class="navbar-brand text-wrap" href="../index.html">
+       <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+       <img alt="logo" class="logo" src="../_static/icon_DB_2.svg"/>
+       <h1 class="site-logo" id="site-title">
+        Mosquito Alert Data Portal
+       </h1>
+      </a>
+     </div>
+     <form action="../search.html" class="bd-search d-flex align-items-center" method="get">
+      <i class="icon fas fa-search">
+      </i>
+      <input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
+     </form>
+     <nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+      <div class="bd-toc-item active">
+       <ul class="nav bd-sidenav">
+        <li class="toctree-l1">
+         <a class="reference internal" href="../README.html">
+          Mosquito Alert Data Portal
+         </a>
+        </li>
+       </ul>
+       <ul class="current nav bd-sidenav">
+        <li class="toctree-l1">
+         <a class="reference internal" href="../user_guide.html">
+          Getting Started
+         </a>
+        </li>
+        <li class="toctree-l1 has-children">
+         <a class="reference internal" href="../meta/mosquito_alert/intro.html">
+          Mosquito Alert
+         </a>
+         <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+         <label for="toctree-checkbox-1">
+          <i class="fas fa-chevron-down">
+          </i>
+         </label>
+         <ul>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="reports.html">
+            reports
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox">
+            <label for="toctree-checkbox-2">
+             <i class="fas fa-chevron-down">
+             </i>
+            </label>
+            <ul>
+             <li class="toctree-l3">
+              <a class="reference internal" href="../notebooks/reports.html">
+               code-example
+              </a>
+             </li>
+            </ul>
+           </input>
+          </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="reports_raw.html">
+            reports_raw
+           </a>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="tigapics.html">
+            tigapics
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+           <label for="toctree-checkbox-3">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/tigapics.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="sampling_effort.html">
+            sampling_effort
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+           <label for="toctree-checkbox-4">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/sampling_effort.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="user_locations.html">
+            user_locations
+           </a>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="analytic_tables.html">
+            analytic_tables
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+           <label for="toctree-checkbox-5">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/analytic_tables.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="photos_clean.html">
+            photos_clean
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+           <label for="toctree-checkbox-6">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/photos_clean.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="model_tables.html">
+            model_tables
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+           <label for="toctree-checkbox-7">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/model_tables.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="muni_preds.html">
+            muni_preds
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+           <label for="toctree-checkbox-8">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/muni_preds.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="mwi.html">
+            mwi
+           </a>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="senscape_traps.html">
+            irideon_senscape_traps
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+           <label for="toctree-checkbox-9">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/senscape_traps.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </li>
+        <li class="toctree-l1 has-children">
+         <a class="reference internal" href="../meta/public_health/intro.html">
+          Public Health
+         </a>
+         <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+         <label for="toctree-checkbox-10">
+          <i class="fas fa-chevron-down">
+          </i>
+         </label>
+         <ul>
+          <li class="toctree-l2">
+           <a class="reference internal" href="dengue.html">
+            dengue
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="toctree-l1 current active has-children">
+         <a class="reference internal" href="../meta/environment/intro.html">
+          Environment
+         </a>
+         <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+         <label for="toctree-checkbox-11">
+          <i class="fas fa-chevron-down">
+          </i>
+         </label>
+         <ul class="current">
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="meteocat_xema.html">
+            meteocat_xema
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+           <label for="toctree-checkbox-12">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/meteocat_xema.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 current active has-children">
+           <a class="current reference internal" href="#">
+            era5h
+           </a>
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+           <label for="toctree-checkbox-13">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/era5h.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="era5m.html">
+            era5m
+           </a>
+           <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+           <label for="toctree-checkbox-14">
+            <i class="fas fa-chevron-down">
+            </i>
+           </label>
+           <ul>
+            <li class="toctree-l3">
+             <a class="reference internal" href="../notebooks/era5m.html">
+              code-example
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="toctree-l2">
+           <a class="reference internal" href="ncep.html">
+            ncep
+           </a>
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </div>
+     </nav>
+     <!-- To handle the deprecated key -->
+     <div class="navbar_extra_footer">
+      Powered by
+      <a href="https://jupyterbook.org">
+       Jupyter Book
+      </a>
+     </div>
+    </div>
+    <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+     <div class="topbar container-xl fixed-top">
+      <div class="topbar-contents row">
+       <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+       </div>
+       <div class="col pl-md-4 topbar-main">
+        <button aria-controls="site-navigation" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler ml-0" data-placement="left" data-target=".site-navigation" data-toggle="tooltip" id="navbar-toggler" title="Toggle navigation" type="button">
+         <i class="fas fa-bars">
+         </i>
+         <i class="fas fa-arrow-left">
+         </i>
+         <i class="fas fa-arrow-up">
+         </i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+         <button aria-label="Download this page" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
+          <i class="fas fa-download">
+          </i>
+         </button>
+         <div class="dropdown-buttons">
+          <!-- ipynb file if we had a myst markdown file -->
+          <!-- Download raw file -->
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/era5h.ipynb">
+           <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
+            .ipynb
+           </button>
+          </a>
+          <!-- Download PDF via print -->
+          <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" id="download-print" onclick="printPdf(this)" title="Print to PDF" type="button">
+           .pdf
+          </button>
+         </div>
+        </div>
+        <!-- Source interaction buttons -->
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button">
+         <button aria-label="Fullscreen mode" class="btn btn-secondary topbarbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode" type="button">
+          <i class="fas fa-expand">
+          </i>
+         </button>
+        </a>
+        <!-- Launch buttons -->
+        <div class="dropdown-buttons-trigger">
+         <button aria-label="Launch interactive content" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger">
+          <i class="fas fa-rocket">
+          </i>
+         </button>
+         <div class="dropdown-buttons">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/era5h.ipynb">
+           <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
+            <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
+            Binder
+           </button>
+          </a>
+         </div>
+        </div>
+       </div>
+       <!-- Table of contents -->
+       <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+       </div>
+      </div>
+     </div>
+     <div class="row" id="main-content">
+      <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+       <!-- Table of contents that is only displayed when printing the page -->
+       <div class="onlyprint" id="jb-print-docs-body">
+        <h1>
+         Metadata table
+        </h1>
+        <!-- Table of contents -->
+        <div id="print-main-content">
+         <div id="jb-print-toc">
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="tex2jax_ignore mathjax_ignore section" id="metadata-table">
+         <h1>
+          Metadata table
+          <a class="headerlink" href="#metadata-table" title="Permalink to this headline">
+           ¶
+          </a>
+         </h1>
+         <div class="cell tag_remove-input docutils container">
+         </div>
+         <div class="cell tag_parameters tag_remove-input docutils container">
+         </div>
+         <div class="cell tag_injected-parameters docutils container">
+         </div>
+         <div class="cell tag_remove-input tag_full-width docutils container">
+          <div class="cell_output docutils container">
+           <div class="output text_html">
+            <table border="1">
+             <tr>
+             </tr>
+             <tr>
+             </tr>
+             <tr>
+              <th>
+               @type
+              </th>
+              <td style="text-align:left">
+               Dataset
+              </td>
+             </tr>
+             <tr>
+              <th>
+               name
+              </th>
+              <td style="text-align:left">
+               era5h
+              </td>
+             </tr>
+             <tr>
+              <th>
+               conditionsOfAccess
+              </th>
+              <td style="text-align:left">
+               Private
+              </td>
+             </tr>
+             <tr>
+              <th>
+               description
+              </th>
+              <td style="text-align:left">
+               ERA5 hourly gridded data on single levels from 1979 to present. ERA5 is the fifth generation ECMWF reanalysis for the global climate and weather. ERA5 provides hourly estimates for a large number of atmospheric, ocean-wave and land-surface quantities. ERA5 is updated daily with a latency of about 5 days. In case that serious flaws are detected in this early release (called ERA5T), this data could be different from the final release 2 to 3 months later. Data has been regridded to a regular lat-lon grid of 0.25 degrees for the reanalysis and 0.5 degrees for the uncertainty estimate. This dataset is not intended for general public access since the original row dataset is freely distributed by ECMWF
+              </td>
+             </tr>
+             <tr>
+              <th>
+               license
+              </th>
+              <td style="text-align:left">
+               Free of charge, worldwide, non-exclusive, royalty free and perpetual. See https://apps.ecmwf.int/datasets/licences/copernicus/
+              </td>
+             </tr>
+             <tr>
+              <th>
+               citation
+              </th>
+              <td style="text-align:left">
+               <ul>
+                <li>
+                 ERA5 hourly data on single levels from 1979 to present [DOI: 10.24381/cds.adbb2d47]
+                </li>
+               </ul>
+              </td>
+             </tr>
+             <tr>
+              <th>
+               temporalCoverage
+              </th>
+              <td style="text-align:left">
+               1979-01-01/..
+              </td>
+             </tr>
+             <tr>
+              <th>
+               spatialCoverage
+              </th>
+              <td style="text-align:left">
+               <table border="1">
+                <tr>
+                 <th>
+                  @type
+                 </th>
+                 <td style="text-align:left">
+                  Place
+                 </td>
+                </tr>
+                <tr>
+                 <th>
+                  name
+                 </th>
+                 <td style="text-align:left">
+                  Worldwide
+                 </td>
+                </tr>
+                <tr>
+                 <th>
+                  sameAs
+                 </th>
+                 <td style="text-align:left">
+                  https://www.wikidata.org/wiki/Q13780930
+                 </td>
+                </tr>
+               </table>
+              </td>
+             </tr>
+             <tr id="hidden_row">
+              <th>
+               distribution
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     DataDownload
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     cds_api
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Distribution by Climate Data Store API
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     encodingFormat
+                    </th>
+                    <td style="text-align:left">
+                     netCDF
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     workExample
+                    </th>
+                    <td style="text-align:left">
+                     ./notebooks/era5.py
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentUrl
+                    </th>
+                    <td style="text-align:left">
+                     <ul>
+                      <li>
+                       https://cds.climate.copernicus.eu/api/v2
+                      </li>
+                     </ul>
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentSize
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     DataDownload
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     cluster_ceab
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Distribution by CSIC-CEAB cluster
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     encodingFormat
+                    </th>
+                    <td style="text-align:left">
+                     netCDF
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     workExample
+                    </th>
+                    <td style="text-align:left">
+                     ./notebooks/era5.py
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentUrl
+                    </th>
+                    <td style="text-align:left">
+                     <ul>
+                      <li>
+                       sftp://{USER}@cluster-ceab:/leov1/era5/daily_chunks/masked_{VARIABLE_NAME}_t_{YEAR-MONTH-DAY}.nc
+                      </li>
+                     </ul>
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentSize
+                    </th>
+                    <td style="text-align:left">
+                     10MB
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr id="hidden_row">
+              <th>
+               variableMeasured
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     2m_temperature
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     2 m above ground air temperature
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Degree Kelvin
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     2m_dewpoint_temperature
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     2 m above ground dew point temperature
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     Degree Kelvin
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     10m_u_component_of_wind
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     10 m above ground wind velocity component u
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     m s^-1
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     10m_v_component_of_wind
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     10m above ground wind velocity component v
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     m s^-1
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     total_precipitation
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Accumulated total precipitation during 1 hour
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     mm h^-1
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr id="hidden_row">
+              <th>
+               creator
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Organization
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     ECMWF
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     European Centre for Medium-Range Weather Forecasts (ECMWF)
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        copernicus-support@ecmwf.int
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://www.ecmwf.int/
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     Person
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     @id
+                    </th>
+                    <td style="text-align:left">
+                     ZJ
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     Južnič Zonta, Živko
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     identifier
+                    </th>
+                    <td style="text-align:left">
+                     https://orcid.org/0000-0002-2362-9771
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contactPoint
+                    </th>
+                    <td style="text-align:left">
+                     <table border="1">
+                      <tr>
+                       <th>
+                        @type
+                       </th>
+                       <td style="text-align:left">
+                        ContactPoint
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        roleName
+                       </th>
+                       <td style="text-align:left">
+                        data engineer
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        email
+                       </th>
+                       <td style="text-align:left">
+                        jzivko@gmail.com
+                       </td>
+                      </tr>
+                      <tr>
+                       <th>
+                        url
+                       </th>
+                       <td style="text-align:left">
+                        https://es.linkedin.com/in/zivko
+                       </td>
+                      </tr>
+                     </table>
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+             <tr id="hidden_row">
+              <th>
+               measurementTechnique
+              </th>
+              <td id="collapseButton" onclick="collapse(this)">
+               <i class="fas fa-chevron-down">
+               </i>
+              </td>
+              <tr id="hidden">
+               <td>
+               </td>
+               <td style="text-align:left">
+                <ul>
+                 <li>
+                  Automatic weather station
+                 </li>
+                 <li>
+                  Data assimilation (reanalysis) that combines first principle models with observations
+                 </li>
+                </ul>
+               </td>
+              </tr>
+             </tr>
+            </table>
+           </div>
+          </div>
+         </div>
+         <div class="toctree-wrapper compound">
+         </div>
+        </div>
+        <script type="text/x-thebe-config">
+         {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./meta_ipynb"
+        },
+        predefinedOutput: true
+    }
+        </script>
+        <script>
+         kernelName = 'python3'
+        </script>
+       </div>
+       <!-- Previous / next buttons -->
+       <div class="prev-next-area">
+        <a class="left-prev" href="../notebooks/meteocat_xema.html" id="prev-link" title="previous page">
+         <i class="fas fa-angle-left">
+         </i>
+         <div class="prev-next-info">
+          <p class="prev-next-subtitle">
+           previous
+          </p>
+          <p class="prev-next-title">
+           DataCatalog:
+           <em>
+            meteocat_xema
+           </em>
+          </p>
+         </div>
+        </a>
+        <a class="right-next" href="../notebooks/era5h.html" id="next-link" title="next page">
+         <div class="prev-next-info">
+          <p class="prev-next-subtitle">
+           next
+          </p>
+          <p class="prev-next-title">
+           Dataset:
+           <em>
+            era5
+           </em>
+          </p>
+         </div>
+         <i class="fas fa-angle-right">
+         </i>
+        </a>
+       </div>
+      </div>
+     </div>
+     <footer class="footer">
+      <p>
+       By The Mosquito Alert community
+       <br/>
+       © Copyright 2021.
+       <br/>
+      </p>
+     </footer>
+    </main>
+   </div>
+  </div>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  </script>
+ </body>
+</html>

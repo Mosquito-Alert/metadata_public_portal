@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataCatalog: meteocat_xema &#8212; Mosquito Alert Data Portal</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Metadata table" href="../meta_ipynb/era5h.html" />
+    <link rel="prev" title="Metadata table" href="../meta_ipynb/meteocat_xema.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/icon_DB_2.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mosquito Alert Data Portal</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Mosquito Alert Data Portal
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user_guide.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../meta/mosquito_alert/intro.html">
+   Mosquito Alert
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/reports.html">
+     reports
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="reports.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/reports_raw.html">
+     reports_raw
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/tigapics.html">
+     tigapics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="tigapics.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/sampling_effort.html">
+     sampling_effort
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="sampling_effort.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/user_locations.html">
+     user_locations
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/analytic_tables.html">
+     analytic_tables
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="analytic_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/photos_clean.html">
+     photos_clean
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="photos_clean.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/model_tables.html">
+     model_tables
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="model_tables.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/muni_preds.html">
+     muni_preds
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="muni_preds.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/mwi.html">
+     mwi
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/senscape_traps.html">
+     irideon_senscape_traps
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="senscape_traps.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../meta/public_health/intro.html">
+   Public Health
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/dengue.html">
+     dengue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../meta/environment/intro.html">
+   Environment
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../meta_ipynb/meteocat_xema.html">
+     meteocat_xema
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/era5h.html">
+     era5h
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="era5h.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/era5m.html">
+     era5m
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="era5m.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/ncep.html">
+     ncep
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/meteocat_xema.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-of-the-entire-dataset-within-csv-download">
+   1. Distribution of the entire dataset within CSV download
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#copy-from-csv-to-postgresql-database">
+     1.1. Copy from CSV to PostgreSQL database
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-computation-read-of-big-csv-files">
+   1.2. Distributed computation read of big-CSV files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-from-socrata-api">
+   2. Distribution from Socrata API
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>DataCatalog: meteocat_xema</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-of-the-entire-dataset-within-csv-download">
+   1. Distribution of the entire dataset within CSV download
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#copy-from-csv-to-postgresql-database">
+     1.1. Copy from CSV to PostgreSQL database
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-computation-read-of-big-csv-files">
+   1.2. Distributed computation read of big-CSV files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-from-socrata-api">
+   2. Distribution from Socrata API
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="datacatalog-meteocat-xema">
+<h1>DataCatalog: <em>meteocat_xema</em><a class="headerlink" href="#datacatalog-meteocat-xema" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
+
+<span class="c1"># Setup the root path of the application</span>
+<span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
+
+<span class="c1"># Load the metadata</span>
+
+<span class="n">meta_filename</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta/environment/meteocat_xema.json&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/meteocat_xema.html&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">load_metadata</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
+
+<span class="c1"># Get contentUrl from metadata file</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">info_meta</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="distribution-of-the-entire-dataset-within-csv-download">
+<h2>1. Distribution of the entire dataset within CSV download<a class="headerlink" href="#distribution-of-the-entire-dataset-within-csv-download" title="Permalink to this headline">¶</a></h2>
+<p>First we need to download the hole dataset as a CSV-file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset meteocat_xema_data form the meteocat_xema catalog</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset file (big files could get a while to download)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset.csv&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">contentUrl</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;curl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="copy-from-csv-to-postgresql-database">
+<h3>1.1. Copy from CSV to PostgreSQL database<a class="headerlink" href="#copy-from-csv-to-postgresql-database" title="Permalink to this headline">¶</a></h3>
+<p>Here we assume that PostgreSQL database server is available on the user’s
+machine. From contentUrl we download the dataset. For convenience, let’s rename
+it as dataset.csv). We use the following SQL code to generate a
+new table and copy the CSV-dataset content. Note that the CSV-file could be
+badly formatted in some row and that the copy operation will exit with error.
+Thus it is important to check and correct (drop the inconsistent rows) of the
+CSV-file if needed.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">xema</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">xema</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">	    </span><span class="n">ID</span><span class="w"> </span><span class="nb">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">CODI_ESTACIO</span><span class="w"> </span><span class="nb">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">CODI_VARIABLE</span><span class="w"> </span><span class="nb">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">DATA_LECTURA</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">DATA_EXTREM</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">VALOR_LECTURA</span><span class="w"> </span><span class="n">FLOAT8</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">CODI_ESTAT</span><span class="w"> </span><span class="nb">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">	    </span><span class="n">CODI_BASE</span><span class="w"> </span><span class="nb">text</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">COPY</span><span class="w"> </span><span class="n">xema</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="s1">&#39;./[path]/dataset.csv&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">HEADER</span><span class="w"> </span><span class="n">CSV</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>At this point we imported into PostgreSQL the dataset table, but the data
+types of the attributes could be redefined to save some memory and accelerate
+filtering operations.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">xema</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">14</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codi_estacio</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codi_variable</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">codi_variable</span><span class="p">::</span><span class="nb">integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">valor_lectura</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">FLOAT4</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codi_estat</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">codi_base</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finally, assume that we are interested in the weather station with code ‘KP’.
+Below, we select the station and export it to a CSV file.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">COPY</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">codi_variable</span><span class="p">,</span><span class="w"> </span><span class="n">data_lectura</span><span class="p">,</span><span class="w"> </span><span class="n">data_extrem</span><span class="p">,</span><span class="w"> </span><span class="n">valor_lectura</span><span class="p">,</span><span class="w"> </span><span class="n">codi_estat</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">kp_station</span><span class="w"> </span><span class="n">ks</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/path/kp_station.csv&#39;</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">CSV</span><span class="w"> </span><span class="n">HEADER</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="distributed-computation-read-of-big-csv-files">
+<h2>1.2. Distributed computation read of big-CSV files<a class="headerlink" href="#distributed-computation-read-of-big-csv-files" title="Permalink to this headline">¶</a></h2>
+<p>Another alternative to query directly the downloaded CSV dataset is to use
+Dask Python library. Dask allows us to use parallel computing by chunking the
+file-read. Here we use Dask on a single machine (our personal computer), but
+it could be easily setup to work on distributed cluster machines.</p>
+<p>First we start a Dask client and we setup it to work with 4 threads with a
+memory limit of 2GB:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">processes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="s2">&quot;1GB&quot;</span><span class="p">)</span>
+<span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point, use the Dask dataframe in the same fashion as we would use Pandas.
+Note that the read_csv operation has not executed yet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;CODI_ESTACIO&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CODI_VARIABLE&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VALOR_LECTURA&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CODI_ESTAT&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CODI_BASE&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DATA_LECTURA&quot;</span><span class="p">,</span> <span class="s2">&quot;DATA_EXTREM&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since Dask works with lazy computation, we should specify when we actually
+would like to compute the chain of operations that we’ve setup. This is
+because Dask first needs to build a directed acyclic diagram (DAG) of workers.
+For example, to query two weather stations from the dataset and we run the
+Dask client with the .compute() operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;(CODI_ESTACIO == &#39;UR&#39; or CODI_ESTACIO == &#39;KP&#39;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that with the above Dask client settings (computation resources) the
+query operation runs for a couple of hours. On the other hand, the SQL
+approach is much faster even if it runs on a single core because of its
+internal optimizations (compiled code and key-index). The good point of Dask
+is that it is easy to scale-up if more computation power is available.</p>
+</div>
+<div class="section" id="distribution-from-socrata-api">
+<h2>2. Distribution from Socrata API<a class="headerlink" href="#distribution-from-socrata-api" title="Permalink to this headline">¶</a></h2>
+<p>This example shows how to get weather station data from the Socrate API and store
+them into a pandas dataframe. Here no storage capacity or setup of a SQL
+server is needed since the database and the query operations are managed by
+the API’ web-server.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sodapy</span> <span class="kn">import</span> <span class="n">Socrata</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First we will get a list of available stations of the XEMA network</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset meteocat_xema_stations form the api end-point distribution</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that since we use Socrata API library to request data we need to provide
+a the source domain and a dataset identifier. Note that the API will warn us
+if we don’t provide an app-token but for this dataset there is actually no
+limitation to data access.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the domain and dataset identifier from metadata</span>
+<span class="n">url_split</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">url_split</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">dataset_id</span> <span class="o">=</span> <span class="n">url_split</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Domain is &quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s1">&quot; with dataset identifier &quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s1">&quot;.&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setup a client to a Socrata domain</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Socrata</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Setup the end-point to</span>
+<span class="n">stations</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can display the list of all the available weather station as a dataframe table
+and save it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_stations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="n">coerce_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_stations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save on CSV-file</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset.csv&quot;</span>
+<span class="n">df_stations</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each station has a variety of measurement devices which are listed in
+meteocat_xema_variables dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset meteocat_xema_variables and the api end-point distribution</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset identifier from metadata</span>
+<span class="n">url_split</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="n">dataset_id</span> <span class="o">=</span> <span class="n">url_split</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Domain is &quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s1">&quot; with dataset identifier &quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s1">&quot;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get data that describes measurement devices</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+<span class="n">df_variables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">coerce_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_variables</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save on CSV-file</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset.csv&quot;</span>
+<span class="n">df_stations</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point, assume that we are interested to get data for the weather
+station with code <em>KP</em> relative to <em>Fogars de la Selva</em>. For this we need
+to provide the dataset identifier of <em>meteocat_xema_data</em> .</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_stations</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;codi_estacio == &#39;KP&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset meteocat_xema_data form the api end-point distribution</span>
+<span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Make folders for data download</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset identifier from metadata</span>
+<span class="n">url_split</span> <span class="o">=</span> <span class="n">contentUrl</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="n">dataset_id</span> <span class="o">=</span> <span class="n">url_split</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Domain is &quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s1">&quot; with dataset identifier &quot;</span><span class="si">{</span><span class="n">dataset_id</span><span class="si">}</span><span class="s1">&quot;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a good idea to check the metadata of the dataset. In our case we check
+the total number of records in the meteocat_xema_data dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get metadata and max number of records available</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+<span class="n">cachedContents</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;cachedContents&quot;</span><span class="p">]</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cachedContents</span><span class="p">[</span><span class="s2">&quot;non_null&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">cachedContents</span><span class="p">[</span><span class="s2">&quot;null&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we choose one or more weather stations to query, we are ready to get a
+JSON data-response from the API. We specify how many last records
+we need by the parameter <em>limit</em>. If we do not assign any value to limit, it
+will get at most the first 1000 records.</p>
+<p>If we would like to get a set of stations it is more convenient to
+setup a threaded api call. It is possible to perform a query with a sql
+statement like <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">('KP',</span> <span class="pre">'J5',</span> <span class="pre">...)</span></code> but the output dataframe could exceed
+the available memory available.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+<span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">min_date</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="c1"># Query the data by code station and datetime if given</span>
+    <span class="k">if</span> <span class="n">min_date</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">where</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;codi_estacio = &#39;</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&#39; AND data_lectura &gt; &#39;</span><span class="si">{</span><span class="n">min_date</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">where</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;codi_estacio = &#39;</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">min_date</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Station </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">: retry without datetime filter&quot;</span><span class="p">)</span>
+            <span class="n">where</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;codi_estacio = &#39;</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">coerce_float</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Convert to proper datatype</span>
+    <span class="n">column_types</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;data_lectura&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data_extrem&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime64&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;codi_estacio&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;codi_estat&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;codi_base&quot;</span><span class="p">:</span> <span class="s2">&quot;category&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;codi_variable&quot;</span><span class="p">:</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;valor_lectura&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">column_types</span><span class="p">)</span>
+
+    <span class="c1"># Apply datetime filter</span>
+    <span class="k">if</span> <span class="n">min_date</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;data_lectura &gt; &#39;</span><span class="si">{</span><span class="n">min_date</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Save on CSV-file and parquet (note the storage saving with parquet)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset_</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.parquet&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved on </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For only one station we simply run getData</span>
+<span class="n">min_date</span> <span class="o">=</span> <span class="s2">&quot;2020-01-01&quot;</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;XV&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">getData</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">codes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_date</span><span class="o">=</span><span class="n">min_date</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># But for a set of stations we can run a threaded api call</span>
+<span class="n">min_date</span> <span class="o">=</span> <span class="s2">&quot;2020-01-01&quot;</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;KP&quot;</span><span class="p">,</span> <span class="s2">&quot;J5&quot;</span><span class="p">,</span> <span class="s2">&quot;UC&quot;</span><span class="p">,</span> <span class="s2">&quot;XZ&quot;</span><span class="p">,</span> <span class="s2">&quot;DO&quot;</span><span class="p">,</span> <span class="s2">&quot;UB&quot;</span><span class="p">,</span> <span class="s2">&quot;U2&quot;</span><span class="p">,</span> <span class="s2">&quot;DJ&quot;</span><span class="p">,</span> <span class="s2">&quot;WT&quot;</span><span class="p">,</span> <span class="s2">&quot;D4&quot;</span><span class="p">,</span> <span class="s2">&quot;DF&quot;</span><span class="p">,</span> <span class="s2">&quot;W1&quot;</span><span class="p">,</span> <span class="s2">&quot;XJ&quot;</span><span class="p">]</span>
+
+<span class="c1"># Put few workers in order to prevent memory overflow</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">getData</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">min_date</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that here measurement devices are named by their codes: names should be
+retrieved from the dataset <em>meteocat_xema_variables</em> with its own dataset
+identifier. Below is given an example of how measurement codes could be
+renamed by its corresponded name-description.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pivot to get time-value table for each measurement device</span>
+<span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;data_lectura&quot;</span><span class="p">,</span> <span class="s2">&quot;codi_variable&quot;</span><span class="p">,</span> <span class="s2">&quot;valor_lectura&quot;</span><span class="p">]]</span>
+<span class="n">df_sub</span> <span class="o">=</span> <span class="n">df_sub</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;data_lectura&quot;</span><span class="p">,</span> <span class="s2">&quot;codi_variable&quot;</span><span class="p">)</span>
+<span class="n">df_sub</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a dictionary of code to variable names</span>
+<span class="n">df_variables</span><span class="p">[</span><span class="s2">&quot;nom_variable_unitat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_variables</span><span class="p">[</span><span class="s2">&quot;nom_variable&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">df_variables</span><span class="p">[</span><span class="s2">&quot;unitat&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+<span class="p">)</span>
+<span class="n">dict_var</span> <span class="o">=</span> <span class="n">df_variables</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;codi_variable&quot;</span><span class="p">)[</span><span class="s2">&quot;nom_variable_unitat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># For each weather station, save data in a CSV-file</span>
+<span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codes</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset_</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>
+    <span class="c1"># Select a station and pivot</span>
+    <span class="n">df_station</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;codi_estacio == &#39;</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">df_station</span> <span class="o">=</span> <span class="n">df_station</span><span class="p">[</span><span class="o">~</span><span class="n">df_station</span><span class="p">[[</span><span class="s2">&quot;data_lectura&quot;</span><span class="p">,</span> <span class="s2">&quot;codi_variable&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+    <span class="n">df_station</span> <span class="o">=</span> <span class="n">df_station</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;data_lectura&quot;</span><span class="p">,</span> <span class="s2">&quot;codi_variable&quot;</span><span class="p">,</span> <span class="s2">&quot;valor_lectura&quot;</span><span class="p">)</span>
+    <span class="c1"># Change column type to string</span>
+    <span class="n">df_station</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_station</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">df_station</span> <span class="o">=</span> <span class="n">df_station</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">dict_var</span><span class="p">)</span>
+    <span class="c1"># Save table in a CSV-file</span>
+    <span class="n">df_station</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">_station.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, just plot the last station from the above loop to get a visual idea
+of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">df_station</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Weather station with code </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../meta_ipynb/meteocat_xema.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Metadata table</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../meta_ipynb/era5h.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Metadata table</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Mosquito Alert community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

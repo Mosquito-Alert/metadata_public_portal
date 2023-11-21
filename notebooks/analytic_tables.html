@@ -90,7 +90,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../README_ma.html">
+  <a class="reference internal" href="../README.html">
    Mosquito Alert Data Portal
   </a>
  </li>
@@ -240,6 +240,113 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/mwi.html">
+     mwi
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/senscape_traps.html">
+     irideon_senscape_traps
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="senscape_traps.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../meta/public_health/intro.html">
+   Public Health
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/dengue.html">
+     dengue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../meta/environment/intro.html">
+   Environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/meteocat_xema.html">
+     meteocat_xema
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="meteocat_xema.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/era5h.html">
+     era5h
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="era5h.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../meta_ipynb/era5m.html">
+     era5m
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="era5m.html">
+       code-example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../meta_ipynb/ncep.html">
+     ncep
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -314,10 +421,10 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataset-tigaserver-app-tigauser">
+  <a class="reference internal nav-link" href="#dataset-tigaserver-app-reports">
    Dataset:
    <em>
-    tigaserver_app_tigauser
+    tigaserver_app_reports
    </em>
   </a>
   <ul class="nav section-nav flex-column">
@@ -349,10 +456,10 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataset-tigaserver-app-tigauser">
+  <a class="reference internal nav-link" href="#dataset-tigaserver-app-reports">
    Dataset:
    <em>
-    tigaserver_app_tigauser
+    tigaserver_app_reports
    </em>
   </a>
   <ul class="nav section-nav flex-column">
@@ -381,8 +488,16 @@ to open a SFTP connection with the machine that holds our dataset. First we
 check what datasets are in the catalog.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet.encryption</span> <span class="k">as</span> <span class="nn">pe</span>
+
+<span class="kn">import</span> <span class="nn">src.utils</span> <span class="k">as</span> <span class="nn">ut</span>
 <span class="kn">import</span> <span class="nn">src.ftp</span> <span class="k">as</span> <span class="nn">ftp</span>
+
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 
 <span class="c1"># Setup the root path of the application</span>
 <span class="n">project_path</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">()</span>
@@ -391,7 +506,7 @@ check what datasets are in the catalog.</p>
 
 <span class="n">meta_filename</span> <span class="o">=</span> <span class="p">[</span>
     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta/mosquito_alert/analytic_tables.json&quot;</span><span class="p">,</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/analytic_tables.html&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ut</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">/meta_ipynb/analytic_tables.html&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">load_metadata</span><span class="p">(</span><span class="n">meta_filename</span><span class="p">)</span>
 
@@ -401,20 +516,22 @@ check what datasets are in the catalog.</p>
 </div>
 </div>
 </div>
-<div class="section" id="dataset-tigaserver-app-tigauser">
-<h2>Dataset: <em>tigaserver_app_tigauser</em><a class="headerlink" href="#dataset-tigaserver-app-tigauser" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dataset-tigaserver-app-reports">
+<h2>Dataset: <em>tigaserver_app_reports</em><a class="headerlink" href="#dataset-tigaserver-app-reports" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="distribution-by-sftp-protocol-from-mosquitoalert-webserver">
 <h3>1. Distribution by SFTP protocol from MosquitoAlert webserver<a class="headerlink" href="#distribution-by-sftp-protocol-from-mosquitoalert-webserver" title="Permalink to this headline">¶</a></h3>
-<p>If we would like to download the dataset <em>tigaserver_app_tigauser</em> we just
+<p>If we would like to download the dataset <em>tigaserver_app_reports</em> we just
 needs its contentUrl information. Note that <em>analytic_tables</em> has many
-parts (datasets) and one of those is <em>tigaserver_app_tigauser</em> which is the
-first in the list of the <em>hasPart</em> key attribute of the metadata file.</p>
+parts (datasets) and one of those is <em>tigaserver_app_reports</em> which is the
+second in the list of the <em>hasPart</em> key attribute of the metadata file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset tigaserver_app_tigauser form the _analytic_tables_ catalog</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataset tigaserver_app_reports form the _analytic_tables_ catalog</span>
+<span class="n">idx_hasPart</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">contentUrl</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">distr_name</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span>
-    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">metadata</span><span class="p">,</span> <span class="n">idx_distribution</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx_hasPart</span><span class="o">=</span><span class="n">idx_hasPart</span><span class="p">,</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
+<span class="n">dataset_metadata</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;hasPart&quot;</span><span class="p">][</span><span class="n">idx_hasPart</span><span class="p">]</span>
 
 <span class="c1"># Make folders for data download</span>
 <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_path</span><span class="si">}</span><span class="s2">/data/</span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">distr_name</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -427,16 +544,32 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert user password to connect by ftp</span>
 <span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enter </span><span class="si">{</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> user password:&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the dataframe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get schema info</span>
+<span class="n">schema_parquet</span><span class="p">,</span> <span class="n">schema_numpy</span><span class="p">,</span> <span class="n">time_cols</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">get_schema</span><span class="p">(</span><span class="n">dataset_metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="n">read_csv_sftp</span><span class="p">(</span>
     <span class="n">hostname</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
     <span class="n">port</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
     <span class="n">username</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
     <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
     <span class="n">remotepath</span><span class="o">=</span><span class="n">contentUrl</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="n">time_cols</span><span class="p">,</span>
+    <span class="n">date_parser</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
+<span class="n">df</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">apply_schema</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">schema_numpy</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -444,10 +577,92 @@ first in the list of the <em>hasPart</em> key attribute of the metadata file.</p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save reports on CSV or parquet</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the dataframe to parquet table</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema_parquet</span><span class="p">)</span>
+
+<span class="c1"># Save reports on CSV or parquet</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">/dataset&quot;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
+<span class="n">pa</span><span class="o">.</span><span class="n">parquet</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span>
+    <span class="n">table</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span>
+<span class="p">)</span>  <span class="c1"># very low file-size (need to install pyArrow)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>  <span class="c1"># x10 size if compared with the dataframe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read parquet schema from file</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">read_parquet_schema</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="n">filename_encrypted</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">_encrypted.parquet&quot;</span>
+
+<span class="n">FOOTER_KEY</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;0123456789112345&quot;</span>
+<span class="n">FOOTER_KEY_NAME</span> <span class="o">=</span> <span class="s2">&quot;footer_key&quot;</span>
+<span class="n">COL_KEY</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;1234567890123450&quot;</span>
+<span class="n">COL_KEY_NAME</span> <span class="o">=</span> <span class="s2">&quot;col_key&quot;</span>
+
+<span class="n">encryption_config</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">EncryptionConfiguration</span><span class="p">(</span>
+    <span class="n">cache_lifetime</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mf">5.0</span><span class="p">),</span>
+    <span class="n">footer_key</span><span class="o">=</span><span class="n">FOOTER_KEY_NAME</span><span class="p">,</span>
+    <span class="n">column_keys</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">COL_KEY_NAME</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;note&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="n">encryption_algorithm</span><span class="o">=</span><span class="s2">&quot;AES_GCM_V1&quot;</span><span class="p">,</span>
+    <span class="n">data_key_length_bits</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+    <span class="n">plaintext_footer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">internal_key_material</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">kms_connection_config</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">KmsConnectionConfig</span><span class="p">(</span>
+    <span class="n">custom_kms_conf</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">FOOTER_KEY_NAME</span><span class="p">:</span> <span class="n">FOOTER_KEY</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">),</span>
+        <span class="n">COL_KEY_NAME</span><span class="p">:</span> <span class="n">COL_KEY</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">kms_factory</span><span class="p">(</span><span class="n">kms_connection_configuration</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ut</span><span class="o">.</span><span class="n">InMemoryKmsClient</span><span class="p">(</span><span class="n">kms_connection_configuration</span><span class="p">)</span>
+
+
+<span class="n">crypto_factory</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">CryptoFactory</span><span class="p">(</span><span class="n">kms_factory</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write with encryption properties</span>
+<span class="n">pa</span><span class="o">.</span><span class="n">parquet</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span>
+    <span class="n">table</span><span class="p">,</span>
+    <span class="n">filename_encrypted</span><span class="p">,</span>
+    <span class="n">encryption_properties</span><span class="o">=</span><span class="n">crypto_factory</span><span class="o">.</span><span class="n">file_encryption_properties</span><span class="p">(</span>
+        <span class="n">kms_connection_config</span><span class="p">,</span> <span class="n">encryption_config</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read with decryption properties</span>
+<span class="c1"># NOTE: read_table does not work with encrypted files</span>
+<span class="n">pfile</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">parquet</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span>
+    <span class="n">filename_encrypted</span><span class="p">,</span>
+    <span class="n">decryption_properties</span><span class="o">=</span><span class="n">crypto_factory</span><span class="o">.</span><span class="n">file_decryption_properties</span><span class="p">(</span>
+        <span class="n">kms_connection_config</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="n">table_decrypted</span> <span class="o">=</span> <span class="n">pfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">use_threads</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

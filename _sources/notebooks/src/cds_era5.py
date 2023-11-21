@@ -81,8 +81,11 @@ def download_file(
     try:
         client = cdsapi.Client(url=url, key=key, verify=1, quiet=True)
         var = api_request["variable"]
-        d = api_request["date"]
-        filename = f"{var}_t_{d}.nc"
+        if "date" in api_request.keys():
+            filename = f"{var}_t_{api_request['date']}.nc"
+        elif "month" in api_request.keys():
+            month_by_year = f"{api_request['month']}-{api_request['year']}"
+            filename = f"{var}_t_{month_by_year}.nc"
         filepath = f"{path}/{filename}"
         res = client.retrieve(name, api_request, filepath)
         state = res.reply["state"]

@@ -31,6 +31,7 @@ def read_csv_sftp(
     # read the file using SFTP
     sftp = client.open_sftp()
     remote_file = sftp.open(remotepath)
+    remote_file.prefetch()  # speed-up the read on the remote server
     dataframe = pd.read_csv(remote_file, *args, **kwargs)
     remote_file.close()
     # close the connections

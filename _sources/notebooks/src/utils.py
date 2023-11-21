@@ -1,7 +1,13 @@
+from typing import List, Optional
 import json, os, shutil, requests, subprocess
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import os.path
+import base64
+
+import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet.encryption as pe
 
 
 def load_metadata(meta_filename):
@@ -25,7 +31,7 @@ def load_metadata(meta_filename):
             return json.loads(f.read())
 
 
-def download_file(url, filename, method="curl"):
+def download_file(url: str, filename: str, method="curl"):
     """
     Download a file to disk given an http url
     """
@@ -63,7 +69,7 @@ def project_path(i: str = 0):
 
 
 def get_meta(
-    meta,
+    meta: dict,
     idx_distribution: int = 0,
     idx_hasPart: int = None,
     parse: bool = False,
@@ -89,13 +95,11 @@ def get_meta(
             print("Warning: Dataset do not have hasPart key.")
         meta_distr = meta_part["distribution"]
         meta_name = meta_part["name"]
-        meta_descr = meta_part["description"]
         if isinstance(meta_distr, list):
             meta_distr = meta_distr[idx_distribution]
     else:
         meta_distr = meta["distribution"]
         meta_name = meta["name"]
-        meta_descr = meta["description"]
         if isinstance(meta_distr, list):
             meta_distr = meta_distr[idx_distribution]
 
@@ -121,7 +125,7 @@ def get_meta(
     return contentUrl, meta_name, meta_distr["name"]
 
 
-def extract_element_from_json(obj, path):
+def extract_element_from_json(obj: List[dict], path: List[str]):
     """
     Extracts an element from a nested dictionary or
     a list of nested dictionaries along a specified path.
@@ -181,13 +185,17 @@ def extract_element_from_json(obj, path):
         return outer_arr
 
 
-def info_meta(meta):
+def info_meta(meta: str | dict):
     """
     Get general information from the metadata catalog file.
 
     Args:
-        *meta: metadata json file.
+        *meta: metadata json file path or relative dictionary object.
     """
+
+    if not isinstance(meta, dict):
+        with open(meta) as f:
+            meta = json.load(f)
 
     meta_name = extract_element_from_json(meta, ["name"])[0]
     print(f"Metadata name: {meta_name}")
@@ -217,7 +225,6 @@ def info_meta(meta):
 
 
 def set_ipynb_tag(notebooks: str):
-
     import nbformat as nbf
 
     """
@@ -249,3 +256,123 @@ def set_ipynb_tag(notebooks: str):
                 cell["metadata"]["tags"] = cell_tags
 
         nbf.write(ntbk, ipath)
+
+
+def get_schema(dataset_metadata):
+    # Conversion from XSD to Numpy data types
+    xsd2numpy_dtype = {
+        "xsd:complexType": "object",
+        "xsd:anyURI": "object",
+        "xsd:boolean": "bool",
+        "xsd:string": "object",
+        "xsd:dateTime": "datetime64[ns, UTC]",
+        "xsd:date": "datetime64[D]",
+        "xsd:int": "Int64",
+        "xsd:float": "float",
+    }
+
+    # Conversion from XSD to parquet data types
+    xsd2arrow_dtype = {
+        "xsd:complexType": "string()",
+        "xsd:anyURI": "string()",
+        "xsd:boolean": "bool_()",
+        "xsd:string": "string()",
+        "xsd:dateTime": "timestamp('ns', 'UTC')",
+        "xsd:date": "date32()",
+        "xsd:int": "int64()",
+        "xsd:float": "float64()",
+    }
+
+    # Get the necessary metadata for the conversion from dataframes to parquet files
+    meta_description = dict()
+    schema_numpy = dict()
+    meta_dtype_arrow = []
+    time_cols = []
+
+    for d in dataset_metadata["variableMeasured"]:
+        meta_description[d["name"]] = d["description"]
+        schema_numpy[d["name"]] = xsd2numpy_dtype[d["qudt:dataType"]]
+        meta_dtype_arrow.append(
+            (d["name"], eval(f"pa.{xsd2arrow_dtype[d['qudt:dataType']]}"))
+        )
+        if d["qudt:dataType"] == "xsd:dateTime":
+            time_cols.append(d["name"])
+
+    # Parquet schema
+    schema_parquet = pa.schema(meta_dtype_arrow, metadata=meta_description)
+
+    return schema_parquet, schema_numpy, time_cols
+
+
+def apply_schema(df: pd.DataFrame, schema_numpy: dict):
+    """
+    Apply dtype schema to a dataframe and correct for Postgres encoding
+    """
+
+    for c, v in schema_numpy.items():
+        # Update only if dtype do not correspond to metadata dtype
+        if df[c].dtype != v:
+            print(f"{c}: {df[c].dtype} -> {v}")
+
+            # Correct for postgres encoding
+            if (df[c].dtype == "object") and (v == "bool"):
+                df[c] = df[c].apply(lambda x: True if x == "t" else False)
+            if df[c].dtype == "object":
+                df[c] = df[c].apply(lambda x: str(x) if str(x) != "nan" else None)
+
+            df[c] = df[c].astype(v)
+
+    return df
+
+
+def read_parquet_schema(path: str) -> pd.DataFrame:
+    """
+    Read schema of a parquet file
+    """
+    schema = pa.parquet.read_schema(path, memory_map=True)
+    schema = pd.DataFrame(
+        [
+            {
+                "column": name,
+                "dtype": type,
+                "description": schema.metadata[name.encode("utf-8")].decode("utf-8"),
+            }
+            for name, type in zip(schema.names, schema.types)
+        ]
+    )
+    # Ensures columns in case the parquet file has an empty dataframe
+    schema = schema.reindex(
+        columns=["column", "dtype", "description"], fill_value=pd.NA
+    )
+
+    return schema
+
+
+# class InMemoryKmsClient(pe.KmsClient):
+#     """
+#     In memory KMS client implementation.
+#     """
+
+#     def __init__(self, config):
+#         """Create an InMemoryKmsClient instance."""
+#         pe.KmsClient.__init__(self)
+#         self.master_keys_map = config.custom_kms_conf
+
+#     def wrap_key(self, key_bytes, master_key_identifier):
+#         """Not a secure cipher - the wrapped key
+#         is just the master key concatenated with key bytes"""
+#         master_key_bytes = self.master_keys_map[master_key_identifier].encode("utf-8")
+#         wrapped_key = b"".join([master_key_bytes, key_bytes])
+#         result = base64.b64encode(wrapped_key)
+#         return result
+
+#     def unwrap_key(self, wrapped_key, master_key_identifier):
+#         """Not a secure cipher - just extract the key from
+#         the wrapped key"""
+#         expected_master_key = self.master_keys_map[master_key_identifier]
+#         decoded_wrapped_key = base64.b64decode(wrapped_key)
+#         master_key_bytes = decoded_wrapped_key[:16]
+#         decrypted_key = decoded_wrapped_key[16:]
+#         if expected_master_key == master_key_bytes.decode("utf-8"):
+#             return decrypted_key
+#         raise ValueError("Incorrect master key used", master_key_bytes, decrypted_key)
