@@ -25,63 +25,66 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@type": "Dataset",
-  "name": "era5m",
-  "conditionsOfAccess": "Private",
-  "description": "ERA5 monthly average gridded data on single levels from 1979 to present. ERA5 is the fifth generation ECMWF reanalysis for the global climate and weather. ERA5 provides hourly estimates for a large number of atmospheric, ocean-wave and land-surface quantities. ERA5 is updated daily with a latency of about 5 days. In case that serious flaws are detected in this early release (called ERA5T), this data could be different from the final release 2 to 3 months later. Data has been regridded to a regular lat-lon grid of 0.25 degrees for the reanalysis and 0.5 degrees for the uncertainty estimate. This dataset is not intended for general public access since the original row dataset is freely distributed by ECMWF",
-  "license": "Free of charge, worldwide, non-exclusive, royalty free and perpetual. See https://apps.ecmwf.int/datasets/licences/copernicus/",
+  "name": "human_presence",
+  "conditionsOfAccess": "Public",
+  "description": "Multi-band raster with resolution 0.025 degree and worldwide coverage of Köppen-Geiger climatic regions, estimated population density for 2030, Global Administrative Areas (GADM) and terrestrial ecoregions of the world.",
+  "license": "Free of charge, worldwide, non-exclusive, royalty free and perpetual.",
   "citation": [
-    "ERA5 monthly data on single levels from 1979 to present [DOI: 10.24381/cds.f17050d7]"
+    "Beck, Hylke E.; E. Zimmermann, Niklaus; McVicar, Tim R.; Vergopolan, Noemi; Berg, Alexis; Wood, Eric F. (2018). Present and future Köppen-Geiger climate classification maps at 1-km resolution. https://doi.org/10.6084/m9.figshare.6396959",
+    "Schiavina M., Freire S., Carioli A., MacManus K. (2023). GHS-POP R2023A - GHS population grid multitemporal (1975-2030).European Commission, Joint Research Centre (JRC). DOI:10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE",
+    "Global Administrative Areas (2023). GADM database of Global Administrative Areas, version 4.1. www.gadm.org",
+    "Olson, D. M., Dinerstein, E., Wikramanayake, E. D., Burgess, N. D., Powell, G. V. N., Underwood, E. C., D'Amico, J. A., Itoua, I., Strand, H. E., Morrison, J. C., Loucks, C. J., Allnutt, T. F., Ricketts, T. H., Kura, Y., Lamoreux, J. F., Wettengel, W. W., Hedao, P., Kassem, K. R. 2001. Terrestrial ecoregions of the world: a new map of life on Earth. Bioscience 51(11):933-938."
   ],
-  "temporalCoverage": "1979-01-01/..",
+  "temporalCoverage": "",
   "spatialCoverage": {
     "@type": "Place",
-    "name": "Spain",
-    "sameAs": "https://www.wikidata.org/wiki/Q29"
+    "name": "Worldwide",
+    "sameAs": "https://www.wikidata.org/wiki/Q13780930"
   },
   "distribution": [
     {
       "@type": "DataDownload",
-      "name": "cds_api",
-      "description": "Distribution by Climate Data Store API",
-      "encodingFormat": "netCDF",
-      "workExample": "./notebooks/era5.py",
+      "name": "mosquitoalert_webserver",
+      "description": "Distribution by HTTP download from MosquitoAlert webserver",
+      "encodingFormat": "TIF",
+      "workExample": "./notebook/model_tables.py",
       "contentUrl": [
-        "https://cds.climate.copernicus.eu/api/v2"
+        "http://webserver.mosquitoalert.com/static/tigapublic/models/data_environment/human_presence_multilayer_025.tif"
       ],
-      "contentSize": ""
-    },
-    {
-      "@type": "DataDownload",
-      "name": "cluster_ceab",
-      "description": "Distribution by CSIC-CEAB cluster",
-      "encodingFormat": "GRIB",
-      "workExample": "./notebooks/era5.py",
-      "contentUrl": [
-        "sftp://{USER}@cluster-ceab:/leov1/era5/monthly_chunks/es/{VARIABLE_NAME}_t_{YEAR-MONTH}-01.grib"
-      ],
-      "contentSize": "10MB"
+      "contentSize": "27.9MB"
     }
   ],
   "variableMeasured": [
     {
       "@type": "PropertyValue",
-      "name": "2m_temperature",
-      "description": "2 m above ground air temperature",
-      "unitText": "Degree Kelvin",
+      "name": "BAND 1",
+      "description": "Köppen-Geiger climate classification (0 == no data).",
+      "unitText": "categorical",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "BAND 2",
+      "description": "Distribution of residential population, expressed as the number of people per cell (-200 == no data).",
+      "unitText": "number of people per cell",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "BAND 3",
+      "description": "GADM database of Global Administrative Areas (0 == no data).",
+      "unitText": "",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "BAND 4",
+      "description": "Terrestrial ecoregions of the world (0 == no data).",
+      "unitText": "categorical",
       "qudt:dataType": "xsd:int"
     }
   ],
   "creator": [
-    {
-      "@type": "Organization",
-      "@id": "ECMWF",
-      "name": "European Centre for Medium-Range Weather Forecasts (ECMWF)",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "copernicus-support@ecmwf.int",
-        "url": "https://www.ecmwf.int/"
-      }
-    },
     {
       "@type": "Person",
       "@id": "ZJ",
@@ -96,8 +99,8 @@
     }
   ],
   "measurementTechnique": [
-    "Automatic weather station",
-    "Data assimilation (reanalysis) that combines first principle models with observations"
+    "Satellite images reanalysis",
+    "Population census of population"
   ]
 }
   </script>
@@ -149,8 +152,8 @@ const thebe_selector_output = ".output, .cell_output"
       </script>
       <link href="../genindex.html" rel="index" title="Index"/>
       <link href="../search.html" rel="search" title="Search">
-       <link href="../notebooks/era5m.html" rel="next" title="Dataset: era5">
-        <link href="../notebooks/era5h.html" rel="prev" title="Dataset: era5"/>
+       <link href="../notebooks/human_presence.html" rel="next" title="Dataset: human_presence">
+        <link href="ncep.html" rel="prev" title="Metadata table"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="None" name="docsearch:language"/>
         <!-- Google Analytics -->
@@ -421,11 +424,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
            </ul>
           </li>
-          <li class="toctree-l2 current active has-children">
-           <a class="current reference internal" href="#">
+          <li class="toctree-l2 has-children">
+           <a class="reference internal" href="era5m.html">
             era5m
            </a>
-           <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+           <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
            <label for="toctree-checkbox-14">
             <i class="fas fa-chevron-down">
             </i>
@@ -443,11 +446,11 @@ const thebe_selector_output = ".output, .cell_output"
             ncep
            </a>
           </li>
-          <li class="toctree-l2 has-children">
-           <a class="reference internal" href="human_presence.html">
+          <li class="toctree-l2 current active has-children">
+           <a class="current reference internal" href="#">
             human_presence
            </a>
-           <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+           <input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
            <label for="toctree-checkbox-15">
             <i class="fas fa-chevron-down">
             </i>
@@ -495,7 +498,7 @@ const thebe_selector_output = ".output, .cell_output"
          <div class="dropdown-buttons">
           <!-- ipynb file if we had a myst markdown file -->
           <!-- Download raw file -->
-          <a class="dropdown-buttons" href="../_sources/meta_ipynb/era5m.ipynb">
+          <a class="dropdown-buttons" href="../_sources/meta_ipynb/human_presence.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">
             .ipynb
            </button>
@@ -521,7 +524,7 @@ const thebe_selector_output = ".output, .cell_output"
           </i>
          </button>
          <div class="dropdown-buttons">
-          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/era5m.ipynb">
+          <a class="binder-button" href="https://mybinder.org/v2/gh/Mosquito-Alert/metadata/master?urlpath=tree/meta_ipynb/human_presence.ipynb">
            <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button">
             <img alt="Interact on binder" class="binder-button-logo" src="../_static/images/logo_binder.svg"/>
             Binder
@@ -583,7 +586,7 @@ const thebe_selector_output = ".output, .cell_output"
                name
               </th>
               <td style="text-align:left">
-               era5m
+               human_presence
               </td>
              </tr>
              <tr>
@@ -591,7 +594,7 @@ const thebe_selector_output = ".output, .cell_output"
                conditionsOfAccess
               </th>
               <td style="text-align:left">
-               Private
+               Public
               </td>
              </tr>
              <tr>
@@ -599,7 +602,7 @@ const thebe_selector_output = ".output, .cell_output"
                description
               </th>
               <td style="text-align:left">
-               ERA5 monthly average gridded data on single levels from 1979 to present. ERA5 is the fifth generation ECMWF reanalysis for the global climate and weather. ERA5 provides hourly estimates for a large number of atmospheric, ocean-wave and land-surface quantities. ERA5 is updated daily with a latency of about 5 days. In case that serious flaws are detected in this early release (called ERA5T), this data could be different from the final release 2 to 3 months later. Data has been regridded to a regular lat-lon grid of 0.25 degrees for the reanalysis and 0.5 degrees for the uncertainty estimate. This dataset is not intended for general public access since the original row dataset is freely distributed by ECMWF
+               Multi-band raster with resolution 0.025 degree and worldwide coverage of Köppen-Geiger climatic regions, estimated population density for 2030, Global Administrative Areas (GADM) and terrestrial ecoregions of the world.
               </td>
              </tr>
              <tr>
@@ -607,7 +610,7 @@ const thebe_selector_output = ".output, .cell_output"
                license
               </th>
               <td style="text-align:left">
-               Free of charge, worldwide, non-exclusive, royalty free and perpetual. See https://apps.ecmwf.int/datasets/licences/copernicus/
+               Free of charge, worldwide, non-exclusive, royalty free and perpetual.
               </td>
              </tr>
              <tr>
@@ -617,7 +620,16 @@ const thebe_selector_output = ".output, .cell_output"
               <td style="text-align:left">
                <ul>
                 <li>
-                 ERA5 monthly data on single levels from 1979 to present [DOI: 10.24381/cds.f17050d7]
+                 Beck, Hylke E.; E. Zimmermann, Niklaus; McVicar, Tim R.; Vergopolan, Noemi; Berg, Alexis; Wood, Eric F. (2018). Present and future Köppen-Geiger climate classification maps at 1-km resolution. https://doi.org/10.6084/m9.figshare.6396959
+                </li>
+                <li>
+                 Schiavina M., Freire S., Carioli A., MacManus K. (2023). GHS-POP R2023A - GHS population grid multitemporal (1975-2030).European Commission, Joint Research Centre (JRC). DOI:10.2905/2FF68A52-5B5B-4A22-8F40-C41DA8332CFE
+                </li>
+                <li>
+                 Global Administrative Areas (2023). GADM database of Global Administrative Areas, version 4.1. www.gadm.org
+                </li>
+                <li>
+                 Olson, D. M., Dinerstein, E., Wikramanayake, E. D., Burgess, N. D., Powell, G. V. N., Underwood, E. C., D'Amico, J. A., Itoua, I., Strand, H. E., Morrison, J. C., Loucks, C. J., Allnutt, T. F., Ricketts, T. H., Kura, Y., Lamoreux, J. F., Wettengel, W. W., Hedao, P., Kassem, K. R. 2001. Terrestrial ecoregions of the world: a new map of life on Earth. Bioscience 51(11):933-938.
                 </li>
                </ul>
               </td>
@@ -627,7 +639,6 @@ const thebe_selector_output = ".output, .cell_output"
                temporalCoverage
               </th>
               <td style="text-align:left">
-               1979-01-01/..
               </td>
              </tr>
              <tr>
@@ -649,7 +660,7 @@ const thebe_selector_output = ".output, .cell_output"
                   name
                  </th>
                  <td style="text-align:left">
-                  Spain
+                  Worldwide
                  </td>
                 </tr>
                 <tr>
@@ -657,7 +668,7 @@ const thebe_selector_output = ".output, .cell_output"
                   sameAs
                  </th>
                  <td style="text-align:left">
-                  https://www.wikidata.org/wiki/Q29
+                  https://www.wikidata.org/wiki/Q13780930
                  </td>
                 </tr>
                </table>
@@ -691,7 +702,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     cds_api
+                     mosquitoalert_webserver
                     </td>
                    </tr>
                    <tr>
@@ -699,7 +710,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Distribution by Climate Data Store API
+                     Distribution by HTTP download from MosquitoAlert webserver
                     </td>
                    </tr>
                    <tr>
@@ -707,7 +718,7 @@ const thebe_selector_output = ".output, .cell_output"
                      encodingFormat
                     </th>
                     <td style="text-align:left">
-                     netCDF
+                     TIF
                     </td>
                    </tr>
                    <tr>
@@ -715,7 +726,7 @@ const thebe_selector_output = ".output, .cell_output"
                      workExample
                     </th>
                     <td style="text-align:left">
-                     ./notebooks/era5.py
+                     ./notebook/model_tables.py
                     </td>
                    </tr>
                    <tr>
@@ -725,7 +736,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <td style="text-align:left">
                      <ul>
                       <li>
-                       https://cds.climate.copernicus.eu/api/v2
+                       http://webserver.mosquitoalert.com/static/tigapublic/models/data_environment/human_presence_multilayer_025.tif
                       </li>
                      </ul>
                     </td>
@@ -735,70 +746,7 @@ const thebe_selector_output = ".output, .cell_output"
                      contentSize
                     </th>
                     <td style="text-align:left">
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     DataDownload
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     cluster_ceab
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     description
-                    </th>
-                    <td style="text-align:left">
-                     Distribution by CSIC-CEAB cluster
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     encodingFormat
-                    </th>
-                    <td style="text-align:left">
-                     GRIB
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     workExample
-                    </th>
-                    <td style="text-align:left">
-                     ./notebooks/era5.py
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentUrl
-                    </th>
-                    <td style="text-align:left">
-                     <ul>
-                      <li>
-                       sftp://{USER}@cluster-ceab:/leov1/era5/monthly_chunks/es/{VARIABLE_NAME}_t_{YEAR-MONTH}-01.grib
-                      </li>
-                     </ul>
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contentSize
-                    </th>
-                    <td style="text-align:left">
-                     10MB
+                     27.9MB
                     </td>
                    </tr>
                   </table>
@@ -835,7 +783,7 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
-                     2m_temperature
+                     BAND 1
                     </td>
                    </tr>
                    <tr>
@@ -843,7 +791,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     2 m above ground air temperature
+                     Köppen-Geiger climate classification (0 == no data).
                     </td>
                    </tr>
                    <tr>
@@ -851,7 +799,138 @@ const thebe_selector_output = ".output, .cell_output"
                      unitText
                     </th>
                     <td style="text-align:left">
-                     Degree Kelvin
+                     categorical
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     BAND 2
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Distribution of residential population, expressed as the number of people per cell (-200 == no data).
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     number of people per cell
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     BAND 3
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     GADM database of Global Administrative Areas (0 == no data).
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     BAND 4
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Terrestrial ecoregions of the world (0 == no data).
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     unitText
+                    </th>
+                    <td style="text-align:left">
+                     categorical
                     </td>
                    </tr>
                    <tr>
@@ -881,67 +960,6 @@ const thebe_selector_output = ".output, .cell_output"
                </td>
                <td style="text-align:left">
                 <ul>
-                 <li>
-                  <table border="1">
-                   <tr>
-                    <th>
-                     @type
-                    </th>
-                    <td style="text-align:left">
-                     Organization
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     @id
-                    </th>
-                    <td style="text-align:left">
-                     ECMWF
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     name
-                    </th>
-                    <td style="text-align:left">
-                     European Centre for Medium-Range Weather Forecasts (ECMWF)
-                    </td>
-                   </tr>
-                   <tr>
-                    <th>
-                     contactPoint
-                    </th>
-                    <td style="text-align:left">
-                     <table border="1">
-                      <tr>
-                       <th>
-                        @type
-                       </th>
-                       <td style="text-align:left">
-                        ContactPoint
-                       </td>
-                      </tr>
-                      <tr>
-                       <th>
-                        email
-                       </th>
-                       <td style="text-align:left">
-                        copernicus-support@ecmwf.int
-                       </td>
-                      </tr>
-                      <tr>
-                       <th>
-                        url
-                       </th>
-                       <td style="text-align:left">
-                        https://www.ecmwf.int/
-                       </td>
-                      </tr>
-                     </table>
-                    </td>
-                   </tr>
-                  </table>
-                 </li>
                  <li>
                   <table border="1">
                    <tr>
@@ -1037,10 +1055,10 @@ const thebe_selector_output = ".output, .cell_output"
                <td style="text-align:left">
                 <ul>
                  <li>
-                  Automatic weather station
+                  Satellite images reanalysis
                  </li>
                  <li>
-                  Data assimilation (reanalysis) that combines first principle models with observations
+                  Population census of population
                  </li>
                 </ul>
                </td>
@@ -1077,7 +1095,7 @@ const thebe_selector_output = ".output, .cell_output"
        </div>
        <!-- Previous / next buttons -->
        <div class="prev-next-area">
-        <a class="left-prev" href="../notebooks/era5h.html" id="prev-link" title="previous page">
+        <a class="left-prev" href="ncep.html" id="prev-link" title="previous page">
          <i class="fas fa-angle-left">
          </i>
          <div class="prev-next-info">
@@ -1085,14 +1103,11 @@ const thebe_selector_output = ".output, .cell_output"
            previous
           </p>
           <p class="prev-next-title">
-           Dataset:
-           <em>
-            era5
-           </em>
+           Metadata table
           </p>
          </div>
         </a>
-        <a class="right-next" href="../notebooks/era5m.html" id="next-link" title="next page">
+        <a class="right-next" href="../notebooks/human_presence.html" id="next-link" title="next page">
          <div class="prev-next-info">
           <p class="prev-next-subtitle">
            next
@@ -1100,7 +1115,7 @@ const thebe_selector_output = ".output, .cell_output"
           <p class="prev-next-title">
            Dataset:
            <em>
-            era5
+            human_presence
            </em>
           </p>
          </div>
