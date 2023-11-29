@@ -27,9 +27,7 @@ Whenever possible, DOI identifiers are used for linking to datasets. Since the m
 
 ### 2.2. Accessibility
 
-A static website portal was built to ease metadata visualization and dataset access. The static website is hosted free of charge and maintenance costs on GitHub Pages. A [public portal](https://mosquito-alert.github.io/metadata_public_portal/README_ma.html) relative to Mosquito Alert open data is available for general public. For the moment, the full metadata portal is only available on a private repository since it contains not only public but even private datasets.
-
-Every metadata has an associated *Python* script (i.e. jupyter notebook tutorial) that explains how to access the relative dataset distribution. The web-portal is automatically re-generated anytime a new metadata is added.
+A static website portal was built to ease metadata visualization and dataset access. The static website is hosted free of charge and maintenance costs on GitHub Pages. Some metadata has an associated *Python* script (i.e. jupyter notebook tutorial) that explains how to access the relative dataset distribution. The web-portal is automatically re-generated anytime a new metadata is added.
 
 In the following table are listed all the datasets currently available at the metadata web-portal with the respective licenses and access restrictions. *Private* data is stored in a restricted access disk storage on the CEAB-CSIC computer cluster. Note that if a dataset is labeled as *Private* it does not necessarily imply that it cannot be distributed, since their access may be guaranteed after signing a ad-hoc contract of use.
 
