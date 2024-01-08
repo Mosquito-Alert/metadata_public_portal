@@ -103,14 +103,14 @@
     {
       "@type": "PropertyValue",
       "name": "SE_expected",
-      "description": "Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.",
+      "description": "Sampling Effort Expected is an estimate of the expected number of participants who would send at least one report from the cell on that specific day. It's calculated based on the number of participants recorded in the cell and the duration since each participant started engaging with the project. This value is a useful measure of sampling effort in models in which the outcome is a count (for example, the number of valid Ae. albopictus reports from a given cell during a given time period)",
       "unitText": "",
       "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "SE",
-      "description": "Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..",
+      "description": "Similar to SE_expected, Sampling Effort represents the probability of at least one report being sent from the cell on the given day. Like SE_expected, it's calculated based on the number of participants in the cell and their duration of participation in the project, but in this case it is the probability of at least one report overall, regardless of how  many different participants send one. This value is a useful measure of sampling effort in presence/absence models.",
       "unitText": "",
       "qudt:dataType": "xsd:float"
     }
@@ -1108,7 +1108,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Sampling effort estimated as the expected number of participants sending at least one report from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project.
+                     Sampling Effort Expected is an estimate of the expected number of participants who would send at least one report from the cell on that specific day. It's calculated based on the number of participants recorded in the cell and the duration since each participant started engaging with the project. This value is a useful measure of sampling effort in models in which the outcome is a count (for example, the number of valid Ae. albopictus reports from a given cell during a given time period)
                     </td>
                    </tr>
                    <tr>
@@ -1151,7 +1151,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Sampling effort estimated as the probability of at least one report being sent from the cell during the day in question given the the number of participants recorded in the cell that day and the amount of time elapsed since each one began participating in the project..
+                     Similar to SE_expected, Sampling Effort represents the probability of at least one report being sent from the cell on the given day. Like SE_expected, it's calculated based on the number of participants in the cell and their duration of participation in the project, but in this case it is the probability of at least one report overall, regardless of how  many different participants send one. This value is a useful measure of sampling effort in presence/absence models.
                     </td>
                    </tr>
                    <tr>
