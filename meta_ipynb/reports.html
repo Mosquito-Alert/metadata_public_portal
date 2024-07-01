@@ -27,7 +27,7 @@
   "@type": "Dataset",
   "name": "reports",
   "conditionsOfAccess": "Public",
-  "description": "Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.",
+  "description": "This dataset contains validated reports from the Mosquito Alert application, providing information on mosquito bites, breeding sites, and adult mosquito encounters.",
   "url": "https://github.com/MosquitoAlert/Data",
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "citation": [
@@ -43,6 +43,17 @@
   "distribution": [
     {
       "@type": "DataDownload",
+      "name": "mosquitoalert_webserver_sftp",
+      "description": "Distribution by SFTP download from MosquitoAlert webserver",
+      "encodingFormat": "JSON.ZIP",
+      "workExample": "./notebooks/reports.py",
+      "contentUrl": [
+        "sftp://epidata@webserver.mosquitoalert.com:9122/home/webuser/webapps/Data/all_reports.zip"
+      ],
+      "contentSize": "46MB"
+    },
+    {
+      "@type": "DataDownload",
       "name": "zenodo",
       "description": "Distribution from Zenodo cloud.",
       "encodingFormat": "[JSON.ZIP].ZIP",
@@ -50,7 +61,7 @@
       "contentUrl": [
         "https://doi.org/10.5281/zenodo.597466"
       ],
-      "contentSize": "5MB"
+      "contentSize": "46MB"
     },
     {
       "@type": "DataDownload",
@@ -62,50 +73,50 @@
         "https://github.com/MosquitoAlert/Data/raw/master/all_reports.zip",
         "https://raw.githubusercontent.com/MosquitoAlert/Data/master/translation_dict.json"
       ],
-      "contentSize": "73MB"
+      "contentSize": "46MB"
     }
   ],
   "variableMeasured": [
     {
       "@type": "PropertyValue",
       "name": "version_UUID",
-      "description": "UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
+      "description": "Unique identifier randomly generated on the phone to identify each report version. Must be exactly 36 characters long (32 hex digits plus 4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_time",
-      "description": "Date and time on phone when first version of report was created. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date time string. Example: 2016-01-03T12:04:00.996Z",
+      "description": "Date and time on the phone when the first version of the report was created. Already corrected by the 'datetime_fix_offset' value. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date-time string. Example: 2016-01-03T12:04:00.996Z",
       "qudt:dataType": "xsd:dateTime"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_date",
-      "description": "Date part of creation_time string (provided separately simply for convenience) with YYYY-MM-DD format. Example: 2016-01-03 ",
+      "description": "Date part of the creation_time string (provided separately for convenience) in YYYY-MM-DD format. Example: 2016-01-03 ",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_day_since_launch",
-      "description": "Creation_date expressed as number of days since 13June 2014 ,the day Mosquito Alert was launched (under its former name,Tigatrapp).",
+      "description": "Creation_date expressed as the number of days since June 13, 2014, the day Mosquito Alert was launched (under its former name, Tigatrapp).",
       "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_year",
-      "description": "Year part of creation_time string (provided separately simply for convenience).",
+      "description": "Year part of the creation_time string (provided separately for convenience).",
       "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "creation_month",
-      "description": "Month part of creation_time string (provided separately simply for convenience).",
+      "description": "Month part of the creation_time string (provided separately for convenience).",
       "qudt:dataType": "xsd:int"
     },
     {
       "@type": "PropertyValue",
       "name": "site_cat",
-      "description": "An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).",
+      "description": "An integer indicating the type of breeding site recorded by the participant. Options: 0 (storm drain), 1 (fountain), 2 (small basin), 3 (small container), 4 (well), or 5 (other).",
       "qudt:dataType": "xsd:int",
       "maxValue": 5,
       "minValue": 0
@@ -113,19 +124,19 @@
     {
       "@type": "PropertyValue",
       "name": "type",
-      "description": "Type of report: 'adult', 'site', 'mission' or 'bite'",
+      "description": "Type of report: 'adult', 'site', 'mission', or 'bite'.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "lon",
-      "description": "Longitude of report location.",
+      "description": "Longitude of the report location.",
       "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "lat",
-      "description": "Latitude of report location.",
+      "description": "Latitude of the report location.",
       "qudt:dataType": "xsd:float"
     },
     {
@@ -137,13 +148,13 @@
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
-          "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
+          "description": "Notes written by validation experts (or participants edited by validation experts) for display on the public map.",
           "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "crowdcrafting_score_cat",
-          "description": "Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.",
+          "description": "Tiger mosquito score category assigned to the photo displayed in this report by crowdcrafting volunteers. Scores range from -2 to 2, representing 'Definitely not a tiger mosquito' to 'Definitely a tiger mosquito' respectively.",
           "qudt:dataType": "xsd:string",
           "maxValue": 2,
           "minValue": -2
@@ -151,13 +162,13 @@
         {
           "@type": "PropertyValue",
           "name": "crowdcrafting_n_response",
-          "description": "Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.",
+          "description": "Number of crowdcrafting volunteers who have scored the photo displayed in this report.",
           "qudt:dataType": "xsd:int"
         },
         {
           "@type": "PropertyValue",
           "name": "site_certainty_category",
-          "description": "If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))",
+          "description": "Degree of belief of experts that at least one photo attached to the report shows an albopictus or aegypti breeding site.",
           "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -165,7 +176,7 @@
         {
           "@type": "PropertyValue",
           "name": "tiger_certainty_category",
-          "description": "If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))",
+          "description": "Degree of belief of experts that at least one photo attached to the report shows a tiger mosquito.",
           "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -173,7 +184,7 @@
         {
           "@type": "PropertyValue",
           "name": "aegypti_certainty_category",
-          "description": "If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))",
+          "description": "Degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult.",
           "qudt:dataType": "xsd:int",
           "maxValue": 2,
           "minValue": -3
@@ -181,7 +192,7 @@
         {
           "@type": "PropertyValue",
           "name": "photo_html",
-          "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
+          "description": "An HTML string that produces a small version of the selected report photo, linked to the original (full-size) version.",
           "qudt:dataType": "xsd:anyURI"
         },
         {
@@ -201,19 +212,19 @@
     {
       "@type": "PropertyValue",
       "name": "movelab_annotation_euro",
-      "description": "",
+      "description": "Similar to 'movelab_annotation' but with preprocessing for machine learning.",
       "qudt:dataType": "xsd:complexType",
       "value": [
         {
           "@type": "PropertyValue",
           "name": "edited_user_notes",
-          "description": "Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.",
+          "description": "Notes written by validation experts (or participants edited by validation experts) for display on the public map.",
           "qudt:dataType": "xsd:string"
         },
         {
           "@type": "PropertyValue",
           "name": "photo_html",
-          "description": "An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.",
+          "description": "An HTML string that produces a small version of the selected report photo, linked to the original (full-size) version.",
           "qudt:dataType": "xsd:anyURI"
         },
         {
@@ -245,31 +256,31 @@
     {
       "@type": "PropertyValue",
       "name": "tiger_responses",
-      "description": "Similar to 'tiger_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'tiger_responses_text'.",
+      "description": "Preprocessed version of 'tiger_responses_text' attribute for machine learning purposes.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "tiger_responses_text",
-      "description": "Adult mosquito related user responses stored in json format with the following keys: 'id' identifier of the participant response; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "description": "Adult mosquito-related user responses stored in JSON format.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "site_responses",
-      "description": "Similar to 'site_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'site_responses_text'.",
+      "description": "Preprocessed version of 'site_responses_text' attribute for machine learning purposes.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "site_responses_text",
-      "description": "Breeding site related user responses stored in json format with the following keys: 'id' identifier of the participant response; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "description": "Breeding site-related user responses stored in JSON format.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "tigaprob_cat",
-      "description": "",
+      "description": "TBD",
       "qudt:dataType": "xsd:int"
     },
     {
@@ -299,37 +310,49 @@
     {
       "@type": "PropertyValue",
       "name": "responses",
-      "description": "Bites related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
+      "description": "Bites-related user responses stored in JSON format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "country",
-      "description": "ISO3166-1 alpha3 country codes for European Union. If not available, relative report do not fall inside an EU-country",
+      "description": "ISO3166-1 alpha3 country codes for the European Union. Absence indicates the report does not fall within an EU country.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
+      "name": "updated_at",
+      "description": "Date and time when the report was last modified. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date-time string. Example: 2016-01-03T12:04:00.996Z",
+      "qudt:dataType": "xsd:dateTime"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "datetime_fix_offset",
+      "description": "An integer representing the offset (in seconds) applied to the original datetime values for fixing. If None, it indicates that no information about the original time zone could be inferred or the timezone was already provided when posting the report. To retrieve the original buggy values, use: original_buggy_value = current_value - datetime_fix_offset.",
+      "qudt:dataType": "xsd:int"
+    },
+    {
+      "@type": "PropertyValue",
       "name": "cached_visible",
-      "description": "",
+      "description": "TBD",
       "qudt:dataType": "xsd:float"
     },
     {
       "@type": "PropertyValue",
       "name": "point",
-      "description": "Coordinate point lat/lon values with the relative Spatial Reference System Identifier (SRID) with Well-Known Binary (WKB) representation of the geometry. Example: SRID=4326;POINT (-1.1314…0815 37.99214306653169)",
+      "description": "Coordinate point lat/lon values with the relative Spatial Reference System Identifier (SRID) in Well-Known Binary (WKB) format.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "nuts_3",
-      "description": "NUTS statistical regions for European Union on level 3.",
+      "description": "NUTS statistical regions for the European Union on level 3.",
       "qudt:dataType": "xsd:string"
     },
     {
       "@type": "PropertyValue",
       "name": "nuts_2",
-      "description": "NUTS statistical regions for European Union on level 2.",
+      "description": "NUTS statistical regions for the European Union on level 2.",
       "qudt:dataType": "xsd:string"
     },
     {
@@ -879,7 +902,7 @@ const thebe_selector_output = ".output, .cell_output"
                description
               </th>
               <td style="text-align:left">
-               Validated reports only from the Mosquito Alert application with information about bites, breeding sites and adult mosquito encounters.
+               This dataset contains validated reports from the Mosquito Alert application, providing information on mosquito bites, breeding sites, and adult mosquito encounters.
               </td>
              </tr>
              <tr>
@@ -982,6 +1005,70 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
+                     mosquitoalert_webserver_sftp
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Distribution by SFTP download from MosquitoAlert webserver
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     encodingFormat
+                    </th>
+                    <td style="text-align:left">
+                     JSON.ZIP
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     workExample
+                    </th>
+                    <td style="text-align:left">
+                     ./notebooks/reports.py
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentUrl
+                    </th>
+                    <td style="text-align:left">
+                     <ul>
+                      <li>
+                       sftp://epidata@webserver.mosquitoalert.com:9122/home/webuser/webapps/Data/all_reports.zip
+                      </li>
+                     </ul>
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     contentSize
+                    </th>
+                    <td style="text-align:left">
+                     46MB
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     DataDownload
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
                      zenodo
                     </td>
                    </tr>
@@ -1026,7 +1113,7 @@ const thebe_selector_output = ".output, .cell_output"
                      contentSize
                     </th>
                     <td style="text-align:left">
-                     5MB
+                     46MB
                     </td>
                    </tr>
                   </table>
@@ -1093,7 +1180,7 @@ const thebe_selector_output = ".output, .cell_output"
                      contentSize
                     </th>
                     <td style="text-align:left">
-                     73MB
+                     46MB
                     </td>
                    </tr>
                   </table>
@@ -1138,7 +1225,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     UUID randomly generated on phone to identify each unique report version. Must be exactly 36 characters (32 hex digits plus4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA
+                     Unique identifier randomly generated on the phone to identify each report version. Must be exactly 36 characters long (32 hex digits plus 4 hyphens). Example: D18007F8-FD36-4288-8876-E4314A7B86AA
                     </td>
                    </tr>
                    <tr>
@@ -1174,7 +1261,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Date and time on phone when first version of report was created. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date time string. Example: 2016-01-03T12:04:00.996Z
+                     Date and time on the phone when the first version of the report was created. Already corrected by the 'datetime_fix_offset' value. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date-time string. Example: 2016-01-03T12:04:00.996Z
                     </td>
                    </tr>
                    <tr>
@@ -1210,7 +1297,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Date part of creation_time string (provided separately simply for convenience) with YYYY-MM-DD format. Example: 2016-01-03
+                     Date part of the creation_time string (provided separately for convenience) in YYYY-MM-DD format. Example: 2016-01-03
                     </td>
                    </tr>
                    <tr>
@@ -1246,7 +1333,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Creation_date expressed as number of days since 13June 2014 ,the day Mosquito Alert was launched (under its former name,Tigatrapp).
+                     Creation_date expressed as the number of days since June 13, 2014, the day Mosquito Alert was launched (under its former name, Tigatrapp).
                     </td>
                    </tr>
                    <tr>
@@ -1282,7 +1369,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Year part of creation_time string (provided separately simply for convenience).
+                     Year part of the creation_time string (provided separately for convenience).
                     </td>
                    </tr>
                    <tr>
@@ -1318,7 +1405,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Month part of creation_time string (provided separately simply for convenience).
+                     Month part of the creation_time string (provided separately for convenience).
                     </td>
                    </tr>
                    <tr>
@@ -1354,7 +1441,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     An integer indicating the type of breeding site (as recorded by participant): Either 0 (storm drain), 1 (fountain), 2 (small basin), 3(small container), 4 (well), or 5 (other).
+                     An integer indicating the type of breeding site recorded by the participant. Options: 0 (storm drain), 1 (fountain), 2 (small basin), 3 (small container), 4 (well), or 5 (other).
                     </td>
                    </tr>
                    <tr>
@@ -1406,7 +1493,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Type of report: 'adult', 'site', 'mission' or 'bite'
+                     Type of report: 'adult', 'site', 'mission', or 'bite'.
                     </td>
                    </tr>
                    <tr>
@@ -1442,7 +1529,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Longitude of report location.
+                     Longitude of the report location.
                     </td>
                    </tr>
                    <tr>
@@ -1478,7 +1565,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Latitude of report location.
+                     Latitude of the report location.
                     </td>
                    </tr>
                    <tr>
@@ -1554,7 +1641,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.
+                          Notes written by validation experts (or participants edited by validation experts) for display on the public map.
                          </td>
                         </tr>
                         <tr>
@@ -1590,7 +1677,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          Tiger mosquito score category assigned to the photodisplayed in this report by crowdcrafting volunteers. The scorecategory is calculated based on the number of positive and negativeresponses to the questions, 'Do you see a mosquito in this photo?' and'Is it a tiger mosquito?'. A 'yes' to both questions is given a 1 and a'no' to either is given a -1. The score category is mean of theseresponses, normalized to range from [-2,2] and rounded to integervalues. For reports with multiple photos the score is for the photo thatthe expert validators selected as the one that best represents thereport.
+                          Tiger mosquito score category assigned to the photo displayed in this report by crowdcrafting volunteers. Scores range from -2 to 2, representing 'Definitely not a tiger mosquito' to 'Definitely a tiger mosquito' respectively.
                          </td>
                         </tr>
                         <tr>
@@ -1642,7 +1729,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          Number of crowdcrafting volunteers who have scored the photo displayed in this report. For reports with multiple photos the score is for the photo that the expert validators selected as the one that best represents the report.
+                          Number of crowdcrafting volunteers who have scored the photo displayed in this report.
                          </td>
                         </tr>
                         <tr>
@@ -1678,7 +1765,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          If this is a breeding site report, the degree of belief of experts that at least one photo attached to the report showsan albopictus or aegypti breeding site. Value definitions: (2,'Definitely a breeding site'), (1, 'Probably a breeding site'), (0, 'Notsure'), (-1, 'Probably not a breeding site'), (-2, 'Definitely not abreeding site'), (-3, 'No score'))
+                          Degree of belief of experts that at least one photo attached to the report shows an albopictus or aegypti breeding site.
                          </td>
                         </tr>
                         <tr>
@@ -1730,7 +1817,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          If this is a adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows a tiger mosquito. Value definitions: (2, 'Definitely a tiger mosquito'), (1, 'Probably a tiger mosquito'), (0, 'Not sure'), (-1, 'Probably not a tiger mosquito'), (-2,'Definitely not a tiger mosquito'), (-3, 'No score'))
+                          Degree of belief of experts that at least one photo attached to the report shows a tiger mosquito.
                          </td>
                         </tr>
                         <tr>
@@ -1782,7 +1869,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          If this is an adult mosquito report, the degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult. Value definitions: (2, 'Definitely aegypti'), (1, 'Probably aegypti'), (0, 'Not sure'), (-1, 'Probably not aegypti'), (-2, 'Definitely not aegypti'), (-3, 'No score'))
+                          Degree of belief of experts that at least one photo attached to the report shows an Aedes aegypti adult.
                          </td>
                         </tr>
                         <tr>
@@ -1834,7 +1921,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.
+                          An HTML string that produces a small version of the selected report photo, linked to the original (full-size) version.
                          </td>
                         </tr>
                         <tr>
@@ -1945,6 +2032,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
+                     Similar to 'movelab_annotation' but with preprocessing for machine learning.
                     </td>
                    </tr>
                    <tr>
@@ -1984,7 +2072,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          Notes written by validation experts (or written by the participant who sent the report and then edited by validation experts) for display on pubic map.
+                          Notes written by validation experts (or participants edited by validation experts) for display on the public map.
                          </td>
                         </tr>
                         <tr>
@@ -2020,7 +2108,7 @@ const thebe_selector_output = ".output, .cell_output"
                           description
                          </th>
                          <td style="text-align:left">
-                          An HTML string that produces a small version of the selected report photo that is linked to the original (full-size) version. For reports with multiple photos, the selected report photo is the photo selected by the expert validators as best representative of the report subject.
+                          An HTML string that produces a small version of the selected report photo, linked to the original (full-size) version.
                          </td>
                         </tr>
                         <tr>
@@ -2202,7 +2290,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Similar to 'tiger_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'tiger_responses_text'.
+                     Preprocessed version of 'tiger_responses_text' attribute for machine learning purposes.
                     </td>
                    </tr>
                    <tr>
@@ -2238,7 +2326,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Adult mosquito related user responses stored in json format with the following keys: 'id' identifier of the participant response; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
+                     Adult mosquito-related user responses stored in JSON format.
                     </td>
                    </tr>
                    <tr>
@@ -2274,7 +2362,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Similar to 'site_responses_text' attribute but it is a preprocessed version with the aim of beeing ML-friendly. In case of doubt, refere better to 'site_responses_text'.
+                     Preprocessed version of 'site_responses_text' attribute for machine learning purposes.
                     </td>
                    </tr>
                    <tr>
@@ -2310,7 +2398,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Breeding site related user responses stored in json format with the following keys: 'id' identifier of the participant response; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
+                     Breeding site-related user responses stored in JSON format.
                     </td>
                    </tr>
                    <tr>
@@ -2346,6 +2434,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
+                     TBD
                     </td>
                    </tr>
                    <tr>
@@ -2521,7 +2610,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Bites related user responses stored in json format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
+                     Bites-related user responses stored in JSON format with the following keys: 'id' identifier; 'translated_question' question as it was in the app, translated to the same language the app was when uploading the report (if the app is in a language which have not translation yet, it defaults to english); 'translated_answer' user's answer to the question; 'question_id' question identifier;  'question' text format question in default language; 'answer_id' answer identifier; 'answer' text format answer in default language; 'answer_value' integer value relative to the answer; 'report' identifier of the report.
                     </td>
                    </tr>
                    <tr>
@@ -2557,7 +2646,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     ISO3166-1 alpha3 country codes for European Union. If not available, relative report do not fall inside an EU-country
+                     ISO3166-1 alpha3 country codes for the European Union. Absence indicates the report does not fall within an EU country.
                     </td>
                    </tr>
                    <tr>
@@ -2585,6 +2674,78 @@ const thebe_selector_output = ".output, .cell_output"
                      name
                     </th>
                     <td style="text-align:left">
+                     updated_at
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     Date and time when the report was last modified. Format as [ECMA 262](http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) date-time string. Example: 2016-01-03T12:04:00.996Z
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:dateTime
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
+                     datetime_fix_offset
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     description
+                    </th>
+                    <td style="text-align:left">
+                     An integer representing the offset (in seconds) applied to the original datetime values for fixing. If None, it indicates that no information about the original time zone could be inferred or the timezone was already provided when posting the report. To retrieve the original buggy values, use: original_buggy_value = current_value - datetime_fix_offset.
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     qudt:dataType
+                    </th>
+                    <td style="text-align:left">
+                     xsd:int
+                    </td>
+                   </tr>
+                  </table>
+                 </li>
+                 <li>
+                  <table border="1">
+                   <tr>
+                    <th>
+                     @type
+                    </th>
+                    <td style="text-align:left">
+                     PropertyValue
+                    </td>
+                   </tr>
+                   <tr>
+                    <th>
+                     name
+                    </th>
+                    <td style="text-align:left">
                      cached_visible
                     </td>
                    </tr>
@@ -2593,6 +2754,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
+                     TBD
                     </td>
                    </tr>
                    <tr>
@@ -2628,7 +2790,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     Coordinate point lat/lon values with the relative Spatial Reference System Identifier (SRID) with Well-Known Binary (WKB) representation of the geometry. Example: SRID=4326;POINT (-1.1314…0815 37.99214306653169)
+                     Coordinate point lat/lon values with the relative Spatial Reference System Identifier (SRID) in Well-Known Binary (WKB) format.
                     </td>
                    </tr>
                    <tr>
@@ -2664,7 +2826,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     NUTS statistical regions for European Union on level 3.
+                     NUTS statistical regions for the European Union on level 3.
                     </td>
                    </tr>
                    <tr>
@@ -2700,7 +2862,7 @@ const thebe_selector_output = ".output, .cell_output"
                      description
                     </th>
                     <td style="text-align:left">
-                     NUTS statistical regions for European Union on level 2.
+                     NUTS statistical regions for the European Union on level 2.
                     </td>
                    </tr>
                    <tr>
