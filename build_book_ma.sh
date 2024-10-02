@@ -1,4 +1,9 @@
+#!/bin/bash
+
+set -e
 source config.sh
+
+conda activate metadata
 
 # Remove the old version of the website
 if [ -d "./_build" ] 

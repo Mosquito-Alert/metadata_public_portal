@@ -1,5 +1,5 @@
 format: jb-book
-root: README_ma
+root: README
 chapters:
 
 # User guide
@@ -61,4 +61,58 @@ chapters:
     title: muni_preds
     sections:
     - file: notebooks/muni_preds
+      title: code-example
+
+  - file: meta_ipynb/mwi
+    title: mwi
+#    sections:
+#    - file: notebooks/mwi
+#      title: code-example
+
+  - file: meta_ipynb/senscape_traps
+    title: irideon_senscape_traps
+    sections:
+    - file: notebooks/senscape_traps
+      title: code-example
+    
+# Public Health 
+- file: meta/public_health/intro
+  sections:
+  - file: meta_ipynb/dengue
+    title: dengue
+#    sections:
+#    - file: notebooks/dengue
+#      title: code-example
+
+# Environment
+- file: meta/environment/intro
+  sections:
+  - file: meta_ipynb/meteocat_xema
+    title: meteocat_xema
+    sections:
+    - file: notebooks/meteocat_xema
+      title: code-example
+  
+  - file: meta_ipynb/era5h
+    title: era5h
+    sections:
+    - file: notebooks/era5h
+      title: code-example
+
+  - file: meta_ipynb/era5m
+    title: era5m
+    sections:
+    - file: notebooks/era5m
+      title: code-example
+
+  - file: meta_ipynb/ncep
+    title: ncep
+#    sections:
+#    - file: notebooks/ncep
+#      title: code-example
+
+  - file: meta_ipynb/human_presence
+    title: human_presence
+    sections:
+    - file: notebooks/human_presence
       title: code-example
